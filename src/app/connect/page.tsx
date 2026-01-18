@@ -40,7 +40,7 @@ const contactMethods = [
 
 export default function ConnectPage() {
   return (
-    <main className="relative min-h-screen bg-noir-primary pt-32 pb-20">
+    <main className="relative min-h-screen bg-ink pt-32 pb-20">
       <Container size="wide">
         <div className="text-center space-y-6 mb-20">
           <p className="text-label text-graphite">LET'S CONNECT</p>
@@ -88,7 +88,7 @@ export default function ConnectPage() {
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 bg-noir-subtle border border-white/[0.06] rounded-lg text-platinum focus:border-accent-gold/50 focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 bg-ink/50 border border-white/[0.06] rounded-lg text-platinum focus:border-accent-gold/50 focus:outline-none transition-colors"
                     placeholder="John Doe"
                   />
                 </div>
@@ -98,7 +98,7 @@ export default function ConnectPage() {
                   </label>
                   <input
                     type="email"
-                    className="w-full px-4 py-3 bg-noir-subtle border border-white/[0.06] rounded-lg text-platinum focus:border-accent-gold/50 focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 bg-ink/50 border border-white/[0.06] rounded-lg text-platinum focus:border-accent-gold/50 focus:outline-none transition-colors"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -109,7 +109,7 @@ export default function ConnectPage() {
                 </label>
                 <input
                   type="text"
-                  className="w-full px-4 py-3 bg-noir-subtle border border-white/[0.06] rounded-lg text-platinum focus:border-accent-gold/50 focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 bg-ink/50 border border-white/[0.06] rounded-lg text-platinum focus:border-accent-gold/50 focus:outline-none transition-colors"
                   placeholder="Project Inquiry"
                 />
               </div>
@@ -119,7 +119,7 @@ export default function ConnectPage() {
                 </label>
                 <textarea
                   rows={6}
-                  className="w-full px-4 py-3 bg-noir-subtle border border-white/[0.06] rounded-lg text-platinum focus:border-accent-gold/50 focus:outline-none transition-colors resize-none"
+                  className="w-full px-4 py-3 bg-ink/50 border border-white/[0.06] rounded-lg text-platinum focus:border-accent-gold/50 focus:outline-none transition-colors resize-none"
                   placeholder="Tell me about your project..."
                 />
               </div>

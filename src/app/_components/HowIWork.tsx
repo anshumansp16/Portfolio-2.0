@@ -18,7 +18,7 @@ const dontDo = [
 
 export function HowIWork() {
   return (
-    <section className="relative py-32 md:py-40">
+    <section className="relative py-16 md:py-24">
       {/* Drawing line (The Line motif) */}
       <motion.div
         className="absolute left-1/2 top-20 bottom-20 w-px bg-gradient-to-b from-transparent via-graphite/20 to-transparent"
@@ -29,7 +29,7 @@ export function HowIWork() {
       />
 
       <Container size="narrow">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
           {/* Left: Brought in for */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}

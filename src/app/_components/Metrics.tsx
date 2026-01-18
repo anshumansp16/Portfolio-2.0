@@ -95,7 +95,7 @@ const proofs = [
 
 export function Metrics() {
   return (
-    <section className="relative py-32 md:py-40">
+    <section className="relative py-16 md:py-24">
       <Container>
         {/* Asymmetric Layout: 1 big left, 2 stacked right */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">

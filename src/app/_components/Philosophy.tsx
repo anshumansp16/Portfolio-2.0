@@ -11,7 +11,7 @@ const principles = [
 
 export function Philosophy() {
   return (
-    <section className="relative py-32 md:py-40 overflow-hidden">
+    <section className="relative py-16 md:py-24 overflow-hidden">
       {/* The Line - Vertical Seam */}
       <motion.div
         className="absolute left-12 md:left-24 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-graphite/30 to-transparent"

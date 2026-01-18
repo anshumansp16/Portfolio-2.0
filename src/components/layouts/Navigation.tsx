@@ -24,7 +24,7 @@ function NavItem({ label, href }: { label: string; href: string }) {
     >
       <Link
         href={href}
-        className="luxury-link relative text-sm font-medium text-platinum transition-colors duration-200"
+        className="luxury-link relative text-xs md:text-sm font-medium text-platinum transition-colors duration-200"
       >
         {label}
       </Link>
@@ -37,8 +37,6 @@ export function Navigation() {
   const [maxScroll, setMaxScroll] = useState(1000)
   const { scrollY } = useScroll()
 
-  // Transform background opacity based on scroll - appear after scroll, 30-35% max
-  const backgroundOpacity = useTransform(scrollY, [0, 100], [0, 0.35])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,11 +66,13 @@ export function Navigation() {
         scrolled ? 'py-4' : 'py-6'
       )}
     >
-      <motion.div
-        className="absolute inset-0 -z-10 glass"
-        style={{
-          opacity: backgroundOpacity,
-        }}
+      {/* Solid background when scrolled */}
+      <div
+        className={cn(
+          "absolute inset-0 -z-10 transition-opacity duration-300 backdrop-blur-md",
+          scrolled ? "opacity-100" : "opacity-0"
+        )}
+        style={{ backgroundColor: 'rgba(10, 10, 10, 0.95)' }}
       />
 
       <div className="container-wide">
@@ -83,10 +83,9 @@ export function Navigation() {
             className="relative group"
           >
             <motion.span
-              className="text-platinum transition-colors duration-200 group-hover:text-accent-gold"
+              className="text-platinum transition-colors duration-200 group-hover:text-accent-gold text-[1.6rem] md:text-[2.2rem]"
               style={{
                 fontFamily: 'var(--font-signature)',
-                fontSize: '2.2rem',
                 fontWeight: 400,
                 letterSpacing: '0.02em',
               }}
@@ -98,7 +97,7 @@ export function Navigation() {
           </Link>
 
           {/* Navigation Items */}
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-4 md:gap-10">
             {navItems.map((item) => (
               <NavItem key={item.href} {...item} />
             ))}

@@ -42,7 +42,7 @@ function SpineMarker({ top, label }: SpineMarkerProps) {
 export function MuseumSpine() {
   return (
     <div
-      className="fixed left-8 md:left-12 top-0 bottom-0 pointer-events-none"
+      className="fixed left-4 md:left-12 top-0 bottom-0 pointer-events-none"
       style={{ zIndex: 10 }}
     >
       {/* The continuous spine */}

@@ -213,11 +213,11 @@ const systems = [
 
 export function SelectedSystems() {
   return (
-    <section className="relative py-40 md:py-48">
+    <section className="relative py-20 md:py-28">
       <Container size="narrow">
         {/* Section Label */}
         <motion.div
-          className="mb-20"
+          className="mb-12 md:mb-16"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -232,7 +232,7 @@ export function SelectedSystems() {
         </motion.div>
 
         {/* Exhibits */}
-        <div className="space-y-32">
+        <div className="space-y-20 md:space-y-28">
           {systems.map((system, index) => (
             <Exhibit
               key={system.name}

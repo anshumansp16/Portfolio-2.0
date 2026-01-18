@@ -6,7 +6,7 @@ import { Container } from '@/components/ui/Container'
 
 export function ConnectCTA() {
   return (
-    <section className="relative py-32 md:py-40 overflow-hidden">
+    <section className="relative py-20 md:py-28 overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-t from-noir-primary via-transparent to-transparent" />
 
