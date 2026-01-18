@@ -41,7 +41,7 @@ export function ProofStrip() {
             }}
             transition={{
               x: {
-                duration: 18,
+                duration: 10,
                 repeat: Infinity,
                 ease: 'linear',
               },
