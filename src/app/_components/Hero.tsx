@@ -25,7 +25,7 @@ export function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            I build production AI systems<br />and browser automation at scale.
+            I build production systems<br />with Generative AI at scale.
           </motion.h1>
 
           {/* Single Supporting Line - Founder Energy */}
