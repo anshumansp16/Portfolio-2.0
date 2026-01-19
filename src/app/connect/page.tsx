@@ -1,140 +1,118 @@
 import { Metadata } from 'next'
+import { Mail, Linkedin, Github, X } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
-import { Card } from '@/components/ui/Card'
+import { ContactForm } from './_components/ContactForm'
 
 export const metadata: Metadata = {
   title: 'Connect - Anshuman Parmar',
   description: 'Get in touch to discuss AI solutions and enterprise architecture.',
 }
 
-const contactMethods = [
-  {
-    icon: '📧',
-    title: 'Email',
-    description: 'For project inquiries and collaborations',
-    link: 'mailto:anshumansp16@gmail.com',
-    cta: 'Send an Email',
-  },
-  {
-    icon: '💼',
-    title: 'LinkedIn',
-    description: 'Connect with me professionally',
-    link: 'https://www.linkedin.com/in/anshumansp16',
-    cta: 'View Profile',
-  },
-  {
-    icon: '🐙',
-    title: 'GitHub',
-    description: 'Explore my open-source contributions',
-    link: 'https://github.com/anshumansp16/',
-    cta: 'Check Repositories',
-  },
-  {
-    icon: '𝕏',
-    title: 'X (Twitter)',
-    description: 'Follow for tech insights and updates',
-    link: 'https://x.com/AnshumanSP16',
-    cta: 'Follow Me',
-  },
-]
-
 export default function ConnectPage() {
   return (
     <main className="relative min-h-screen bg-ink pt-32 pb-20">
-      <Container size="wide">
-        <div className="text-center space-y-6 mb-20">
-          <p className="text-label text-graphite">LET'S CONNECT</p>
-          <h1 className="text-display-md font-display text-platinum">
-            Start a Conversation
-          </h1>
-          <p className="text-body text-silver/70 max-w-2xl mx-auto">
-            Whether you have a project in mind, want to collaborate, or just chat
-            about AI and technology, I'd love to hear from you.
-          </p>
-        </div>
+      <Container>
+        <div className="max-w-4xl mx-auto">
+          {/* Header */}
+          <div className="mb-16">
+            <h1 className="text-display-md font-display text-platinum mb-4">
+              Get in Touch
+            </h1>
+            <p className="text-body text-silver/80 max-w-2xl">
+              I'm always interested in discussing new projects, creative ideas, or opportunities to collaborate.
+            </p>
+          </div>
 
-        {/* Contact Methods Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-          {contactMethods.map((method) => (
-            <Card key={method.title} className="text-center">
-              <div className="text-5xl mb-4">{method.icon}</div>
-              <h3 className="text-headline-sm font-display text-platinum mb-2">
-                {method.title}
-              </h3>
-              <p className="text-body-sm text-silver/70 mb-6">
-                {method.description}
-              </p>
-              <a
-                href={method.link}
-                className="luxury-link text-accent-gold text-body-sm font-medium"
-              >
-                {method.cta} →
-              </a>
-            </Card>
-          ))}
-        </div>
-
-        {/* Contact Form */}
-        <div className="max-w-2xl mx-auto">
-          <Card>
-            <h2 className="text-headline-lg font-display text-platinum text-center mb-8">
-              Send a Message
-            </h2>
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-label text-graphite mb-2">
-                    YOUR NAME
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 bg-ink/50 border border-white/[0.06] rounded-lg text-platinum focus:border-accent-gold/50 focus:outline-none transition-colors"
-                    placeholder="John Doe"
-                  />
-                </div>
-                <div>
-                  <label className="block text-label text-graphite mb-2">
-                    YOUR EMAIL
-                  </label>
-                  <input
-                    type="email"
-                    className="w-full px-4 py-3 bg-ink/50 border border-white/[0.06] rounded-lg text-platinum focus:border-accent-gold/50 focus:outline-none transition-colors"
-                    placeholder="john@example.com"
-                  />
-                </div>
-              </div>
+          {/* Two Column Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+            {/* Contact Info - Left Side */}
+            <div className="lg:col-span-2 space-y-8">
               <div>
-                <label className="block text-label text-graphite mb-2">
-                  SUBJECT
-                </label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 bg-ink/50 border border-white/[0.06] rounded-lg text-platinum focus:border-accent-gold/50 focus:outline-none transition-colors"
-                  placeholder="Project Inquiry"
-                />
-              </div>
-              <div>
-                <label className="block text-label text-graphite mb-2">
-                  MESSAGE
-                </label>
-                <textarea
-                  rows={6}
-                  className="w-full px-4 py-3 bg-ink/50 border border-white/[0.06] rounded-lg text-platinum focus:border-accent-gold/50 focus:outline-none transition-colors resize-none"
-                  placeholder="Tell me about your project..."
-                />
-              </div>
-              <button type="submit" className="luxury-button w-full">
-                <span className="relative z-10">Send Message</span>
-              </button>
-            </form>
-          </Card>
-        </div>
+                <h2 className="text-headline-sm font-display text-platinum mb-6">
+                  Contact Information
+                </h2>
 
-        {/* Additional Info */}
-        <div className="text-center mt-12">
-          <p className="text-body-sm text-silver/70">
-            I typically respond within 24-48 hours.
-          </p>
+                <div className="space-y-6">
+                  <a
+                    href="mailto:anshumansp16@gmail.com"
+                    className="group flex items-start gap-4 transition-colors"
+                  >
+                    <div className="mt-1 p-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06] group-hover:border-accent-gold/50 transition-colors">
+                      <Mail className="w-5 h-5 text-graphite group-hover:text-accent-gold transition-colors" />
+                    </div>
+                    <div>
+                      <p className="text-label text-graphite mb-1">Email</p>
+                      <p className="text-body text-platinum group-hover:text-accent-gold transition-colors">
+                        anshumansp16@gmail.com
+                      </p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="https://www.linkedin.com/in/anshumansp16"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-start gap-4 transition-colors"
+                  >
+                    <div className="mt-1 p-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06] group-hover:border-accent-gold/50 transition-colors">
+                      <Linkedin className="w-5 h-5 text-graphite group-hover:text-accent-gold transition-colors" />
+                    </div>
+                    <div>
+                      <p className="text-label text-graphite mb-1">LinkedIn</p>
+                      <p className="text-body text-platinum group-hover:text-accent-gold transition-colors">
+                        linkedin.com/in/anshumansp16
+                      </p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="https://github.com/anshumansp16/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-start gap-4 transition-colors"
+                  >
+                    <div className="mt-1 p-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06] group-hover:border-accent-gold/50 transition-colors">
+                      <Github className="w-5 h-5 text-graphite group-hover:text-accent-gold transition-colors" />
+                    </div>
+                    <div>
+                      <p className="text-label text-graphite mb-1">GitHub</p>
+                      <p className="text-body text-platinum group-hover:text-accent-gold transition-colors">
+                        github.com/anshumansp16
+                      </p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="https://x.com/anshumansp16"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-start gap-4 transition-colors"
+                  >
+                    <div className="mt-1 p-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06] group-hover:border-accent-gold/50 transition-colors">
+                      <X className="w-5 h-5 text-graphite group-hover:text-accent-gold transition-colors" />
+                    </div>
+                    <div>
+                      <p className="text-label text-graphite mb-1">X (Twitter)</p>
+                      <p className="text-body text-platinum group-hover:text-accent-gold transition-colors">
+                        @anshumansp16
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div className="pt-4">
+                <p className="text-body-sm text-silver/60">
+                  Response time: 24-48 hours
+                </p>
+              </div>
+            </div>
+
+            {/* Contact Form - Right Side */}
+            <div className="lg:col-span-3">
+              <ContactForm />
+            </div>
+          </div>
         </div>
       </Container>
     </main>

@@ -155,7 +155,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
                   GitHub
                 </a>
                 <a
-                  href="https://x.com/AnshumanSP16"
+                  href="https://x.com/anshumansp16"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-body-sm text-silver/80"

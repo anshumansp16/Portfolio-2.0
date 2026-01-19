@@ -38,7 +38,7 @@ const navigation = {
   social: [
     { name: 'LinkedIn', href: 'https://www.linkedin.com/in/anshumansp16', icon: LinkedInIcon },
     { name: 'GitHub', href: 'https://github.com/anshumansp', icon: GitHubIcon },
-    { name: 'Twitter', href: 'https://x.com/AnshumanSP16', icon: XIcon },
+    { name: 'Twitter', href: 'https://x.com/anshumansp16', icon: XIcon },
     { name: 'Email', href: 'mailto:anshumansp16@gmail.com', icon: EmailIcon },
   ],
 }
