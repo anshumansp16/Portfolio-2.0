@@ -5,7 +5,7 @@ import { ContactForm } from './_components/ContactForm'
 
 export const metadata: Metadata = {
   title: 'Connect - Anshuman Parmar',
-  description: 'Get in touch to discuss AI solutions and enterprise architecture.',
+  description: 'Get in touch to discuss AI automation solutions and intelligent transformation for your business.',
 }
 
 export default function ConnectPage() {

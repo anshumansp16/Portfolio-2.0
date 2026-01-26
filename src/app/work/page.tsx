@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Work - Anshuman Parmar',
-  description: 'Explore my portfolio of AI-driven enterprise solutions and scalable systems.',
+  description: 'Explore my portfolio of AI automation solutions and intelligent transformation projects.',
 }
 
 const projects = [
@@ -21,6 +21,7 @@ const projects = [
     role: 'CLI development, SDLC automation',
     image: '/images/assets/tatva.png',
     tags: ['CLI', 'Templates', 'Environments', 'Deploy'],
+    link: 'https://tatva.anshumansp.com',
   },
   {
     index: '02',
@@ -35,6 +36,7 @@ const projects = [
     role: 'Platform architecture, delivery systems',
     image: '/images/assets/aarambh.png',
     tags: ['User Journeys', 'Content Delivery', 'Admin Ops'],
+    link: 'https://aarambh.anshumansp.com',
   },
   {
     index: '03',
@@ -49,6 +51,7 @@ const projects = [
     role: 'E-commerce architecture, payment systems',
     image: '/images/assets/crownking.png',
     tags: ['E-commerce', 'Payments', 'Product Flows'],
+    link: 'https://resume.anshumansp.com',
   },
 ]
 
@@ -70,9 +73,12 @@ export default function WorkPage() {
         {/* Projects Grid - Horizontal */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {projects.map((project) => (
-            <article
+            <a
               key={project.title}
-              className="group rounded-xl overflow-hidden"
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group rounded-xl overflow-hidden block cursor-pointer"
               style={{
                 background: 'rgba(255, 255, 255, 0.02)',
                 border: '1px solid rgba(255, 255, 255, 0.06)',
@@ -146,7 +152,7 @@ export default function WorkPage() {
                   ))}
                 </div>
               </div>
-            </article>
+            </a>
           ))}
         </div>
 

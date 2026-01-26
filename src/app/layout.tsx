@@ -4,6 +4,7 @@ import '@/styles/globals.css'
 import { Navigation } from '@/components/layouts/Navigation'
 import { SmoothScroll } from '@/components/layouts/SmoothScroll'
 import { Footer } from '@/components/layouts/Footer'
+import { ChatPopup } from '@/components/ui/ChatPopup'
 
 // Font configurations with display swap for optimal loading
 const inter = Inter({
@@ -35,9 +36,9 @@ const allura = Allura({
 })
 
 export const metadata: Metadata = {
-  title: 'Anshuman Parmar — AI Architect & Systems Builder',
-  description: 'Building the future of AI-driven enterprise solutions. Architecting systems that transform how businesses operate in the AI-first era.',
-  keywords: ['AI', 'Machine Learning', 'Enterprise Solutions', 'Cloud Architecture', 'Full Stack Development'],
+  title: 'Anshuman Parmar — AI Specialist & Automation Expert',
+  description: 'Transforming businesses with affordable AI automation solutions. Specializing in intelligent systems that drive growth and reduce costs.',
+  keywords: ['AI Automation', 'AI Transformation', 'Machine Learning', 'RAG Systems', 'LLM Integration', 'Business Automation', 'Affordable AI'],
   authors: [{ name: 'Anshuman Parmar' }],
   creator: 'Anshuman Parmar',
   openGraph: {
@@ -45,8 +46,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://anshumansp.com',
     siteName: 'Anshuman Parmar',
-    title: 'Anshuman Parmar — AI Architect & Systems Builder',
-    description: 'Building the future of AI-driven enterprise solutions.',
+    title: 'Anshuman Parmar — AI Specialist & Automation Expert',
+    description: 'Transforming businesses with affordable AI automation solutions.',
     images: [
       {
         url: '/og-image.jpg',
@@ -58,8 +59,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Anshuman Parmar — AI Architect & Systems Builder',
-    description: 'Building the future of AI-driven enterprise solutions.',
+    title: 'Anshuman Parmar — AI Specialist & Automation Expert',
+    description: 'Transforming businesses with affordable AI automation solutions.',
     images: ['/og-image.jpg'],
   },
   robots: {
@@ -90,6 +91,7 @@ export default function RootLayout({
         <Navigation />
         {children}
         <Footer />
+        <ChatPopup />
       </body>
     </html>
   )

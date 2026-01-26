@@ -4,9 +4,9 @@ import { motion } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 
 const principles = [
-  'I build AI systems that scale in production.',
-  'I automate what should never be manual.',
-  'I ship reliable code with 99.9% uptime.',
+  'I transform operations with intelligent AI automation.',
+  'I deliver affordable solutions that maximize ROI.',
+  'I build systems that scale from startup to enterprise.',
 ]
 
 export function Philosophy() {

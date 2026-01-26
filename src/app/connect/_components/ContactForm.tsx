@@ -76,25 +76,45 @@ export function ContactForm() {
     setSubmitStatus('idle')
 
     try {
-      // Simulate API call - replace with your actual submission logic
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      // Submit directly to Web3Forms (client-side)
+      const formDataToSend = new FormData()
+      formDataToSend.append('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || '')
+      formDataToSend.append('name', formData.name)
+      formDataToSend.append('email', formData.email)
+      formDataToSend.append('subject', formData.subject)
+      formDataToSend.append('message', formData.message)
+      formDataToSend.append('botcheck', '') // Anti-spam honeypot
 
-      // For now, just log the form data
-      console.log('Form submitted:', formData)
-
-      setSubmitStatus('success')
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formDataToSend,
       })
 
-      // Reset success message after 5 seconds
-      setTimeout(() => setSubmitStatus('idle'), 5000)
+      const data = await response.json()
+
+      console.log('Web3Forms response:', { status: response.status, data })
+
+      if (data.success) {
+        setSubmitStatus('success')
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        })
+
+        // Reset success message after 5 seconds
+        setTimeout(() => setSubmitStatus('idle'), 5000)
+      } else {
+        console.error('Form submission failed:', data.message)
+        throw new Error(data.message || 'Failed to send message')
+      }
     } catch (error) {
       console.error('Form submission error:', error)
       setSubmitStatus('error')
+
+      // Reset error message after 5 seconds
+      setTimeout(() => setSubmitStatus('idle'), 5000)
     } finally {
       setIsSubmitting(false)
     }
@@ -118,10 +138,10 @@ export function ContactForm() {
             onChange={handleChange}
             aria-invalid={errors.name ? 'true' : 'false'}
             aria-describedby={errors.name ? 'name-error' : undefined}
-            className={`w-full pl-11 pr-4 py-3 bg-ink border rounded text-platinum placeholder:text-silver/40 focus:outline-none transition-colors ${
+            className={`w-full pl-11 pr-4 py-3 bg-white/[0.03] backdrop-blur-sm border rounded-lg text-platinum placeholder:text-silver/40 focus:outline-none transition-all duration-300 ${
               errors.name
-                ? 'border-red-500 focus:border-red-500'
-                : 'border-white/10 focus:border-accent-gold/50'
+                ? 'border-red-500/50 focus:border-red-500 focus:bg-red-500/[0.05]'
+                : 'border-white/[0.08] focus:border-accent-gold/40 focus:bg-white/[0.05] hover:border-white/[0.12]'
             }`}
             placeholder="Your name"
           />
@@ -149,10 +169,10 @@ export function ContactForm() {
             onChange={handleChange}
             aria-invalid={errors.email ? 'true' : 'false'}
             aria-describedby={errors.email ? 'email-error' : undefined}
-            className={`w-full pl-11 pr-4 py-3 bg-ink border rounded text-platinum placeholder:text-silver/40 focus:outline-none transition-colors ${
+            className={`w-full pl-11 pr-4 py-3 bg-white/[0.03] backdrop-blur-sm border rounded-lg text-platinum placeholder:text-silver/40 focus:outline-none transition-all duration-300 ${
               errors.email
-                ? 'border-red-500 focus:border-red-500'
-                : 'border-white/10 focus:border-accent-gold/50'
+                ? 'border-red-500/50 focus:border-red-500 focus:bg-red-500/[0.05]'
+                : 'border-white/[0.08] focus:border-accent-gold/40 focus:bg-white/[0.05] hover:border-white/[0.12]'
             }`}
             placeholder="your.email@example.com"
           />
@@ -180,10 +200,10 @@ export function ContactForm() {
             onChange={handleChange}
             aria-invalid={errors.subject ? 'true' : 'false'}
             aria-describedby={errors.subject ? 'subject-error' : undefined}
-            className={`w-full pl-11 pr-4 py-3 bg-ink border rounded text-platinum placeholder:text-silver/40 focus:outline-none transition-colors ${
+            className={`w-full pl-11 pr-4 py-3 bg-white/[0.03] backdrop-blur-sm border rounded-lg text-platinum placeholder:text-silver/40 focus:outline-none transition-all duration-300 ${
               errors.subject
-                ? 'border-red-500 focus:border-red-500'
-                : 'border-white/10 focus:border-accent-gold/50'
+                ? 'border-red-500/50 focus:border-red-500 focus:bg-red-500/[0.05]'
+                : 'border-white/[0.08] focus:border-accent-gold/40 focus:bg-white/[0.05] hover:border-white/[0.12]'
             }`}
             placeholder="What would you like to discuss?"
           />
@@ -211,10 +231,10 @@ export function ContactForm() {
             onChange={handleChange}
             aria-invalid={errors.message ? 'true' : 'false'}
             aria-describedby={errors.message ? 'message-error' : undefined}
-            className={`w-full pl-11 pr-4 py-3 bg-ink border rounded text-platinum placeholder:text-silver/40 focus:outline-none transition-colors resize-none ${
+            className={`w-full pl-11 pr-4 py-3 bg-white/[0.03] backdrop-blur-sm border rounded-lg text-platinum placeholder:text-silver/40 focus:outline-none transition-all duration-300 resize-none ${
               errors.message
-                ? 'border-red-500 focus:border-red-500'
-                : 'border-white/10 focus:border-accent-gold/50'
+                ? 'border-red-500/50 focus:border-red-500 focus:bg-red-500/[0.05]'
+                : 'border-white/[0.08] focus:border-accent-gold/40 focus:bg-white/[0.05] hover:border-white/[0.12]'
             }`}
             placeholder="Tell me about your project or idea..."
           />

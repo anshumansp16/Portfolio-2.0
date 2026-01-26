@@ -26,26 +26,26 @@ const skills = [
   },
 ]
 
-const experience = [
-  {
-    role: 'Senior Full Stack Developer',
-    company: 'Thunder Marketing Corporation',
-    period: 'April 2025 - Present',
-    description: 'Architected enterprise-scale browser automation platform using Selenium & Playwright, processing 50K+ automated tasks daily with 99.9% reliability. Built production FastAPI microservices architecture handling 10K+ concurrent requests. Engineered AI-powered automation systems integrating GPT-4, Claude, and custom LLMs. Developed Next.js dashboards with real-time monitoring and implemented CI/CD pipelines reducing deployment time by 60%.',
-  },
-  {
-    role: 'AI Engineer',
-    company: 'Sazag Infotech Private Limited',
-    period: 'April 2024 - March 2025',
-    description: 'Designed production-grade RAG systems and agentic AI architectures for enterprise clients, improving query accuracy by 40% through vector database optimization. Built Chrome extensions and browser automation tools generating 30% cost savings. Containerized applications using Docker/Kubernetes for seamless scaling. Developed scalable Python FastAPI backends integrated with AWS/GCP.',
-  },
-  {
-    role: 'Full Stack Developer',
-    company: 'Freelance',
-    period: 'August 2022 - March 2024',
-    description: 'Delivered 25+ production web applications using React.js, Next.js, and modern frontend frameworks, maintaining 99% client satisfaction rating. Migrated 15+ legacy applications to AWS cloud infrastructure, achieving 50% cost reduction and 95+ Google PageSpeed scores. Integrated RESTful APIs, payment gateways, and authentication systems. Mentored 3 junior developers improving team code quality by 40%.',
-  },
-]
+// const experience = [
+//   {
+//     role: 'Senior Full Stack Developer',
+//     company: 'Thunder Marketing Corporation',
+//     period: 'April 2025 - Present',
+//     description: 'Architected enterprise-scale browser automation platform using Selenium & Playwright, processing 50K+ automated tasks daily with 99.9% reliability. Built production FastAPI microservices architecture handling 10K+ concurrent requests. Engineered AI-powered automation systems integrating GPT-4, Claude, and custom LLMs. Developed Next.js dashboards with real-time monitoring and implemented CI/CD pipelines reducing deployment time by 60%.',
+//   },
+//   {
+//     role: 'AI Engineer',
+//     company: 'Sazag Infotech Private Limited',
+//     period: 'April 2024 - March 2025',
+//     description: 'Designed production-grade RAG systems and agentic AI architectures for enterprise clients, improving query accuracy by 40% through vector database optimization. Built Chrome extensions and browser automation tools generating 30% cost savings. Containerized applications using Docker/Kubernetes for seamless scaling. Developed scalable Python FastAPI backends integrated with AWS/GCP.',
+//   },
+//   {
+//     role: 'Full Stack Developer',
+//     company: 'Freelance',
+//     period: 'August 2022 - March 2024',
+//     description: 'Delivered 25+ production web applications using React.js, Next.js, and modern frontend frameworks, maintaining 99% client satisfaction rating. Migrated 15+ legacy applications to AWS cloud infrastructure, achieving 50% cost reduction and 95+ Google PageSpeed scores. Integrated RESTful APIs, payment gateways, and authentication systems. Mentored 3 junior developers improving team code quality by 40%.',
+//   },
+// ]
 
 export default function AboutPage() {
   return (
@@ -171,7 +171,7 @@ export default function AboutPage() {
         </div>
 
         {/* Experience */}
-        <div className="mb-20">
+        {/* <div className="mb-20">
           <h2 className="text-headline-lg font-display text-platinum text-center mb-12">
             Experience
           </h2>
@@ -193,7 +193,7 @@ export default function AboutPage() {
               </Card>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* CTA */}
         <div className="text-center">

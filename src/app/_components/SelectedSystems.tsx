@@ -30,7 +30,12 @@ function Exhibit({ index, name, domain, outcome, constraints, role, image, link,
       }}
     >
       {/* Artifact Frame */}
-      <div className="relative group mb-8">
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative group mb-8 block cursor-pointer"
+      >
         {/* Browser Frame Container */}
         <div
           className="relative overflow-hidden rounded-xl"
@@ -61,12 +66,45 @@ function Exhibit({ index, name, domain, outcome, constraints, role, image, link,
                 src={image}
                 alt={`${name} artifact`}
                 fill
-                className="object-contain transition-all duration-700 group-hover:scale-[1.02]"
+                className="object-contain transition-all duration-700 group-hover:scale-[1.05]"
                 style={{
                   filter: 'grayscale(0.15) contrast(1.05)',
                 }}
               />
             </div>
+          </div>
+
+          {/* Hover Overlay - Slides from bottom */}
+          <div
+            className="absolute inset-0 flex items-end justify-center pb-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style={{
+              background: 'linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.8) 40%, transparent 100%)',
+            }}
+          >
+            <motion.div
+              className="flex items-center gap-3 px-6 py-3 rounded-full"
+              style={{
+                background: 'linear-gradient(135deg, #D4AF37 0%, #B8860B 100%)',
+                boxShadow: '0 8px 24px rgba(212, 175, 55, 0.4)',
+              }}
+              initial={{ y: 20, opacity: 0 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <span className="text-ink font-medium text-sm">Look at system</span>
+              <svg
+                className="w-4 h-4 text-ink"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </motion.div>
           </div>
 
           {/* Vignette */}
@@ -77,7 +115,7 @@ function Exhibit({ index, name, domain, outcome, constraints, role, image, link,
             }}
           />
         </div>
-      </div>
+      </a>
 
       {/* Label Row */}
       <div className="flex items-baseline gap-4 mb-4">
@@ -135,7 +173,7 @@ function Exhibit({ index, name, domain, outcome, constraints, role, image, link,
 
       {/* Role */}
       <p
-        className="text-body-sm text-graphite/60 mb-4"
+        className="text-body-sm text-graphite/60"
         style={{
           fontWeight: 300,
           fontStyle: 'italic',
@@ -143,19 +181,6 @@ function Exhibit({ index, name, domain, outcome, constraints, role, image, link,
       >
         {role}
       </p>
-
-      {/* Link */}
-      {link && (
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block text-body-sm text-silver/60 hover:text-platinum transition-colors duration-300"
-          style={{ fontWeight: 300 }}
-        >
-          View system →
-        </a>
-      )}
 
       {/* Light falloff separator */}
       <div
@@ -182,6 +207,7 @@ const systems = [
     ],
     role: 'CLI development, SDLC automation',
     image: '/images/assets/tatva.png',
+    link: 'https://tatva.anshumansp.com',
   },
   {
     index: '02',
@@ -195,6 +221,7 @@ const systems = [
     ],
     role: 'Platform architecture, delivery systems',
     image: '/images/assets/aarambh.png',
+    link: 'https://aarambh.anshumansp.com',
   },
   {
     index: '03',
@@ -208,6 +235,7 @@ const systems = [
     ],
     role: 'E-commerce architecture, payment systems',
     image: '/images/assets/crownking.png',
+    link: 'https://resume.anshumansp.com',
   },
 ]
 

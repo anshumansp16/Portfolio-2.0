@@ -4,8 +4,8 @@ import { motion } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 
 const aboutLines = [
-  "A Full Stack Developer with over half a decade of experience in building production-grade AI systems, browser automation platforms, and scalable web applications.",
-  "I specialize in Generative AI, modern JavaScript frameworks, and Python backend development, with a proven track record of delivering enterprise solutions.",
+  "An AI specialist focused on transforming businesses through intelligent automation. Over half a decade of experience implementing AI-driven solutions that reduce costs and accelerate growth.",
+  "I specialize in practical AI implementations - from RAG systems and LLM integrations to automation workflows - always prioritizing affordability and measurable business impact.",
 ]
 
 export function About() {

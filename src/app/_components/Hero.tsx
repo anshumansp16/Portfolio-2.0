@@ -25,7 +25,7 @@ export function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            I build production systems<br />with AI at scale.
+            I transform businesses<br />with AI automation.
           </motion.h1>
 
           {/* Single Supporting Line - Founder Energy */}
@@ -39,7 +39,7 @@ export function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
           >
-            Senior Full Stack Developer specializing in RAG, LLMs, and enterprise automation.
+            AI specialist delivering intelligent automation and transformation solutions. Focusing on affordable, scalable AI implementations that drive real business value.
           </motion.p>
 
           {/* CTA Buttons - Primary Dominant */}
