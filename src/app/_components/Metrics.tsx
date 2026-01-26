@@ -74,21 +74,21 @@ function Proof({ metric, consequence, qualifier, size = 'small', index }: ProofP
 
 const proofs = [
   {
-    metric: '50k+',
-    consequence: 'automated tasks/day',
-    qualifier: 'enterprise browser automation with 99.9% reliability',
+    metric: '50K+',
+    consequence: 'Daily Operations Managed',
+    qualifier: 'Across production AI systems with 99.9% uptime',
     size: 'large' as const,
   },
   {
     metric: '60%',
-    consequence: 'cost reduction',
-    qualifier: 'through intelligent automation & cloud optimization',
+    consequence: 'Average Cost Reduction',
+    qualifier: 'Replacing manual processes with AI systems',
     size: 'small' as const,
   },
   {
     metric: '25+',
-    consequence: 'production apps',
-    qualifier: 'delivered with 99% client satisfaction',
+    consequence: 'AI Systems Delivered',
+    qualifier: 'Built and maintained in production',
     size: 'small' as const,
   },
 ]

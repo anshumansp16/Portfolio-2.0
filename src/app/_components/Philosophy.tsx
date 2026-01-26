@@ -4,9 +4,18 @@ import { motion } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 
 const principles = [
-  'I transform operations with intelligent AI automation.',
-  'I deliver affordable solutions that maximize ROI.',
-  'I build systems that scale from startup to enterprise.',
+  {
+    statement: 'I build custom AI systems tailored to your business needs.',
+    outcome: 'From RAG pipelines to intelligent automation—designed for your operations',
+  },
+  {
+    statement: 'I deliver production-grade AI that maximizes ROI.',
+    outcome: 'Typically achieve positive ROI within 3 months',
+  },
+  {
+    statement: 'I build systems that scale from startup to enterprise.',
+    outcome: 'Grows with your business without expensive rewrites',
+  },
 ]
 
 export function Philosophy() {
@@ -26,14 +35,8 @@ export function Philosophy() {
           {/* Principles */}
           <div className="space-y-8 md:space-y-10">
             {principles.map((principle, index) => (
-              <motion.p
+              <motion.div
                 key={index}
-                className="text-headline-sm md:text-headline-md font-display text-platinum/90"
-                style={{
-                  fontWeight: 300,
-                  letterSpacing: '-0.015em',
-                  lineHeight: 1.5,
-                }}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
@@ -43,8 +46,27 @@ export function Philosophy() {
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                {principle}
-              </motion.p>
+                <p
+                  className="text-headline-sm md:text-headline-md font-display text-platinum/90 mb-3"
+                  style={{
+                    fontWeight: 300,
+                    letterSpacing: '-0.015em',
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {principle.statement}
+                </p>
+                <p
+                  className="text-body text-silver/50 italic"
+                  style={{
+                    fontWeight: 300,
+                    letterSpacing: '0.01em',
+                    lineHeight: 1.6,
+                  }}
+                >
+                  → {principle.outcome}
+                </p>
+              </motion.div>
             ))}
           </div>
         </div>

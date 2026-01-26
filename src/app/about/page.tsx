@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const skills = [
   {
-    category: 'AI & Automation',
+    category: 'AI & ML',
     items: ['RAG Systems', 'LangChain', 'LangGraph', 'OpenAI', 'Claude', 'Gemini', 'ChromaDB', 'Pinecone', 'Selenium', 'Playwright'],
   },
   {
@@ -65,13 +65,22 @@ export default function AboutPage() {
         {/* Bio */}
         <div className="max-w-3xl mx-auto space-y-6 mb-20">
           <p className="text-body-lg text-silver/90 leading-relaxed">
-            I build production AI systems and browser automation at scale. Not demos—systems
-            that handle 50K+ daily tasks with 99.9% reliability. The kind that stay shipped.
+            I build production AI systems at scale. Not demos—systems
+            that handle 50K+ daily operations with 99.9% reliability. The kind that stay shipped.
           </p>
           <p className="text-body text-silver/80 leading-relaxed">
-            5+ years of deep work in Generative AI, RAG systems, and enterprise automation.
+            5+ years of deep work in Generative AI, RAG systems, and enterprise AI integration.
             I've reduced operational costs by 60% through intelligent systems and improved
             reliability by 85% through architecture that respects constraints.
+          </p>
+          <p className="text-body text-silver/80 leading-relaxed">
+            Most of my work starts when a business has outgrown manual processes but isn't
+            ready to hire aggressively or rebuild everything from scratch. My role is to design
+            systems that remove operational drag—quietly, reliably, and without introducing fragility.
+          </p>
+          <p className="text-body text-silver/80 leading-relaxed">
+            I work with founders, operators, and teams who feel the pain of scale but want
+            thoughtful solutions, not just tools.
           </p>
         </div>
 
@@ -90,6 +99,9 @@ export default function AboutPage() {
                 produce the cleanest solutions. Unlimited resources lead to bloat.
                 Constraints force decisions—and decisions are where craft lives.
               </p>
+              <p className="text-body-sm text-silver/50 italic">
+                → Prevents over-engineered, expensive systems
+              </p>
             </div>
             <div className="space-y-4">
               <h3 className="text-headline-sm font-display text-accent-gold">
@@ -99,6 +111,9 @@ export default function AboutPage() {
                 Technical excellence means nothing without value creation. I'm not just
                 a coder—I understand that beautiful systems no one needs are just
                 expensive art projects. The graveyard of startups proves this daily.
+              </p>
+              <p className="text-body-sm text-silver/50 italic">
+                → Ensures every system serves a real business need
               </p>
             </div>
             <div className="space-y-4">
@@ -110,6 +125,9 @@ export default function AboutPage() {
                 happens in focused blocks, not in meetings. What ships matters more
                 than what's measured. Activity isn't progress.
               </p>
+              <p className="text-body-sm text-silver/50 italic">
+                → Avoids wasted meetings and slow delivery cycles
+              </p>
             </div>
             <div className="space-y-4">
               <h3 className="text-headline-sm font-display text-accent-gold">
@@ -119,6 +137,9 @@ export default function AboutPage() {
                 I think in frameworks. Reversible vs irreversible decisions.
                 Speed vs analysis trade-offs. First principles over best practices.
                 Context determines correctness—there are no universal answers.
+              </p>
+              <p className="text-body-sm text-silver/50 italic">
+                → Provides flexible solutions that adapt to your context
               </p>
             </div>
             <div className="space-y-4">
@@ -130,6 +151,9 @@ export default function AboutPage() {
                 product-market fit is suicide. Monoliths at scale is suffocation.
                 The right decision at the wrong time is the wrong decision.
               </p>
+              <p className="text-body-sm text-silver/50 italic">
+                → Matches architecture to your actual growth stage
+              </p>
             </div>
             <div className="space-y-4">
               <h3 className="text-headline-sm font-display text-accent-gold">
@@ -139,6 +163,9 @@ export default function AboutPage() {
                 Junior engineers add complexity to solve problems. Senior engineers
                 remove it. The discipline isn't in what you add—it's in what you
                 choose not to. Simple systems stay simple. Clever ones don't.
+              </p>
+              <p className="text-body-sm text-silver/50 italic">
+                → Reduces long-term maintenance costs and technical debt
               </p>
             </div>
           </div>

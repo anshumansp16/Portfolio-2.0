@@ -84,8 +84,9 @@ export function InsightsContent({ posts, categories }: InsightsContentProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          On AI systems, the philosophy of building, first principles thinking,
-          and the discipline of creating things that last.
+          I write about building production AI systems, scaling automation responsibly,
+          and making technical decisions that survive real-world constraints. Many clients
+          discover these before reaching out—they're a window into how I think and solve problems.
         </motion.p>
       </div>
 
@@ -154,7 +155,7 @@ export function InsightsContent({ posts, categories }: InsightsContentProps) {
             <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-white/[0.03] to-transparent border border-white/[0.06]">
               <div className="grid md:grid-cols-2 gap-0">
                 {/* Image */}
-                <div className="relative aspect-[16/10] md:aspect-auto">
+                <div className="relative aspect-[16/10] md:aspect-auto overflow-hidden">
                   <Image
                     src={featuredPost.heroImage}
                     alt={featuredPost.title}
@@ -218,7 +219,7 @@ export function InsightsContent({ posts, categories }: InsightsContentProps) {
                 transition={{ duration: 0.3, delay: index * 0.05 }}
               >
                 <Link href={`/insights/${post.slug}`} className="group block h-full">
-                  <article className="h-full rounded-xl overflow-hidden bg-gradient-to-br from-white/[0.02] to-transparent border border-white/[0.06] hover:border-white/[0.1] transition-all duration-300">
+                  <article className="h-full rounded-xl bg-gradient-to-br from-white/[0.02] to-transparent border border-white/[0.06] hover:border-white/[0.1] transition-all duration-300 overflow-hidden">
                     {/* Image */}
                     <div className="relative aspect-[16/9] overflow-hidden">
                       <Image

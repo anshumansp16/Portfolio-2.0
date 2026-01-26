@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Work - Anshuman Parmar',
-  description: 'Explore my portfolio of AI automation solutions and intelligent transformation projects.',
+  description: 'Explore my portfolio of AI solutions and intelligent systems for businesses.',
 }
 
 const projects = [

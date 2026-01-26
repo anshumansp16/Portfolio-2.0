@@ -25,26 +25,26 @@ export function ConnectCTA() {
         >
           {/* Main headline */}
           <h2 className="text-display-sm md:text-display-md font-display text-platinum mb-6">
-            Let's build something
-            <span className="block text-accent-gold">that lasts.</span>
+            Ready to integrate AI
+            <span className="block text-accent-gold">into your business?</span>
           </h2>
 
           {/* Subtext */}
-          <p className="text-body-lg text-silver/60 max-w-lg mx-auto mb-10">
-            Available for AI systems, automation platforms, and
-            high-impact engineering projects.
+          <p className="text-body-lg text-silver/60 max-w-2xl mx-auto mb-10">
+            Let's explore how custom AI can transform your operations—in one call.
+            <span className="block mt-2 text-silver/50">No pitch. No fluff. Just clarity.</span>
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/connect" className="luxury-button group">
-              <span className="relative z-10">Start a conversation</span>
+              <span className="relative z-10">Book Free Consultation</span>
             </Link>
             <Link
               href="/work"
               className="px-6 py-3 text-body-sm text-silver/70 hover:text-platinum transition-colors"
             >
-              View my work →
+              See how it works →
             </Link>
           </div>
 

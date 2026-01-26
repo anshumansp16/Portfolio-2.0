@@ -4,8 +4,8 @@ import { motion } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 
 const aboutLines = [
-  "An AI specialist focused on transforming businesses through intelligent automation. Over half a decade of experience implementing AI-driven solutions that reduce costs and accelerate growth.",
-  "I specialize in practical AI implementations - from RAG systems and LLM integrations to automation workflows - always prioritizing affordability and measurable business impact.",
+  "An AI specialist focused on transforming businesses through intelligent systems. Over half a decade of experience implementing AI-driven solutions that reduce costs and accelerate growth.",
+  "I specialize in practical AI implementations - from RAG systems and LLM integrations to intelligent workflows - always prioritizing affordability and measurable business impact.",
 ]
 
 export function About() {

@@ -4,13 +4,13 @@ import { motion } from 'framer-motion'
 
 const proofs = [
   'Systems shipped',
-  'Automation at scale',
+  'AI at scale',
   'Operational leverage',
   'Production-grade AI',
   'Enterprise reliability',
   'End-to-end delivery',
   'RAG pipelines',
-  'Browser automation',
+  'Intelligent agents',
   'Cost optimization',
   'Scalable architecture',
 ]
@@ -22,18 +22,13 @@ export function ProofStrip() {
   return (
     <div className="py-6 md:py-8">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-        <div className="relative overflow-hidden">
-          {/* Left fade */}
-          <div
-            className="absolute left-0 top-0 bottom-0 w-24 md:w-32 z-10 pointer-events-none"
-            style={{ background: 'linear-gradient(to right, rgb(10, 10, 10) 0%, rgba(10, 10, 10, 0.8) 30%, rgba(10, 10, 10, 0) 100%)' }}
-          />
-          {/* Right fade */}
-          <div
-            className="absolute right-0 top-0 bottom-0 w-24 md:w-32 z-10 pointer-events-none"
-            style={{ background: 'linear-gradient(to left, rgb(10, 10, 10) 0%, rgba(10, 10, 10, 0.8) 30%, rgba(10, 10, 10, 0) 100%)' }}
-          />
-
+        <div
+          className="relative overflow-hidden"
+          style={{
+            maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)'
+          }}
+        >
           <motion.div
             className="flex items-center gap-6 md:gap-10"
             animate={{

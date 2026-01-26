@@ -75,7 +75,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-body-sm text-silver/50" style={{ fontWeight: 300 }}>
-              Senior Full Stack Developer | AI & Automation Engineer
+              Senior Full Stack Developer | AI Integration Engineer
             </p>
           </div>
 

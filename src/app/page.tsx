@@ -3,12 +3,15 @@ import { Philosophy } from './_components/Philosophy'
 import { Metrics } from './_components/Metrics'
 import { SelectedSystems } from './_components/SelectedSystems'
 import { Talks } from './_components/Talks'
-import { HowIWork } from './_components/HowIWork'
+import { ProcessSection } from './_components/ProcessSection'
 import { Testimonials } from './_components/Testimonials'
 import { TechStack } from './_components/TechStack'
 import { ConnectCTA } from './_components/ConnectCTA'
 import { MuseumSpine } from '@/components/ui/MuseumSpine'
 import { ProofStrip } from '@/components/ui/ProofStrip'
+import { ProblemsISolve } from './_components/ProblemsISolve'
+import { WhoThisIsFor } from './_components/WhoThisIsFor'
+import { FAQ } from './_components/FAQ'
 
 export default function HomePage() {
   return (
@@ -23,28 +26,37 @@ export default function HomePage() {
         {/* Quiet proof strip */}
         <ProofStrip />
 
-        {/* Scene 2: Principles */}
+        {/* Scene 2: Problems I Solve */}
+        <ProblemsISolve />
+
+        {/* Scene 3: Principles */}
         <Philosophy />
 
-        {/* Scene 3: Evidence */}
+        {/* Scene 4: Evidence */}
         <Metrics />
 
-        {/* Scene 4: Selected Systems */}
+        {/* Scene 5: Selected Systems */}
         <SelectedSystems />
 
-        {/* Scene 5: Talks & Teaching */}
+        {/* Scene 6: Talks & Teaching */}
         <Talks />
 
-        {/* Scene 6: Engagement */}
-        <HowIWork />
+        {/* Scene 7: Process */}
+        <ProcessSection />
 
-        {/* Scene 7: Social Proof */}
+        {/* Scene 8: Who This Is For */}
+        <WhoThisIsFor />
+
+        {/* Scene 9: Social Proof */}
         <Testimonials />
 
-        {/* Scene 8: Tech Stack */}
+        {/* Scene 10: Tech Stack */}
         <TechStack />
 
-        {/* Scene 9: Connect CTA */}
+        {/* Scene 11: FAQ */}
+        <FAQ />
+
+        {/* Scene 12: Connect CTA */}
         <ConnectCTA />
 
         {/* Footer handled by layout */}

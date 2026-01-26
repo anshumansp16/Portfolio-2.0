@@ -9,6 +9,7 @@ interface SystemProps {
   name: string
   domain: string
   outcome: string
+  businessOutcome: string
   constraints: string[]
   role: string
   image: string
@@ -16,7 +17,7 @@ interface SystemProps {
   delay: number
 }
 
-function Exhibit({ index, name, domain, outcome, constraints, role, image, link, delay }: SystemProps) {
+function Exhibit({ index, name, domain, outcome, businessOutcome, constraints, role, image, link, delay }: SystemProps) {
   return (
     <motion.div
       className="relative"
@@ -29,6 +30,42 @@ function Exhibit({ index, name, domain, outcome, constraints, role, image, link,
         ease: [0.22, 1, 0.36, 1],
       }}
     >
+      {/* Business Outcome Badge */}
+      <motion.div
+        className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full"
+        style={{
+          background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(184, 134, 11, 0.04) 100%)',
+          border: '1px solid rgba(212, 175, 55, 0.15)',
+        }}
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: delay + 0.2 }}
+      >
+        <svg
+          className="w-4 h-4 text-accent-gold/70"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+          />
+        </svg>
+        <span
+          className="text-body-sm text-accent-gold/90"
+          style={{
+            fontWeight: 400,
+            letterSpacing: '0.01em',
+          }}
+        >
+          {businessOutcome}
+        </span>
+      </motion.div>
+
       {/* Artifact Frame */}
       <a
         href={link}
@@ -200,6 +237,7 @@ const systems = [
     name: 'TATVA',
     domain: 'TOOLING',
     outcome: 'A CLI that compresses setup → deploy into a repeatable path',
+    businessOutcome: 'Reduced setup time from days to 15 minutes',
     constraints: [
       'Scope: templates, environments, deploy steps',
       'Constraint: consistency across projects',
@@ -214,6 +252,7 @@ const systems = [
     name: 'Aarambh',
     domain: 'PLATFORM',
     outcome: 'A learning platform built around retention loops and operational reliability',
+    businessOutcome: 'Designed for 10K+ concurrent users with 99.9% uptime',
     constraints: [
       'Scope: user journeys, content delivery, admin ops',
       'Constraint: performance under real traffic',
@@ -228,6 +267,7 @@ const systems = [
     name: 'CrownKing',
     domain: 'COMMERCE',
     outcome: 'Commerce system tuned for conversion, catalog scale, and clean operations',
+    businessOutcome: 'Optimized for conversion stability and clean ops under growth',
     constraints: [
       'Scope: product flows, payments, fulfillment',
       'Constraint: speed + trust',
