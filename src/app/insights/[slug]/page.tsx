@@ -46,6 +46,28 @@ export async function generateMetadata({ params }: BlogPageProps): Promise<Metad
   return {
     title: `${post.title} - Anshuman Parmar`,
     description: post.excerpt,
+    openGraph: {
+      title: `${post.title} - Anshuman Parmar`,
+      description: post.excerpt,
+      url: `https://anshumansp.com/insights/${post.slug}`,
+      type: 'article',
+      publishedTime: new Date(post.date).toISOString(),
+      authors: [post.author],
+      images: [
+        {
+          url: post.heroImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${post.title} - Anshuman Parmar`,
+      description: post.excerpt,
+      images: [post.heroImage],
+    },
   }
 }
 
@@ -57,8 +79,39 @@ export default async function BlogPage({ params }: BlogPageProps) {
     notFound()
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://anshumansp.com/insights/${post.slug}`,
+    },
+    headline: post.title,
+    description: post.excerpt,
+    image: post.heroImage,
+    author: {
+      '@type': 'Person',
+      name: post.author,
+      url: 'https://anshumansp.com',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Anshuman Parmar',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://anshumansp.com/logo.png', // Assume a logo exists
+      },
+    },
+    datePublished: new Date(post.date).toISOString(),
+    dateModified: new Date(post.date).toISOString(),
+  }
+
   return (
     <main className="relative min-h-screen bg-noir-primary pt-32 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Wide container for blog layout */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Back Link */}

@@ -39,6 +39,7 @@ export const metadata: Metadata = {
   title: 'Anshuman Parmar — AI Specialist & Automation Expert',
   description: 'Transforming businesses with affordable AI automation solutions. Specializing in intelligent systems that drive growth and reduce costs.',
   keywords: ['AI Automation', 'AI Transformation', 'Machine Learning', 'RAG Systems', 'LLM Integration', 'Business Automation', 'Affordable AI'],
+  metadataBase: new URL('https://anshumansp.com'),
   authors: [{ name: 'Anshuman Parmar' }],
   creator: 'Anshuman Parmar',
   openGraph: {

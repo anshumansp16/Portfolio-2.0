@@ -1,0 +1,6 @@
+# Allow all user agents
+User-agent: *
+Allow: /
+
+# Point to the sitemap
+Sitemap: https://anshumansp.com/sitemap.xml
