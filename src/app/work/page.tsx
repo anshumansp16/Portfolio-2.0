@@ -68,6 +68,21 @@ const projects = [
     tags: ['User Journeys', 'Content Delivery', 'Admin Ops'],
     link: 'https://aarambh.anshumansp.com',
   },
+  {
+    index: '05',
+    title: 'GwaliorFix',
+    domain: 'CIVIC TECH',
+    description: 'Civic complaint leaderboard enabling citizens to report, track, and verify municipal issues with public accountability. Built with Next.js 14, FastAPI, and AI verification for transparency.',
+    details: [
+      'Scope: complaint reporting, AI verification, ward leaderboards',
+      'Constraint: public accountability, viral mechanics',
+      'Owned: full-stack civic platform + AI verification pipeline',
+    ],
+    role: 'Civic platform architecture, AI verification systems',
+    image: '/images/assets/gwaliorfix.png',
+    tags: ['Civic Tech', 'AI Verification', 'Next.js', 'FastAPI'],
+    link: 'https://gwaliorfix.anshumansp.com',
+  },
 ]
 
 export default function WorkPage() {

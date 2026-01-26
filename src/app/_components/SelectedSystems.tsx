@@ -231,7 +231,7 @@ function Exhibit({ index, name, domain, outcome, businessOutcome, constraints, r
   )
 }
 
-const systems = [
+const allSystems = [
   {
     index: '01',
     name: 'TATVA',
@@ -292,9 +292,27 @@ const systems = [
     image: '/images/assets/aarambh.png',
     link: 'https://aarambh.anshumansp.com',
   },
+  {
+    index: '05',
+    name: 'GwaliorFix',
+    domain: 'CIVIC TECH',
+    outcome: 'Civic complaint leaderboard enabling citizens to report, track, and verify municipal issues with public accountability',
+    businessOutcome: 'Built for transparency with dual verification and zero vendor lock-in',
+    constraints: [
+      'Scope: complaint reporting, AI verification, ward leaderboards',
+      'Constraint: public accountability, viral mechanics',
+      'Owned: full-stack civic platform + AI verification pipeline',
+    ],
+    role: 'Civic platform architecture, AI verification systems',
+    image: '/images/assets/gwaliorfix.png',
+    link: 'https://gwaliorfix.anshumansp.com',
+  },
 ]
 
 export function SelectedSystems() {
+  // Show only first 3 projects on homepage (TATVA, ScrapeHub, CrownKing)
+  const systems = allSystems.slice(0, 3)
+
   return (
     <section className="relative py-20 md:py-28">
       <Container size="narrow">

@@ -311,7 +311,7 @@ Time: ${new Date().toLocaleString()}
         <AnimatePresence>
           {!isOpen && (
             <motion.div
-              className="absolute bottom-full right-0 mb-3 px-4 py-2.5 rounded-xl whitespace-nowrap shadow-lg"
+              className="hidden md:block absolute bottom-full right-0 mb-3 px-4 py-2.5 rounded-xl whitespace-nowrap shadow-lg"
               style={{
                 background: 'linear-gradient(135deg, rgba(15, 15, 15, 0.98) 0%, rgba(10, 10, 10, 0.98) 100%)',
                 border: '1px solid rgba(212, 175, 55, 0.3)',
@@ -323,7 +323,7 @@ Time: ${new Date().toLocaleString()}
               transition={{ delay: 1.5 }}
             >
               <p className="text-sm text-platinum font-medium">
-                Want to automate your business? 💡
+                Automate your business? 💡
               </p>
             </motion.div>
           )}
@@ -334,9 +334,9 @@ Time: ${new Date().toLocaleString()}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop for mobile */}
+            {/* Backdrop for mobile only */}
             <motion.div
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -345,10 +345,9 @@ Time: ${new Date().toLocaleString()}
 
             {/* Chat Container */}
             <motion.div
-              className="fixed bottom-4 right-4 md:bottom-24 md:right-6 z-50 w-[calc(100vw-2rem)] md:w-[440px] rounded-xl overflow-hidden flex flex-col"
+              className="fixed inset-x-0 bottom-0 md:inset-x-auto md:bottom-24 md:right-6 z-50 w-full md:w-[360px] h-[calc(100vh-60px)] md:h-[550px] rounded-t-2xl md:rounded-xl overflow-hidden flex flex-col"
               style={{
-                height: showWelcome && messages.length === 0 ? 'auto' : '600px',
-                maxHeight: '85vh',
+                maxHeight: '80vh',
                 background: 'linear-gradient(180deg, rgba(15, 15, 15, 0.98) 0%, rgba(10, 10, 10, 0.98) 100%)',
                 border: '1px solid rgba(255, 255, 255, 0.08)',
                 backdropFilter: 'blur(40px)',
