@@ -20,8 +20,9 @@ interface LeadFormData {
 }
 
 const SUGGESTED_QUESTIONS = [
-  "How can automation help my business?",
-  "What does your process look like?"
+  "What products have you built?",
+  "Tell me about your YouTube channel",
+  "How can we collaborate?"
 ]
 
 export function ChatPopup() {
@@ -215,7 +216,7 @@ Time: ${new Date().toLocaleString()}
       formDataToSend.append('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || '')
       formDataToSend.append('name', leadFormData.name)
       formDataToSend.append('email', leadFormData.email)
-      formDataToSend.append('subject', `🚀 New Lead: ${leadFormData.company} - ${leadFormData.timeline}`)
+      formDataToSend.append('subject', `New Lead: ${leadFormData.company} - ${leadFormData.timeline}`)
       formDataToSend.append('message', emailContent)
       formDataToSend.append('botcheck', '') // Anti-spam honeypot
 
@@ -232,7 +233,7 @@ Time: ${new Date().toLocaleString()}
         // Show success message
         const successMessage: Message = {
           role: 'assistant',
-          content: `Thank you, ${leadFormData.name}! 🎉\n\nI've received your information and conversation details. I'll review our chat and get back to you within 24 hours at ${leadFormData.email}.\n\nLooking forward to discussing how we can transform your business with AI automation!`,
+          content: `Thank you, ${leadFormData.name}!\n\nI've received your information and conversation details. I'll review our chat and get back to you within 24 hours at ${leadFormData.email}.\n\nLooking forward to connecting.`,
           timestamp: new Date(),
           showActions: false,
         }
@@ -323,7 +324,7 @@ Time: ${new Date().toLocaleString()}
               transition={{ delay: 1.5 }}
             >
               <p className="text-sm text-platinum font-medium">
-                Automate your business? 💡
+                Ask me anything
               </p>
             </motion.div>
           )}
@@ -381,7 +382,7 @@ Time: ${new Date().toLocaleString()}
                   </div>
                   <div className="flex-1">
                     <h3 className="text-sm font-medium text-platinum">
-                      AI Assistant
+                      Anshuman&apos;s AI
                     </h3>
                   </div>
                 </div>
@@ -398,10 +399,10 @@ Time: ${new Date().toLocaleString()}
                     {/* Welcome Message */}
                     <div className="text-center">
                       <h4 className="text-base font-medium text-platinum mb-2">
-                        Hi there! 👋
+                        Hey there
                       </h4>
                       <p className="text-silver/60 text-xs">
-                        I'm here to help. What would you like to know?
+                        I can tell you about my work, projects, or how we can collaborate.
                       </p>
                     </div>
 
@@ -628,7 +629,7 @@ Time: ${new Date().toLocaleString()}
                       type="text"
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      placeholder="Ask about automation..."
+                      placeholder="Ask about my work..."
                       disabled={isLoading}
                       className="flex-1 px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-lg text-platinum placeholder:text-silver/40 focus:outline-none focus:border-accent-gold/40 text-xs disabled:opacity-50"
                     />

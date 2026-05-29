@@ -2,8 +2,8 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useContent } from '@/lib/content'
 
-// Social Icons as inline SVGs
 const LinkedInIcon = () => (
   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -28,94 +28,86 @@ const EmailIcon = () => (
   </svg>
 )
 
-const navigation = {
-  main: [
-    { name: 'Work', href: '/work' },
-    { name: 'Insights', href: '/insights' },
-    { name: 'About', href: '/about' },
-    { name: 'Connect', href: '/connect' },
-  ],
-  social: [
-    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/anshumansp16', icon: LinkedInIcon },
-    { name: 'GitHub', href: 'https://github.com/anshumansp', icon: GitHubIcon },
-    { name: 'Twitter', href: 'https://x.com/anshumansp16', icon: XIcon },
-    { name: 'Email', href: 'mailto:anshumansp16@gmail.com', icon: EmailIcon },
-  ],
-}
-
 export function Footer() {
-  const currentYear = new Date().getFullYear()
+  const { content } = useContent()
+  const year = new Date().getFullYear()
+
+  const socials = [
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/anshumansp16', Icon: LinkedInIcon },
+    { name: 'GitHub', href: 'https://github.com/anshumansp', Icon: GitHubIcon },
+    { name: 'Twitter', href: 'https://x.com/anshumansp16', Icon: XIcon },
+    { name: 'Email', href: 'mailto:anshumansp16@gmail.com', Icon: EmailIcon },
+  ]
 
   return (
-    <footer className="relative bg-noir-void border-t border-white/[0.03] overflow-hidden">
-      <div className="container-wide relative z-10 py-16 md:py-20">
-        {/* Signature Layout: Left - Center - Right */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-start">
-          {/* Left: Name + Role */}
-          <div className="space-y-4">
-            <Link href="/" className="inline-block group">
-              <span
-                className="text-platinum/60 transition-colors duration-300 group-hover:text-platinum/80 relative"
-                style={{
-                  fontFamily: 'var(--font-signature)',
-                  fontSize: '2.2rem',
-                  fontWeight: 400,
-                  letterSpacing: '0.02em',
-                }}
-              >
-                Anshuman
-                {/* The Line motif - final frame */}
-                <motion.span
-                  className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-graphite/40 via-graphite/20 to-transparent"
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                />
-              </span>
+    <footer className="relative border-t overflow-hidden" style={{ borderColor: 'rgba(255,255,255,0.04)', background: '#020204' }}>
+      {/* Top blue line */}
+      <div className="absolute top-0 left-0 right-0 h-px"
+        style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(59,130,246,0.25) 50%, transparent 100%)' }} />
+
+      <div className="container-wide py-14 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+          {/* Brand */}
+          <div>
+            <Link href="/" className="inline-flex items-center gap-2.5 mb-4 group">
+              <svg width="30" height="30" viewBox="0 0 36 36" fill="none">
+                <rect x="0.5" y="0.5" width="35" height="35" rx="9.5" stroke="rgba(59,130,246,0.3)" fill="rgba(9,9,18,0.9)" />
+                <path d="M9 25L14 11L19 25" stroke="rgba(238,237,245,0.75)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                <path d="M10.8 21H17.2" stroke="rgba(96,165,250,0.6)" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M21 25V11" stroke="rgba(238,237,245,0.75)" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M21 11H24.5C26.4 11 28 12.3 28 14.5C28 16.7 26.4 18 24.5 18H21" stroke="rgba(238,237,245,0.75)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+              </svg>
+              <span className="text-sm font-medium text-platinum/70 group-hover:text-platinum/90 transition-colors">Anshuman Parmar</span>
             </Link>
-            <p className="text-body-sm text-silver/50" style={{ fontWeight: 300 }}>
-              Senior Full Stack Developer | AI Integration Engineer
+            <p className="text-body-sm text-graphite" style={{ fontWeight: 300, lineHeight: 1.7 }}>
+              {content.footer.tagline}
             </p>
+            <div className="flex items-center gap-1.5 mt-4">
+              <span className="glow-dot" />
+              <span className="text-body-sm" style={{ color: 'rgba(110,231,183,0.7)' }}>Available for work</span>
+            </div>
           </div>
 
-          {/* Center: Navigation */}
-          <nav className="flex flex-col gap-2">
-            {navigation.main.map((item) => (
+          {/* Navigation */}
+          <nav className="flex flex-col gap-2.5">
+            {['Work', 'About', 'Connect', 'Insights'].map((item) => (
               <Link
-                key={item.name}
-                href={item.href}
-                className="text-body-sm text-silver/60 hover:text-platinum/80 transition-colors duration-300 w-fit"
-                style={{ fontWeight: 300 }}
+                key={item}
+                href={`/${item.toLowerCase()}`}
+                className="text-body-sm text-graphite hover:text-platinum transition-colors duration-200 w-fit"
+                style={{ fontWeight: 400 }}
               >
-                {item.name}
+                {item}
               </Link>
             ))}
           </nav>
 
-          {/* Right: Contact Links */}
-          <div className="flex flex-col gap-2">
-            {navigation.social.map((item) => (
+          {/* Socials */}
+          <div className="flex flex-col gap-2.5">
+            {socials.map(({ name, href, Icon }) => (
               <a
-                key={item.name}
-                href={item.href}
+                key={name}
+                href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-body-sm text-silver/60 hover:text-platinum/80 transition-colors duration-300 w-fit"
-                style={{ fontWeight: 300 }}
+                className="flex items-center gap-2.5 text-body-sm text-graphite hover:text-platinum transition-colors duration-200 w-fit"
+                style={{ fontWeight: 400 }}
               >
-                <item.icon />
-                {item.name}
+                <Icon />
+                {name}
               </a>
             ))}
           </div>
         </div>
 
-        {/* Copyright - Minimal */}
-        <div className="mt-16 pt-8 border-t border-white/[0.02]">
-          <p className="text-body-sm text-graphite/60" style={{ fontWeight: 300 }}>
-            © {currentYear}
+        <div className="mt-12 pt-6 border-t flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
+          style={{ borderColor: 'rgba(255,255,255,0.03)' }}>
+          <p className="text-body-sm text-graphite" style={{ fontWeight: 300 }}>
+            © {year} {content.footer.copyright}
           </p>
+          <Link href="/admin" className="text-label text-graphite hover:text-platinum transition-colors" style={{ letterSpacing: '0.06em' }}>
+            ADMIN
+          </Link>
         </div>
       </div>
     </footer>

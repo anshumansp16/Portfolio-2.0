@@ -1,203 +1,271 @@
 import { Metadata } from 'next'
-import { Container } from '@/components/ui/Container'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Work - Anshuman Parmar',
-  description: 'Explore my portfolio of AI solutions and intelligent systems for businesses.',
+  title: 'Work — Anshuman Parmar',
+  description: 'KreatorOS, ScrapeHub, LegalMind, TATVA and more — AI products, SaaS platforms, and developer tools built and shipped to production.',
+  keywords: ['KreatorOS', 'ScrapeHub', 'LegalMind', 'TATVA', 'AI Products', 'SaaS', 'Portfolio', 'Anshuman Parmar'],
+  alternates: { canonical: 'https://anshumansp.com/work' },
+  openGraph: {
+    title: 'Work — Anshuman Parmar',
+    description: 'AI products, SaaS platforms, and developer tools built and shipped to production.',
+    url: 'https://anshumansp.com/work',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Anshuman Parmar Work' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Work — Anshuman Parmar',
+    description: 'AI products, SaaS platforms, and developer tools built and shipped to production.',
+    images: ['/og-image.jpg'],
+  },
 }
 
-const projects = [
+const featuredProjects = [
   {
-    index: '01',
-    title: 'TATVA',
-    domain: 'TOOLING',
-    description: 'A CLI that compresses setup → deploy into a repeatable path. Built for consistency across projects with streamlined workflow design and automation surface.',
-    details: [
-      'Scope: templates, environments, deploy steps',
-      'Constraint: consistency across projects',
-      'Owned: workflow design + automation surface',
-    ],
-    role: 'CLI development, SDLC automation',
-    image: '/images/assets/tatva.png',
-    tags: ['CLI', 'Templates', 'Environments', 'Deploy'],
-    link: 'https://tatva.anshumansp.com',
+    name: 'KreatorOS',
+    domain: 'AI Content Platform',
+    description: 'The operating system for content creators. AI-powered captions in 12+ languages, smart clips, trending ideas, and multi-platform publishing.',
+    tags: ['Next.js', 'AI/ML', 'SaaS', 'Multi-language'],
+    image: '/images/assets/kreatoros-dashboard.png',
+    link: 'https://creative.anshumansp.com',
+    stat: 'Live',
   },
   {
-    index: '02',
-    title: 'ScrapeHub',
-    domain: 'AI PLATFORM',
-    description: 'AI-powered web scraping infrastructure with intelligent extraction, async job processing, and enterprise-grade dataset generation. Built with FastAPI, Next.js, and GPT-4o-mini for industrial-scale data collection.',
-    details: [
-      'Scope: Apify integration, GPT-4o-mini extraction, async job queue',
-      'Constraint: Cost optimization (90% reduction), scalability',
-      'Owned: Full-stack architecture + dataset generation pipeline',
-    ],
-    role: 'Platform architecture, AI integration, distributed systems',
-    image: '/images/assets/scrapehub.png',
-    tags: ['AI', 'Web Scraping', 'FastAPI', 'Async Jobs'],
+    name: 'ScrapeHub',
+    domain: 'AI Data Platform',
+    description: 'Turn any website into structured data with just a prompt. Competitor monitoring, lead gen, and price intelligence for data teams.',
+    tags: ['AI', 'FastAPI', 'AWS', 'GPT-4o'],
+    image: '/images/assets/scrapehub-new.png',
     link: 'https://scrape.anshumansp.com',
+    stat: 'Live',
   },
   {
-    index: '03',
-    title: 'CrownKing',
-    domain: 'COMMERCE',
-    description: 'Commerce system tuned for conversion, catalog scale, and clean operations. Handles product flows, payments, and fulfillment with speed and trust.',
-    details: [
-      'Scope: product flows, payments, fulfillment',
-      'Constraint: speed + trust',
-      'Owned: end-to-end build + iteration',
-    ],
-    role: 'E-commerce architecture, payment systems',
-    image: '/images/assets/crownking.png',
-    tags: ['E-commerce', 'Payments', 'Product Flows'],
+    name: 'LegalMind',
+    domain: 'Legal Tech',
+    description: 'Strategic legal intelligence platform. Track obligations, monitor portfolio risk, and maintain compliance for legal professionals.',
+    tags: ['AI', 'Next.js', 'Enterprise', 'SOC 2'],
+    image: '/images/assets/legalmind.png',
+    link: 'https://legal.anshumansp.com',
+    stat: 'Live',
+  },
+  {
+    name: 'TATVA',
+    domain: 'Developer Tool',
+    description: 'A CLI that compresses setup to deploy into a repeatable path. Reduced setup time from days to 15 minutes with built-in best practices.',
+    tags: ['CLI', 'Python', 'DevOps', 'Automation'],
+    image: '/images/assets/tatva.png',
+    link: 'https://tatva.anshumansp.com',
+    stat: '15 min setup',
+  },
+]
+
+const smallProjects = [
+  {
+    name: 'GenAIVision',
+    description: 'AI automation consulting — 50+ systems deployed for enterprise clients',
+    link: 'https://genaivision.anshumansp.com',
+    tags: ['AI', 'Consulting'],
+  },
+  {
+    name: 'ResumePro',
+    description: 'ATS-optimized resume builder with AI writing suggestions',
     link: 'https://resume.anshumansp.com',
+    tags: ['SaaS', 'AI'],
   },
   {
-    index: '04',
-    title: 'Aarambh',
-    domain: 'PLATFORM',
-    description: 'A learning platform built around retention loops and operational reliability. Handles user journeys, content delivery, and admin ops with performance under real traffic.',
-    details: [
-      'Scope: user journeys, content delivery, admin ops',
-      'Constraint: performance under real traffic',
-      'Owned: platform architecture + delivery quality',
-    ],
-    role: 'Platform architecture, delivery systems',
-    image: '/images/assets/aarambh.png',
-    tags: ['User Journeys', 'Content Delivery', 'Admin Ops'],
+    name: 'CrownKing',
+    description: 'Premium men\'s jewelry e-commerce with payment integration',
+    link: 'https://crownking.anshumansp.com',
+    tags: ['E-Commerce', 'Next.js'],
+  },
+  {
+    name: 'Aarambh',
+    description: 'AI-powered learning platform for students',
     link: 'https://aarambh.anshumansp.com',
-  },
-  {
-    index: '05',
-    title: 'GwaliorFix',
-    domain: 'CIVIC TECH',
-    description: 'Civic complaint leaderboard enabling citizens to report, track, and verify municipal issues with public accountability. Built with Next.js 14, FastAPI, and AI verification for transparency.',
-    details: [
-      'Scope: complaint reporting, AI verification, ward leaderboards',
-      'Constraint: public accountability, viral mechanics',
-      'Owned: full-stack civic platform + AI verification pipeline',
-    ],
-    role: 'Civic platform architecture, AI verification systems',
-    image: '/images/assets/gwaliorfix.png',
-    tags: ['Civic Tech', 'AI Verification', 'Next.js', 'FastAPI'],
-    link: 'https://gwaliorfix.anshumansp.com',
+    tags: ['EdTech', 'AI'],
   },
 ]
 
 export default function WorkPage() {
   return (
-    <main className="relative min-h-screen bg-ink pt-32 md:pt-40 pb-20">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+    <main className="relative min-h-screen pt-32 md:pt-40 pb-20">
+      <div className="container-wide">
         {/* Header */}
-        <div className="mb-12 md:mb-16">
-          <p className="text-label text-graphite mb-4">WORK</p>
-          <h1 className="text-display-sm md:text-display-md font-display text-platinum mb-6">
-            Selected Systems
+        <div className="mb-14 md:mb-18">
+          <div className="section-chip mb-5">Portfolio</div>
+          <h1 className="text-display-sm md:text-display-md font-display text-platinum mb-4" style={{ fontWeight: 400, letterSpacing: '-0.025em', lineHeight: 1.1 }}>
+            Work I&apos;ve shipped
           </h1>
-          <p className="text-body text-silver/70 max-w-xl">
-            Systems built for scale, reliability, and real-world constraints.
+          <p className="text-body-lg text-silver max-w-2xl" style={{ fontWeight: 300, lineHeight: 1.75 }}>
+            AI products, SaaS platforms, developer tools, and e-commerce — from concept to production.
           </p>
         </div>
 
-        {/* Projects Grid - Horizontal */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {projects.map((project) => (
+        {/* Featured Projects */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mb-20">
+          {featuredProjects.map((proj) => (
             <a
-              key={project.title}
-              href={project.link}
+              key={proj.name}
+              href={proj.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group rounded-xl overflow-hidden block cursor-pointer"
-              style={{
-                background: 'rgba(255, 255, 255, 0.02)',
-                border: '1px solid rgba(255, 255, 255, 0.06)',
-              }}
+              className={`group block`}
             >
-              {/* Image */}
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={`${project.title} screenshot`}
-                  fill
-                  className="object-cover transition-all duration-500 group-hover:scale-105"
-                  style={{
-                    filter: 'grayscale(0.1) contrast(1.02)',
-                  }}
-                />
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 50%)',
-                  }}
-                />
-                {/* Domain tag */}
-                <span
-                  className="absolute top-4 left-4 px-2.5 py-1 text-xs text-silver/70 rounded-full"
-                  style={{
-                    background: 'rgba(10, 10, 10, 0.7)',
-                    backdropFilter: 'blur(8px)',
-                    letterSpacing: '0.05em',
-                  }}
-                >
-                  {project.domain}
-                </span>
+              <div className="relative overflow-hidden rounded-2xl" style={{ border: '1px solid rgba(255,255,255,0.06)', background: 'rgba(9,9,18,0.8)' }}>
+                {/* Browser bar */}
+                <div className="flex items-center gap-2 px-4 py-3" style={{ borderBottom: '1px solid rgba(255,255,255,0.04)', background: 'rgba(255,255,255,0.015)' }}>
+                  <div className="flex gap-1.5">
+                    <div className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgba(255,95,87,0.4)' }} />
+                    <div className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgba(255,189,46,0.4)' }} />
+                    <div className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgba(39,201,63,0.4)' }} />
+                  </div>
+                  <div className="flex-1 mx-4">
+                    <div className="h-4 rounded" style={{ background: 'rgba(255,255,255,0.04)', maxWidth: '180px' }} />
+                  </div>
+                </div>
+
+                <div className={`relative w-full overflow-hidden aspect-[16/10]`}>
+                  <Image
+                    src={proj.image}
+                    alt={proj.name}
+                    fill
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ background: 'rgba(5,5,15,0.5)', backdropFilter: 'blur(2px)' }}>
+                    <div className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium"
+                      style={{ background: 'rgba(59,130,246,0.9)', color: 'white', boxShadow: '0 8px 24px rgba(59,130,246,0.4)' }}>
+                      View Live
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M3 9L9 3M9 3H5M9 3V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              {/* Content */}
-              <div className="p-5 md:p-6">
-                {/* Title Row */}
-                <div className="flex items-baseline gap-3 mb-3">
-                  <span
-                    className="font-mono text-graphite/50"
-                    style={{ fontSize: '10px', letterSpacing: '0.08em' }}
-                  >
-                    {project.index}
-                  </span>
-                  <h2 className="text-headline-sm text-platinum font-display">
-                    {project.title}
+              {/* Meta */}
+              <div className="mt-5 flex items-start justify-between gap-4">
+                <div>
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="text-label text-graphite" style={{ letterSpacing: '0.06em' }}>{proj.domain}</span>
+                  </div>
+                  <h2 className="text-headline-sm text-platinum mb-2" style={{ fontWeight: 500, letterSpacing: '-0.015em' }}>
+                    {proj.name}
                   </h2>
+                  <p className="text-body-sm text-silver mb-3" style={{ fontWeight: 300, lineHeight: 1.7 }}>
+                    {proj.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {proj.tags.map((tag) => (
+                      <span key={tag} className="px-2.5 py-1 rounded font-mono text-label"
+                        style={{ background: 'rgba(59,130,246,0.06)', border: '1px solid rgba(59,130,246,0.1)', color: 'rgba(96,165,250,0.6)' }}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-
-                {/* Description */}
-                <p className="text-body-sm text-silver/60 mb-4 line-clamp-3">
-                  {project.description}
-                </p>
-
-                {/* Role */}
-                <p className="text-xs text-graphite/50 mb-4 italic">
-                  {project.role}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5">
-                  {project.tags.slice(0, 3).map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 text-xs text-silver/40 border border-white/[0.04] rounded"
-                      style={{ fontSize: '10px' }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                <span className="text-body-sm font-mono flex-shrink-0" style={{ color: '#22D3EE', opacity: 0.7 }}>{proj.stat}</span>
               </div>
             </a>
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="mt-16 md:mt-20 pt-10 border-t border-white/[0.06]">
-          <p className="text-body text-silver/70 mb-4">
+        {/* Smaller Projects */}
+        <div className="mb-8">
+          <h3 className="text-headline-md font-display text-platinum mb-6" style={{ fontWeight: 400, letterSpacing: '-0.02em' }}>
+            Other projects
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+          {smallProjects.map((proj) => (
+            <a
+              key={proj.name}
+              href={proj.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass-card p-5 group"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <h4 className="text-body text-platinum font-medium">{proj.name}</h4>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-graphite group-hover:text-accent-electric transition-colors">
+                  <path d="M3 11L11 3M11 3H6M11 3V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              </div>
+              <p className="text-body-sm text-silver mb-3" style={{ fontWeight: 300, lineHeight: 1.6 }}>
+                {proj.description}
+              </p>
+              <div className="flex gap-2">
+                {proj.tags.map((tag) => (
+                  <span key={tag} className="text-label text-graphite">{tag}</span>
+                ))}
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <div className="mb-16 p-6 md:p-10 rounded-2xl" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
+          <div className="flex flex-col gap-8">
+            <div className="flex-1">
+              <div className="section-chip mb-4">Media Kit</div>
+              <h3 className="text-headline-md font-display text-platinum mb-3" style={{ fontWeight: 400, letterSpacing: '-0.02em' }}>
+                Brand Collaborations
+              </h3>
+              <p className="text-body text-silver mb-6" style={{ fontWeight: 300, lineHeight: 1.7 }}>
+                Hindi tech and AI tools content for Indian developers aged 18-30. 
+                Open to sponsored videos, product reviews, and integration partnerships.
+              </p>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                {[
+                  { value: '13.3%', label: 'Avg CTR', note: 'Top 1%' },
+                  { value: '385+', label: 'Subscribers', note: 'Growing' },
+                  { value: '30+', label: 'Videos', note: 'Published' },
+                  { value: '1', label: 'Brand Deal', note: 'Thumbs.ai' },
+                ].map((stat) => (
+                  <div key={stat.label} className="text-center p-3 rounded-lg" style={{ background: 'rgba(255,255,255,0.02)' }}>
+                    <div className="text-lg font-mono font-semibold text-accent-electric">{stat.value}</div>
+                    <div className="text-label text-silver/60">{stat.label}</div>
+                    <div className="text-label text-graphite mt-0.5">{stat.note}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-2 mb-6">
+                {['AI Tools', 'Hindi Tech', 'Developer Content', 'Product Reviews'].map((tag) => (
+                  <span key={tag} className="px-2.5 py-1 rounded text-label text-silver/50"
+                    style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="p-5 rounded-xl" style={{ background: 'rgba(59,130,246,0.04)', border: '1px solid rgba(59,130,246,0.1)' }}>
+              <p className="text-body-sm text-silver/60 mb-2">For collaborations</p>
+              <a href="mailto:anshumansp16@gmail.com" className="text-body text-platinum hover:text-accent-electric transition-colors font-medium break-all">
+                anshumansp16@gmail.com
+              </a>
+              <p className="text-label text-graphite mt-3">Channel: Anshuman Parmar</p>
+              <p className="text-label text-graphite">Audience: Indian developers, 18-30</p>
+              <p className="text-label text-graphite">Previous: Thumbs.ai</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="pt-10 text-center" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+          <p className="text-body text-silver mb-4" style={{ fontWeight: 300 }}>
             Interested in working together?
           </p>
-          <a
-            href="/connect"
-            className="group inline-flex items-center gap-3 text-platinum hover:text-accent-gold transition-colors"
-          >
-            <span className="text-body font-medium">Start a conversation</span>
-            <span className="inline-block group-hover:translate-x-1 transition-transform">→</span>
-          </a>
+          <Link href="/connect" className="btn-primary">
+            Get in Touch
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
+          </Link>
         </div>
       </div>
     </main>

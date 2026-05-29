@@ -1,22 +1,39 @@
 import { MetadataRoute } from 'next'
-import { blogPosts } from '@/data/blogs'
-
-const URL = 'https://anshumansp.com'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = blogPosts.map((post) => ({
-    url: `${URL}/insights/${post.slug}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }))
+  const baseUrl = 'https://anshumansp.com'
+  const now = new Date()
 
-  const routes = ['', '/about', '/work', '/insights', '/connect'].map((route) => ({
-    url: `${URL}${route}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: 'monthly' as const,
-    priority: route === '' ? 1.0 : 0.9,
-  }))
-
-  return [...routes, ...posts]
+  return [
+    {
+      url: baseUrl,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/work`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/connect`,
+      lastModified: now,
+      changeFrequency: 'yearly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/insights`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+  ]
 }

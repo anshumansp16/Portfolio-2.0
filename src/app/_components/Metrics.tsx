@@ -1,114 +1,83 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Container } from '@/components/ui/Container'
+import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { useRef, useEffect } from 'react'
 
-interface ProofProps {
-  metric: string
-  consequence: string
-  qualifier: string
-  size?: 'large' | 'small'
-  index: number
+function AnimatedNumber({ value, suffix = '' }: { value: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-40px' })
+  const mv = useMotionValue(0)
+  const spring = useSpring(mv, { stiffness: 60, damping: 20, mass: 1 })
+  const display = useTransform(spring, (v) => Math.round(v).toLocaleString())
+
+  useEffect(() => {
+    if (isInView) mv.set(value)
+  }, [isInView, mv, value])
+
+  return <span ref={ref}><motion.span>{display}</motion.span>{suffix}</span>
 }
 
-function Proof({ metric, consequence, qualifier, size = 'small', index }: ProofProps) {
-  const isLarge = size === 'large'
-
-  return (
-    <motion.div
-      className="relative group"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{
-        duration: 1,
-        delay: index * 0.15,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-    >
-      {/* Ultra-soft border */}
-      <div className="absolute inset-0 border border-white/[0.03] rounded-lg" />
-
-      <div className={`relative ${isLarge ? 'p-12 md:p-16' : 'p-8 md:p-10'}`}>
-        {/* Metric */}
-        <div
-          className={`font-mono text-platinum mb-4 ${
-            isLarge ? 'text-5xl md:text-6xl' : 'text-3xl md:text-4xl'
-          }`}
-          style={{
-            fontWeight: 500,
-            letterSpacing: '-0.02em',
-          }}
-        >
-          {metric}
-        </div>
-
-        {/* Consequence */}
-        <p
-          className={`text-platinum/90 mb-3 ${
-            isLarge ? 'text-body-lg md:text-headline-sm' : 'text-body'
-          }`}
-          style={{
-            fontWeight: 300,
-            letterSpacing: '-0.01em',
-            lineHeight: 1.6,
-          }}
-        >
-          {consequence}
-        </p>
-
-        {/* Qualifier */}
-        <p
-          className="text-silver/50 text-body-sm"
-          style={{
-            fontWeight: 300,
-            letterSpacing: '0.01em',
-          }}
-        >
-          {qualifier}
-        </p>
-      </div>
-    </motion.div>
-  )
-}
-
-const proofs = [
-  {
-    metric: '50K+',
-    consequence: 'Daily Operations Managed',
-    qualifier: 'Across production AI systems with 99.9% uptime',
-    size: 'large' as const,
-  },
-  {
-    metric: '60%',
-    consequence: 'Average Cost Reduction',
-    qualifier: 'Replacing manual processes with AI systems',
-    size: 'small' as const,
-  },
-  {
-    metric: '25+',
-    consequence: 'AI Systems Delivered',
-    qualifier: 'Built and maintained in production',
-    size: 'small' as const,
-  },
+const metrics = [
+  { raw: 7, display: '7+', label: 'Products Shipped', sublabel: 'Live SaaS, AI tools, e-commerce' },
+  { raw: 385, display: '385+', label: 'Subscribers', sublabel: 'Growing organically' },
+  { raw: 30, display: '30+', label: 'Videos Created', sublabel: 'Hindi tech & AI content' },
+  { raw: 13.3, display: '13.3%', label: 'Avg CTR', sublabel: 'Top 1% on YouTube' },
 ]
 
 export function Metrics() {
   return (
-    <section className="relative py-16 md:py-24">
-      <Container>
-        {/* Asymmetric Layout: 1 big left, 2 stacked right */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-          {/* Large Proof */}
-          <Proof {...proofs[0]} index={0} />
+    <section className="relative py-20 md:py-28">
+      <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+        <div className="w-[600px] h-[300px] rounded-full" style={{
+          background: 'radial-gradient(ellipse at center, rgba(59,130,246,0.05) 0%, transparent 70%)',
+          filter: 'blur(40px)',
+        }} />
+      </div>
 
-          {/* Stacked Small Proofs */}
-          <div className="grid grid-cols-1 gap-6 lg:gap-8">
-            <Proof {...proofs[1]} index={1} />
-            <Proof {...proofs[2]} index={2} />
-          </div>
+      <div className="container-wide">
+        <motion.div
+          className="mb-14"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="section-chip mb-5">By the Numbers</div>
+          <h2 className="text-display-sm md:text-headline-lg font-display text-platinum" style={{ fontWeight: 400, letterSpacing: '-0.025em' }}>
+            Building, creating, shipping.
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px" style={{ background: 'rgba(255,255,255,0.04)', borderRadius: 18, overflow: 'hidden' }}>
+          {metrics.map((metric, i) => (
+            <motion.div
+              key={i}
+              className="flex flex-col items-center text-center p-6 md:p-12 relative group"
+              style={{ background: '#04040C' }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.65, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div
+                className="text-3xl md:text-5xl font-mono font-semibold mb-3"
+                style={{ letterSpacing: '-0.03em', color: '#60A5FA' }}
+              >
+                {metric.display}
+              </div>
+              <div className="text-body-sm text-platinum mb-2" style={{ fontWeight: 500, letterSpacing: '-0.01em' }}>
+                {metric.label}
+              </div>
+              <div className="text-label text-graphite" style={{ lineHeight: 1.5 }}>
+                {metric.sublabel}
+              </div>
+
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                style={{ background: 'radial-gradient(circle at center, rgba(59,130,246,0.06) 0%, transparent 70%)' }} />
+            </motion.div>
+          ))}
         </div>
-      </Container>
+      </div>
     </section>
   )
 }

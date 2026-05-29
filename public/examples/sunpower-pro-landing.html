@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SunPower Pro — Go Solar, Save Thousands</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   BRAND SYSTEM — SunPower Pro Solar
+   Primary: Deep Navy #0B1D35 | Solar Gold #F5A623 | Bright Gold #FFD200
+   Secondary: Sky Trust #2B6CB0 | Leaf Green #38A169 | Clean White #FAFCFF
+   Accent: Warm Orange #E8720C | Alert Red #E53E3E
+   Fonts: Syne (Display) + Plus Jakarta Sans (Body) + JetBrains Mono (Data)
+   ============================================================ */
+
+:root {
+  --navy: #0B1D35;
+  --navy-deep: #060F1E;
+  --navy-mid: #132B4C;
+  --gold: #F5A623;
+  --gold-bright: #FFD200;
+  --gold-glow: rgba(245, 166, 35, 0.15);
+  --trust-blue: #2B6CB0;
+  --trust-blue-light: #3B82F6;
+  --green: #38A169;
+  --green-bright: #48D88A;
+  --orange: #E8720C;
+  --red: #E53E3E;
+  --white: #FAFCFF;
+  --off-white: #F0F4F8;
+  --gray-100: #E8ECF1;
+  --gray-200: #CED4DA;
+  --gray-400: #8896A6;
+  --gray-600: #4A5568;
+  --gray-800: #2D3748;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --shadow-sm: 0 2px 8px rgba(11,29,53,0.06);
+  --shadow-md: 0 8px 30px rgba(11,29,53,0.10);
+  --shadow-lg: 0 20px 60px rgba(11,29,53,0.14);
+  --shadow-gold: 0 8px 30px rgba(245,166,35,0.25);
+  --transition: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--white);
+  color: var(--gray-800);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== UTILITY ===== */
+.container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+.text-gold { color: var(--gold); }
+.text-green { color: var(--green); }
+.bg-navy { background: var(--navy); color: var(--white); }
+.section-pad { padding: 100px 0; }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,166,35,0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(245,166,35,0); }
+}
+@keyframes counter { from { opacity: 0.3; } to { opacity: 1; } }
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.anim-fadeup { animation: fadeUp 0.8s var(--transition) both; }
+.anim-d1 { animation-delay: 0.1s; }
+.anim-d2 { animation-delay: 0.2s; }
+.anim-d3 { animation-delay: 0.3s; }
+.anim-d4 { animation-delay: 0.4s; }
+.anim-d5 { animation-delay: 0.5s; }
+.anim-d6 { animation-delay: 0.6s; }
+
+/* ===== TOPBAR (Urgency) ===== */
+.topbar {
+  background: linear-gradient(90deg, var(--orange) 0%, var(--red) 100%);
+  text-align: center;
+  padding: 10px 16px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: #fff;
+  letter-spacing: 0.3px;
+  position: relative;
+  z-index: 100;
+}
+.topbar span { text-decoration: underline; cursor: pointer; }
+
+/* ===== NAV ===== */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background: rgba(11,29,53,0.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 0 24px;
+}
+.nav-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.nav-logo-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 12px rgba(245,166,35,0.3);
+}
+.nav-logo-text {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--white);
+  letter-spacing: -0.5px;
+}
+.nav-logo-text .gold { color: var(--gold); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  background: var(--gold) !important;
+  color: var(--navy) !important;
+  padding: 10px 24px !important;
+  border-radius: 50px !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  transition: all 0.3s !important;
+}
+.nav-cta:hover { background: var(--gold-bright) !important; transform: scale(1.03); }
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--navy-deep);
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(6,15,30,0.7) 0%, rgba(6,15,30,0.3) 40%, rgba(6,15,30,0.85) 100%),
+    radial-gradient(ellipse at 20% 80%, rgba(245,166,35,0.08) 0%, transparent 50%);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+  width: 100%;
+}
+@media (max-width: 900px) {
+  .hero-content { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .hero { min-height: auto; padding: 100px 0 60px; }
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold-glow);
+  border: 1px solid rgba(245,166,35,0.25);
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 6px 18px;
+  border-radius: 50px;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+  animation: fadeUp 0.6s both;
+}
+.hero-badge .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gold);
+  animation: pulse-glow 2s infinite;
+}
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -2px;
+  color: var(--white);
+  margin-bottom: 20px;
+  animation: fadeUp 0.7s 0.1s both;
+}
+.hero-title .gold-line {
+  color: var(--gold);
+  position: relative;
+  display: inline-block;
+}
+.hero-title .gold-line::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: rgba(245,166,35,0.25);
+  border-radius: 3px;
+}
+.hero-sub {
+  font-size: 1.12rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 32px;
+  animation: fadeUp 0.7s 0.2s both;
+}
+@media (max-width: 900px) { .hero-sub { max-width: 100%; margin-left: auto; margin-right: auto; } }
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.7s 0.3s both;
+}
+@media (max-width: 900px) { .hero-ctas { justify-content: center; } }
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 36px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 100%);
+  color: var(--navy);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: var(--shadow-gold);
+  transition: all var(--transition);
+}
+.btn-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 40px rgba(245,166,35,0.35); }
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition);
+  backdrop-filter: blur(8px);
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.25); }
+
+.hero-trust {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 28px;
+  animation: fadeUp 0.7s 0.4s both;
+  flex-wrap: wrap;
+}
+@media (max-width: 900px) { .hero-trust { justify-content: center; } }
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.6);
+  font-weight: 500;
+}
+.trust-icon {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: rgba(56,161,105,0.2);
+  color: var(--green-bright);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 900;
+}
+.trust-stars { color: var(--gold); letter-spacing: 1px; font-size: 0.9rem; }
+
+/* HERO FORM CARD */
+.hero-form-card {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  animation: scaleIn 0.8s 0.3s both;
+  position: relative;
+  overflow: hidden;
+}
+.hero-form-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--green), var(--gold));
+}
+.form-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.form-header h3 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.form-header p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+}
+.form-group {
+  margin-bottom: 14px;
+}
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-sm);
+  color: var(--white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.92rem;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.form-group input::placeholder { color: rgba(255,255,255,0.3); }
+.form-group input:focus, .form-group select:focus { border-color: var(--gold); }
+.form-group select { appearance: none; cursor: pointer; }
+.form-group select option { background: var(--navy); }
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.form-submit {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 100%);
+  color: var(--navy);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition);
+  margin-top: 4px;
+  letter-spacing: 0.3px;
+}
+.form-submit:hover { transform: translateY(-1px); box-shadow: var(--shadow-gold); }
+.form-disclaimer {
+  text-align: center;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.35);
+  margin-top: 12px;
+}
+
+/* ===== SOCIAL PROOF BAR ===== */
+.proof-bar {
+  background: var(--off-white);
+  border-top: 1px solid var(--gray-100);
+  border-bottom: 1px solid var(--gray-100);
+  padding: 28px 0;
+}
+.proof-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.proof-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.proof-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--navy);
+  letter-spacing: -1px;
+}
+.proof-label {
+  font-size: 0.8rem;
+  color: var(--gray-400);
+  font-weight: 500;
+  line-height: 1.3;
+}
+.proof-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--gray-200);
+}
+
+/* ===== BENEFITS SECTION ===== */
+.benefits {
+  padding: 100px 0;
+  background: var(--white);
+  position: relative;
+}
+.benefits::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 400px;
+  background: radial-gradient(ellipse at 50% 0%, var(--gold-glow) 0%, transparent 60%);
+  pointer-events: none;
+}
+.section-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 0.72rem;
+  color: var(--gold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.section-heading {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  text-align: center;
+  color: var(--navy);
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.section-desc {
+  text-align: center;
+  color: var(--gray-400);
+  font-size: 1.02rem;
+  max-width: 560px;
+  margin: 0 auto 50px;
+  line-height: 1.6;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+@media (max-width: 900px) { .benefits-grid { grid-template-columns: 1fr; max-width: 480px; } }
+.benefit-card {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-md);
+  padding: 32px 28px;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.benefit-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--green));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.benefit-card:hover { border-color: rgba(245,166,35,0.2); box-shadow: var(--shadow-md); transform: translateY(-4px); }
+.benefit-card:hover::before { opacity: 1; }
+.benefit-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+}
+.icon-gold { background: var(--gold-glow); }
+.icon-green { background: rgba(56,161,105,0.1); }
+.icon-blue { background: rgba(43,108,176,0.1); }
+.benefit-card h4 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.benefit-card p {
+  font-size: 0.9rem;
+  color: var(--gray-400);
+  line-height: 1.6;
+}
+
+/* ===== HOW IT WORKS ===== */
+.how-it-works {
+  padding: 100px 0;
+  background: var(--navy);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.how-it-works::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,166,35,0.06) 0%, transparent 60%);
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+@media (max-width: 900px) { .steps-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 550px) { .steps-grid { grid-template-columns: 1fr; max-width: 380px; } }
+.step-card {
+  position: relative;
+  text-align: center;
+  padding: 32px 20px;
+}
+.step-num {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 3.5rem;
+  color: rgba(245,166,35,0.12);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.step-icon {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 1.4rem;
+}
+.step-card h4 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+.step-card p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+}
+
+/* ===== SAVINGS CALCULATOR ===== */
+.savings {
+  padding: 100px 0;
+  background: var(--off-white);
+}
+.savings-card {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.savings-inner {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.savings-top {
+  background: var(--navy);
+  padding: 40px 44px;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.savings-top::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -20%;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,166,35,0.1) 0%, transparent 60%);
+}
+.savings-top h3 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.8rem;
+  position: relative;
+  z-index: 2;
+}
+.savings-top h3 .gold { color: var(--gold); }
+.savings-top p {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.92rem;
+  margin-top: 6px;
+  position: relative;
+  z-index: 2;
+}
+.savings-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+@media (max-width: 600px) { .savings-stats { grid-template-columns: 1fr; } }
+.savings-stat {
+  padding: 36px 28px;
+  text-align: center;
+  border-right: 1px solid var(--gray-100);
+  border-bottom: 1px solid var(--gray-100);
+}
+.savings-stat:last-child { border-right: none; }
+.savings-stat .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 2.4rem;
+  letter-spacing: -2px;
+}
+.num-gold { color: var(--gold); }
+.num-green { color: var(--green); }
+.num-blue { color: var(--trust-blue); }
+.savings-stat .label {
+  font-size: 0.78rem;
+  color: var(--gray-400);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.savings-cta {
+  padding: 28px 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.savings-cta p {
+  font-size: 0.92rem;
+  color: var(--gray-600);
+  max-width: 400px;
+}
+.savings-cta p strong { color: var(--navy); }
+
+/* ===== TESTIMONIALS ===== */
+.testimonials {
+  padding: 100px 0;
+  background: var(--white);
+}
+.test-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+@media (max-width: 900px) { .test-grid { grid-template-columns: 1fr; max-width: 500px; } }
+.test-card {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-md);
+  padding: 32px 28px;
+  position: relative;
+  transition: all var(--transition);
+}
+.test-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.test-stars {
+  color: var(--gold);
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+.test-quote {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--gray-600);
+  font-style: italic;
+  margin-bottom: 20px;
+}
+.test-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.test-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--white);
+}
+.test-name { font-weight: 700; font-size: 0.9rem; color: var(--navy); }
+.test-role { font-size: 0.78rem; color: var(--gray-400); }
+.test-savings-badge {
+  display: inline-block;
+  background: rgba(56,161,105,0.08);
+  color: var(--green);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-top: 6px;
+}
+
+/* ===== CTA SECTION ===== */
+.cta-section {
+  padding: 100px 0;
+  background: var(--navy-deep);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(245,166,35,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(56,161,105,0.05) 0%, transparent 50%);
+}
+.cta-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.cta-inner h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.cta-inner h2 .gold { color: var(--gold); }
+.cta-inner p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+.cta-guarantees {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+.cta-guarantee {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+}
+.cta-guarantee .icon {
+  color: var(--green-bright);
+  font-size: 0.9rem;
+}
+
+/* ===== AD CREATIVES SECTION ===== */
+.ads-section {
+  padding: 100px 0;
+  background: var(--off-white);
+}
+.ads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.ad-creative {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition);
+}
+.ad-creative:hover { transform: translateY(-6px); }
+.ad-creative img.ad-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.ad-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.ad-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px;
+}
+.ad-headline {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.06;
+  color: #fff;
+  text-shadow: 0 3px 15px rgba(0,0,0,0.6);
+}
+.ad-headline .gold { color: var(--gold-bright); }
+.ad-headline .red { color: #FF5555; }
+.ad-subline {
+  font-weight: 700;
+  font-style: italic;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  margin-top: 6px;
+}
+.ad-cta-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.ad-cta-blue { background: linear-gradient(180deg, #2979FF, #1A5AC7); }
+.ad-cta-green { background: linear-gradient(180deg, #43A047, #2E7D32); }
+.ad-cta-orange { background: linear-gradient(180deg, #FF8F00, #E65100); }
+.ad-badge {
+  position: absolute;
+  top: 14px; left: 14px;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px);
+  color: rgba(255,255,255,0.7);
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  z-index: 5;
+}
+.ad-trust-bar {
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+  border-radius: 8px;
+  padding: 8px 14px;
+  text-align: center;
+  margin-top: 8px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: #fff;
+}
+.ad-trust-bar .dot { color: var(--gold); margin: 0 6px; }
+.ad-check-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 8px;
+}
+.ad-check-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  color: #fff;
+}
+.ad-check-icon {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--gold);
+  color: #000;
+  font-size: 0.65rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.ad-act-badge {
+  position: absolute;
+  right: 16px; top: 45%;
+  z-index: 3;
+  background: var(--red);
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transform: rotate(-4deg);
+  box-shadow: 0 4px 15px rgba(229,62,62,0.5);
+  animation: pulse-glow 2s infinite;
+  letter-spacing: 1px;
+}
+.ad-stats-bar {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 12px;
+}
+.ad-stat-box {
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(6px);
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.ad-stat-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--gold-bright);
+}
+.ad-stat-lbl {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ===== INSTAGRAM POSTS SECTION ===== */
+.ig-section {
+  padding: 100px 0;
+  background: var(--white);
+}
+.ig-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 28px;
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+@media (max-width: 500px) { .ig-grid { grid-template-columns: 1fr; } }
+.ig-phone {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gray-100);
+}
+.ig-top-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.ig-avatar-ring {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--orange), var(--red));
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ig-avatar-inner {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: var(--gold);
+  font-weight: 800;
+}
+.ig-username { font-weight: 700; font-size: 0.84rem; color: #222; }
+.ig-verified { color: #3897f0; font-size: 0.8rem; }
+.ig-visual {
+  width: 100%;
+  aspect-ratio: 1;
+  position: relative;
+  overflow: hidden;
+}
+.ig-visual img.ig-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.ig-visual-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.ig-visual-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px;
+  text-align: center;
+}
+.ig-post-badge {
+  background: var(--gold-glow);
+  border: 1px solid rgba(245,166,35,0.3);
+  color: var(--gold-bright);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  padding: 5px 16px;
+  border-radius: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.ig-post-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.06;
+  color: #fff;
+  text-shadow: 0 3px 15px rgba(0,0,0,0.7);
+}
+.ig-post-title .gold { color: var(--gold-bright); }
+.ig-stats-row {
+  display: flex;
+  gap: 16px;
+}
+.ig-stat-card {
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(6px);
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.ig-stat-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--gold-bright);
+}
+.ig-stat-lbl {
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.5);
+}
+.ig-dots {
+  display: flex;
+  gap: 5px;
+}
+.ig-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+.ig-dot.active { background: #fff; width: 18px; border-radius: 8px; }
+
+/* IG Post 2 — Before/After */
+.ig2-visual {
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+.ig2-half {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.ig2-half img.ig-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.ig2-half-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.ig2-half-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.ig2-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
+.ig2-bill-card {
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  padding: 18px 20px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.ig2-bill-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.ig2-bill-amt {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 2.6rem;
+  line-height: 1;
+}
+.ig2-bill-per { font-size: 0.72rem; color: #999; }
+.ig2-bill-red { color: var(--red); }
+.ig2-bill-green { color: var(--green); }
+.ig2-bill-card.green-border { border: 2.5px solid var(--green); }
+.ig2-savings {
+  display: inline-block;
+  background: var(--green);
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 5px 14px;
+  border-radius: 6px;
+  margin-top: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.ig2-divider {
+  width: 52px;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  clip-path: polygon(35% 0, 100% 0, 65% 100%, 0% 100%);
+  flex-shrink: 0;
+}
+.ig2-divider span {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--navy);
+}
+
+.ig-action-bar {
+  display: flex;
+  gap: 14px;
+  padding: 10px 14px 4px;
+  color: #222;
+  font-size: 1.2rem;
+}
+.ig-like-count {
+  padding: 2px 14px;
+  font-weight: 700;
+  font-size: 0.84rem;
+  color: #222;
+}
+.ig-caption {
+  padding: 4px 14px 16px;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: #333;
+}
+.ig-caption .b { font-weight: 700; color: #111; }
+.ig-caption .tags { color: #00376B; }
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--navy-deep);
+  padding: 50px 0 30px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+.footer-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer-logo {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+.footer-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--white);
+}
+.footer-name .gold { color: var(--gold); }
+.footer-copy {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.3);
+}
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+.footer-links a {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- ===== URGENCY TOPBAR ===== -->
+<div class="topbar">
+  ⚡ Federal 30% Solar Tax Credit is expiring soon — <span>Lock in your savings today</span>
+</div>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">☀️</div>
+      <div class="nav-logo-text">Sun<span class="gold">Power</span> Pro</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#benefits">Benefits</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#savings">Savings</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#quote" class="nav-cta">Get Free Quote →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="quote">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1600&h=900&fit=crop" alt="Solar installation">
+  </div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge"><span class="dot"></span> #1 Rated Local Solar Installer</div>
+      <h1 class="hero-title">
+        Cut Your Energy Bills by Up to <span class="gold-line">70%</span> With Solar
+      </h1>
+      <p class="hero-sub">
+        Join 500+ homeowners who switched to clean solar energy with $0 down. Professional installation, 25-year warranty, and savings from day one — guaranteed.
+      </p>
+      <div class="hero-ctas">
+        <a href="#quote" class="btn-primary">Get My Free Quote ☀️</a>
+        <a href="#how" class="btn-secondary">▶ See How It Works</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><span class="trust-stars">★★★★★</span></div>
+        <div class="trust-item"><span class="trust-icon">✓</span> 500+ Installations</div>
+        <div class="trust-item"><span class="trust-icon">✓</span> Licensed & Insured</div>
+        <div class="trust-item"><span class="trust-icon">✓</span> $0 Down Options</div>
+      </div>
+    </div>
+
+    <!-- LEAD CAPTURE FORM -->
+    <div class="hero-form-card">
+      <div class="form-header">
+        <h3>Get Your Free Solar Quote</h3>
+        <p>See how much you can save in 60 seconds</p>
+      </div>
+      <form onsubmit="return false;">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="John Smith">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" placeholder="(555) 000-0000">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="you@email.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>ZIP Code</label>
+          <input type="text" placeholder="Enter your ZIP code">
+        </div>
+        <div class="form-group">
+          <label>Average Monthly Electric Bill</label>
+          <select>
+            <option>Select your range...</option>
+            <option>Under $100/mo</option>
+            <option>$100 – $200/mo</option>
+            <option>$200 – $300/mo</option>
+            <option>$300 – $500/mo</option>
+            <option>$500+/mo</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit">Calculate My Savings →</button>
+      </form>
+      <p class="form-disclaimer">🔒 No obligation. No spam. 100% free estimate.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOCIAL PROOF BAR ===== -->
+<div class="proof-bar">
+  <div class="proof-inner">
+    <div class="proof-item">
+      <div class="proof-num">500+</div>
+      <div class="proof-label">Homes<br>Powered</div>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-item">
+      <div class="proof-num">4.9★</div>
+      <div class="proof-label">Google<br>Rating</div>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-item">
+      <div class="proof-num">$30K+</div>
+      <div class="proof-label">Avg Lifetime<br>Savings</div>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-item">
+      <div class="proof-num">25yr</div>
+      <div class="proof-label">Performance<br>Warranty</div>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-item">
+      <div class="proof-num">1-Day</div>
+      <div class="proof-label">Installation<br>Available</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BENEFITS ===== -->
+<section class="benefits" id="benefits">
+  <div class="container">
+    <div class="section-eyebrow">Why Go Solar</div>
+    <h2 class="section-heading">The Smartest Home Investment <br>You'll Ever Make</h2>
+    <p class="section-desc">Solar isn't just about saving the planet — it's about saving thousands of dollars while increasing your home's value and energy independence.</p>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <div class="benefit-icon icon-gold">💰</div>
+      <h4>Save Up to 70% on Bills</h4>
+      <p>Most homeowners see a dramatic drop in their electricity bills from the very first month. Stop renting power — start owning it.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon icon-green">🏠</div>
+      <h4>Increase Home Value by 4%+</h4>
+      <p>Homes with solar sell faster and for more money. Solar panels are one of the highest-ROI home improvements you can make.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon icon-blue">🛡️</div>
+      <h4>25-Year Warranty Included</h4>
+      <p>Every installation comes with a comprehensive 25-year performance warranty. Your investment is protected for decades.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon icon-gold">💵</div>
+      <h4>30% Federal Tax Credit</h4>
+      <p>Claim the Inflation Reduction Act's 30% tax credit and save thousands on your installation. But act fast — it won't last forever.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon icon-green">⚡</div>
+      <h4>Energy Independence</h4>
+      <p>With battery backup options, you're protected during outages and free from unpredictable utility rate hikes. Your power, your rules.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon icon-blue">🌍</div>
+      <h4>Reduce Carbon Footprint</h4>
+      <p>The average solar home offsets 100+ tons of CO₂ over 30 years. Make a real impact on the environment while saving money.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="how-it-works" id="how">
+  <div class="container">
+    <div class="section-eyebrow" style="color: var(--gold);">How It Works</div>
+    <h2 class="section-heading" style="color: var(--white);">Solar in 4 Simple Steps</h2>
+    <p class="section-desc" style="color: rgba(255,255,255,0.5);">From first call to flipping the switch — we handle everything so you don't have to.</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-icon">📞</div>
+      <h4>Free Consultation</h4>
+      <p>We analyze your energy usage, roof, and sun exposure to design the perfect system. 100% free, zero obligation.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-icon">📐</div>
+      <h4>Custom Design</h4>
+      <p>Our engineers create a custom solar plan maximized for your home's energy needs and savings potential.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-icon">🔧</div>
+      <h4>Expert Installation</h4>
+      <p>Our certified crew installs your system — often in just one day. We handle all permits and inspections.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <div class="step-icon">☀️</div>
+      <h4>Start Saving</h4>
+      <p>Flip the switch and watch your energy bills plummet. Welcome to energy freedom.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SAVINGS ===== -->
+<section class="savings" id="savings">
+  <div class="container">
+    <div class="section-eyebrow">Your Savings</div>
+    <h2 class="section-heading">The Numbers Speak for Themselves</h2>
+    <p class="section-desc">Real data from our installations. Real savings for real homeowners.</p>
+  </div>
+  <div class="savings-card">
+    <div class="savings-inner">
+      <div class="savings-top">
+        <h3>Average Homeowner <span class="gold">Lifetime Savings</span></h3>
+        <p>Based on 500+ residential installations across the region</p>
+      </div>
+      <div class="savings-stats">
+        <div class="savings-stat">
+          <div class="num num-gold">$30,000+</div>
+          <div class="label">Lifetime Savings</div>
+        </div>
+        <div class="savings-stat">
+          <div class="num num-green">$150/mo</div>
+          <div class="label">Avg. Monthly Savings</div>
+        </div>
+        <div class="savings-stat">
+          <div class="num num-blue">5-7 yrs</div>
+          <div class="label">Payback Period</div>
+        </div>
+      </div>
+      <div class="savings-cta">
+        <p>Your actual savings depend on your roof, energy usage, and location. <strong>Get a personalized estimate in 60 seconds.</strong></p>
+        <a href="#quote" class="btn-primary">Calculate My Savings →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials" id="reviews">
+  <div class="container">
+    <div class="section-eyebrow">Customer Stories</div>
+    <h2 class="section-heading">500+ Happy Homeowners Can't Be Wrong</h2>
+    <p class="section-desc">Don't take our word for it — hear from families who made the switch.</p>
+  </div>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"Best investment we've ever made. Our electricity bill went from $280/month to just $12. The installation team was professional and finished in just one day!"</p>
+      <div class="test-author">
+        <div class="test-avatar" style="background: linear-gradient(135deg, var(--gold), var(--orange));">MR</div>
+        <div>
+          <div class="test-name">Michael R.</div>
+          <div class="test-role">Homeowner since 2023</div>
+          <div class="test-savings-badge">Saving $268/mo</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"I was skeptical at first, but the numbers don't lie. Between the tax credit and monthly savings, this system will pay for itself in under 5 years. Wish I'd done it sooner."</p>
+      <div class="test-author">
+        <div class="test-avatar" style="background: linear-gradient(135deg, var(--trust-blue), var(--green));">SK</div>
+        <div>
+          <div class="test-name">Sarah K.</div>
+          <div class="test-role">Homeowner since 2024</div>
+          <div class="test-savings-badge">Saving $195/mo</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"The whole process was seamless. From consultation to installation — they handled everything. Now my family has backup power during outages and we're saving money every month."</p>
+      <div class="test-author">
+        <div class="test-avatar" style="background: linear-gradient(135deg, var(--green), #48D88A);">DT</div>
+        <div>
+          <div class="test-name">David T.</div>
+          <div class="test-role">Homeowner since 2023</div>
+          <div class="test-savings-badge">Saving $312/mo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA SECTION ===== -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2>Ready to Cut Your<br>Energy Bills by <span class="gold">70%?</span></h2>
+    <p>Join 500+ homeowners who are saving thousands with solar. Get a free, personalized quote — no obligation, no pressure.</p>
+    <a href="#quote" class="btn-primary" style="font-size:1.1rem; padding: 18px 44px;">Get My Free Solar Quote ☀️</a>
+    <div class="cta-guarantees">
+      <div class="cta-guarantee"><span class="icon">✓</span> $0 Down Options</div>
+      <div class="cta-guarantee"><span class="icon">✓</span> 30% Tax Credit</div>
+      <div class="cta-guarantee"><span class="icon">✓</span> 25-Year Warranty</div>
+      <div class="cta-guarantee"><span class="icon">✓</span> 1-Day Installation</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AD CREATIVES ===== -->
+<section class="ads-section">
+  <div class="container">
+    <div class="section-eyebrow">Ad Creatives</div>
+    <h2 class="section-heading">Paid Ad Variations</h2>
+    <p class="section-desc">6 high-converting ad creatives ready for Facebook, Instagram, and Google Display.</p>
+  </div>
+  <div class="ads-grid">
+
+    <!-- Ad 1: Savings -->
+    <div class="ad-creative">
+      <img class="ad-bg" src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&h=800&fit=crop" alt="">
+      <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(11,29,53,0.78) 0%, rgba(6,15,30,0.2) 35%, rgba(6,15,30,0.85) 100%);"></div>
+      <div class="ad-badge">Variation 1</div>
+      <div class="ad-content">
+        <div>
+          <div class="ad-headline" style="font-size: 2.4rem;">
+            Cut Your<br>Electricity Bill<br>by Up to <span class="gold">70%</span>
+          </div>
+          <div class="ad-subline" style="color: var(--gold-bright); font-size: 0.95rem;">Switch to Solar & Start Saving Today!</div>
+        </div>
+        <div style="text-align:center;"><button class="ad-cta-btn ad-cta-blue">Get a FREE Solar Quote ▸</button></div>
+      </div>
+    </div>
+
+    <!-- Ad 2: Trust -->
+    <div class="ad-creative">
+      <img class="ad-bg" src="https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=800&h=800&fit=crop&crop=top" alt="">
+      <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(11,29,53,0.82) 0%, rgba(6,15,30,0.2) 40%, rgba(6,15,30,0.9) 100%);"></div>
+      <div class="ad-badge">Variation 2</div>
+      <div class="ad-content">
+        <div>
+          <div class="ad-headline" style="font-size: 2.3rem;">
+            Your Trusted<br>Local <span class="gold">Solar<br>Installers</span>
+          </div>
+          <div class="ad-trust-bar">Quality Panels <span class="dot">•</span> Expert Installation <span class="dot">•</span> Long-Term Warranty</div>
+        </div>
+        <div style="text-align:center;"><button class="ad-cta-btn ad-cta-blue">Book a FREE Consultation ▸</button></div>
+      </div>
+    </div>
+
+    <!-- Ad 3: Power Your Home -->
+    <div class="ad-creative">
+      <img class="ad-bg" src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=800&h=800&fit=crop" alt="">
+      <div class="ad-overlay" style="background: linear-gradient(170deg, rgba(10,40,20,0.7) 0%, rgba(5,20,10,0.15) 40%, rgba(5,20,10,0.9) 100%);"></div>
+      <div class="ad-badge">Variation 3</div>
+      <div class="ad-content">
+        <div>
+          <div class="ad-headline" style="font-size: 2.3rem;">
+            <span class="gold">Power Your<br>Home</span> with<br>the Sun ☀️
+          </div>
+          <div class="ad-subline" style="color: #7CFC00; font-size: 0.95rem; border-bottom: 2px solid rgba(124,252,0,0.3); display: inline-block; padding-bottom: 2px;">Go Green & Save on Energy Costs!</div>
+        </div>
+        <div><button class="ad-cta-btn ad-cta-green">Switch to Solar Today ▸</button></div>
+      </div>
+    </div>
+
+    <!-- Ad 4: Urgency -->
+    <div class="ad-creative">
+      <img class="ad-bg" src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=800&fit=crop" alt="">
+      <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(60,20,0,0.8) 0%, rgba(30,10,0,0.2) 35%, rgba(20,5,0,0.92) 100%);"></div>
+      <div class="ad-badge">Variation 4</div>
+      <div class="ad-act-badge">ACT NOW<br>& SAVE!</div>
+      <div class="ad-content">
+        <div>
+          <div class="ad-headline" style="font-size: 2.1rem; text-align: center;">
+            <span class="red">Limited-Time</span><br>
+            <span class="gold">Solar Installation</span><br>
+            Offers!
+          </div>
+          <p style="text-align:center; font-weight:700; font-size:0.9rem; color:#fff; text-shadow: 0 2px 8px rgba(0,0,0,0.7); margin-top:8px;">Save Big with Special Discounts & Incentives!</p>
+        </div>
+        <div style="text-align:center;"><button class="ad-cta-btn ad-cta-orange">Check Eligibility Now ▸</button></div>
+      </div>
+    </div>
+
+    <!-- Ad 5: Data-Driven -->
+    <div class="ad-creative">
+      <img class="ad-bg" src="https://images.unsplash.com/photo-1624397640148-949b1732bb0a?w=800&h=800&fit=crop" alt="">
+      <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(11,29,53,0.85) 0%, rgba(6,15,30,0.2) 40%, rgba(6,15,30,0.92) 100%);"></div>
+      <div class="ad-badge">Variation 5</div>
+      <div class="ad-content">
+        <div style="text-align:center;">
+          <div class="ad-headline" style="font-size: 2.6rem; font-family: 'Syne', sans-serif; letter-spacing: 1px;">
+            SAVE OVER<br><span class="gold" style="font-size: 3.2rem;">$30,000+</span><br>WITH SOLAR
+          </div>
+          <div class="ad-stats-bar">
+            <div class="ad-stat-box">
+              <div class="ad-stat-num">70%</div>
+              <div class="ad-stat-lbl">Bill Savings</div>
+            </div>
+            <div class="ad-stat-box">
+              <div class="ad-stat-num">30%</div>
+              <div class="ad-stat-lbl">Tax Credit</div>
+            </div>
+            <div class="ad-stat-box">
+              <div class="ad-stat-num">25 YR</div>
+              <div class="ad-stat-lbl">Warranty</div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;"><button class="ad-cta-btn ad-cta-blue">Calculate My Savings ▸</button></div>
+      </div>
+    </div>
+
+    <!-- Ad 6: Family -->
+    <div class="ad-creative">
+      <img class="ad-bg" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=800&fit=crop" alt="">
+      <div class="ad-overlay" style="background: linear-gradient(180deg, rgba(11,29,53,0.78) 0%, rgba(6,15,30,0.15) 40%, rgba(6,15,30,0.92) 100%);"></div>
+      <div class="ad-badge">Variation 6</div>
+      <div class="ad-content">
+        <div>
+          <div class="ad-headline" style="font-size: 2.2rem;">
+            Your Family<br>Deserves<br><span class="gold">Clean Energy</span>
+          </div>
+          <div class="ad-check-list">
+            <div class="ad-check-item"><span class="ad-check-icon">✓</span> $0 Down Payment Options</div>
+            <div class="ad-check-item"><span class="ad-check-icon">✓</span> Installation in Just 1 Day</div>
+            <div class="ad-check-item"><span class="ad-check-icon">✓</span> 30% Federal Tax Credit</div>
+            <div class="ad-check-item"><span class="ad-check-icon">✓</span> 25-Year Performance Warranty</div>
+          </div>
+        </div>
+        <div style="text-align:center;"><button class="ad-cta-btn ad-cta-green">Get Your Free Quote ▸</button></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== INSTAGRAM POSTS ===== -->
+<section class="ig-section">
+  <div class="container">
+    <div class="section-eyebrow">Instagram Posts</div>
+    <h2 class="section-heading">Social Media Creatives</h2>
+    <p class="section-desc">2 ready-to-post Instagram designs with full captions and hashtags.</p>
+  </div>
+  <div class="ig-grid">
+
+    <!-- IG POST 1 -->
+    <div class="ig-phone">
+      <div class="ig-top-bar">
+        <div class="ig-avatar-ring"><div class="ig-avatar-inner">SP</div></div>
+        <span class="ig-username">sunpowerpro</span>
+        <span class="ig-verified">✔</span>
+      </div>
+      <div class="ig-visual">
+        <img class="ig-bg" src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=800&h=800&fit=crop" alt="">
+        <div class="ig-visual-overlay" style="background: linear-gradient(180deg, rgba(11,29,53,0.85) 0%, rgba(6,15,30,0.2) 40%, rgba(6,15,30,0.92) 100%);"></div>
+        <div class="ig-visual-content">
+          <div class="ig-post-badge">☀️ Did You Know?</div>
+          <div>
+            <div class="ig-post-title">Solar Pays For<br>Itself in Just<br><span class="gold">5–7 Years</span></div>
+          </div>
+          <div class="ig-stats-row">
+            <div class="ig-stat-card">
+              <div class="ig-stat-val">70%</div>
+              <div class="ig-stat-lbl">Bill Cut</div>
+            </div>
+            <div class="ig-stat-card">
+              <div class="ig-stat-val">$30K+</div>
+              <div class="ig-stat-lbl">Savings</div>
+            </div>
+            <div class="ig-stat-card">
+              <div class="ig-stat-val">25yr</div>
+              <div class="ig-stat-lbl">Warranty</div>
+            </div>
+          </div>
+          <div class="ig-dots">
+            <div class="ig-dot active"></div>
+            <div class="ig-dot"></div>
+            <div class="ig-dot"></div>
+          </div>
+        </div>
+      </div>
+      <div class="ig-action-bar"><span>♡</span><span>💬</span><span>✈️</span></div>
+      <div class="ig-like-count">2,847 likes</div>
+      <div class="ig-caption">
+        <span class="b">sunpowerpro</span> Still paying rising electric bills? Here's what your neighbors figured out ☀️⬇️
+        <br><br>
+        Solar panels pay for themselves in 5–7 years — then it's pure savings for 20+ years.
+        <br><br>
+        ✅ Up to 70% lower electricity bills<br>
+        ✅ $30,000+ in lifetime savings<br>
+        ✅ 30% Federal Tax Credit<br>
+        ✅ 25-year performance warranty<br>
+        ✅ Increase home value by 4%+
+        <br><br>
+        The sun is free. Why are you still paying for power?
+        <br><br>
+        📩 DM "SOLAR" for a FREE quote.
+        <br><br>
+        <span class="tags">#SolarEnergy #SolarPanels #GoSolar #CleanEnergy #SolarInstallation #RenewableEnergy #SolarPower #EnergySavings #SolarLife #GreenEnergy #FederalTaxCredit</span>
+      </div>
+    </div>
+
+    <!-- IG POST 2 -->
+    <div class="ig-phone">
+      <div class="ig-top-bar">
+        <div class="ig-avatar-ring"><div class="ig-avatar-inner">SP</div></div>
+        <span class="ig-username">sunpowerpro</span>
+        <span class="ig-verified">✔</span>
+      </div>
+      <div class="ig2-visual">
+        <div class="ig2-half">
+          <img class="ig-bg" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&h=800&fit=crop" alt="">
+          <div class="ig2-half-overlay" style="background: rgba(100,30,30,0.35);"></div>
+          <div class="ig2-half-content">
+            <div class="ig2-label" style="color: #ffaaaa;">BEFORE</div>
+            <div class="ig2-bill-card">
+              <div class="ig2-bill-lbl">Electric Bill</div>
+              <div class="ig2-bill-amt ig2-bill-red">$285</div>
+              <div class="ig2-bill-per">/month</div>
+            </div>
+          </div>
+        </div>
+        <div class="ig2-divider"><span>→</span></div>
+        <div class="ig2-half">
+          <img class="ig-bg" src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=600&h=800&fit=crop" alt="">
+          <div class="ig2-half-overlay" style="background: rgba(20,80,30,0.3);"></div>
+          <div class="ig2-half-content">
+            <div class="ig2-label" style="color: #aaffaa;">AFTER SOLAR</div>
+            <div class="ig2-bill-card green-border">
+              <div class="ig2-bill-lbl">Electric Bill</div>
+              <div class="ig2-bill-amt ig2-bill-green">$18</div>
+              <div class="ig2-bill-per">/month</div>
+            </div>
+            <div class="ig2-savings">Save $267/mo</div>
+          </div>
+        </div>
+      </div>
+      <div class="ig-action-bar"><span>♡</span><span>💬</span><span>✈️</span></div>
+      <div class="ig-like-count">3,412 likes</div>
+      <div class="ig-caption">
+        <span class="b">sunpowerpro</span> POV: You switched to solar and your electric bill went from $285 ➡️ $18 💰☀️
+        <br><br>
+        This is a REAL result. Not a gimmick. Not a promo rate.
+        <br><br>
+        💡 What changed?<br>
+        → 24 premium panels installed in 1 day<br>
+        → $0 down with flexible financing<br>
+        → 30% Federal Tax Credit applied<br>
+        → Net metering earning utility credits
+        <br><br>
+        $267/mo = $3,204/yr = $80,000+ over 25 years.
+        <br><br>
+        📩 DM "SAVE" for your free estimate.
+        <br><br>
+        <span class="tags">#SolarTransformation #BeforeAndAfter #SolarSavings #GoSolar #SolarPanelInstallation #RenewableEnergy #SolarPower #EnergySavings #CleanEnergy #SolarROI</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">☀️</div>
+      <div class="footer-name">Sun<span class="gold">Power</span> Pro</div>
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 SunPower Pro Solar. All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>

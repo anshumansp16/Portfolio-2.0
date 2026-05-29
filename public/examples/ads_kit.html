@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solar Installation — Ad Variations & Instagram Posts</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun-gold: #F7A600;
+    --sun-bright: #FFD200;
+    --solar-blue: #0A1628;
+    --sky-blue: #1B3A5C;
+    --clean-white: #FAFCFF;
+    --warm-cream: #FFF8EC;
+    --leaf-green: #2D8B4E;
+    --accent-orange: #FF6B2C;
+    --soft-gray: #94A3B8;
+    --card-shadow: 0 20px 60px rgba(10, 22, 40, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #F0F2F5;
+    color: var(--solar-blue);
+    overflow-x: hidden;
+  }
+
+  /* ===== HEADER ===== */
+  .page-header {
+    text-align: center;
+    padding: 60px 20px 40px;
+    background: var(--solar-blue);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 140%;
+    height: 200%;
+    background: radial-gradient(ellipse at 30% 20%, rgba(247,166,0,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(45,139,78,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .page-header h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    letter-spacing: -1px;
+    position: relative;
+  }
+  .page-header h1 span { color: var(--sun-gold); }
+  .page-header p {
+    margin-top: 12px;
+    font-size: 1.1rem;
+    opacity: 0.7;
+    position: relative;
+  }
+
+  /* ===== SECTION LABELS ===== */
+  .section-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    text-align: center;
+    margin: 50px 0 10px;
+    color: var(--solar-blue);
+    letter-spacing: -0.5px;
+  }
+  .section-sublabel {
+    text-align: center;
+    color: var(--soft-gray);
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+  }
+
+  /* ===== AD GRID ===== */
+  .ad-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px 40px;
+  }
+
+  /* ===== AD CARD BASE ===== */
+  .ad-card {
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+  }
+  .ad-card:hover { transform: translateY(-6px); }
+
+  .ad-label {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(8px);
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 0.7rem;
+    padding: 5px 12px;
+    border-radius: 20px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    z-index: 5;
+  }
+
+  /* ===== AD VARIATION 1 — Hero / Brand Awareness ===== */
+  .ad-v1 {
+    background: linear-gradient(160deg, var(--solar-blue) 0%, #142E4D 50%, #1B3A5C 100%);
+    color: white;
+    padding: 0;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+  }
+  .ad-v1::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(circle at 80% 15%, var(--sun-gold) 0%, transparent 35%),
+      radial-gradient(circle at 20% 85%, rgba(45,139,78,0.3) 0%, transparent 40%);
+    opacity: 0.6;
+  }
+  .ad-v1 .sun-icon {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sun-bright) 30%, var(--sun-gold) 70%, transparent 100%);
+    box-shadow: 0 0 60px rgba(247,166,0,0.5), 0 0 120px rgba(247,166,0,0.2);
+    animation: pulse-sun 3s ease-in-out infinite;
+  }
+  @keyframes pulse-sun {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(247,166,0,0.5); }
+    50% { transform: scale(1.08); box-shadow: 0 0 80px rgba(247,166,0,0.7); }
+  }
+  .ad-v1 .content {
+    position: relative;
+    z-index: 2;
+    padding: 40px 36px;
+  }
+  .ad-v1 .tagline {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 14px;
+  }
+  .ad-v1 .tagline .highlight { color: var(--sun-gold); }
+  .ad-v1 .desc {
+    font-size: 1rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    max-width: 90%;
+    margin-bottom: 24px;
+  }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+  }
+  .cta-gold {
+    background: var(--sun-gold);
+    color: var(--solar-blue);
+  }
+  .cta-gold:hover { background: var(--sun-bright); transform: scale(1.04); }
+  .cta-white {
+    background: white;
+    color: var(--solar-blue);
+  }
+  .cta-white:hover { background: var(--warm-cream); transform: scale(1.04); }
+  .cta-green {
+    background: var(--leaf-green);
+    color: white;
+  }
+  .cta-green:hover { background: #36A05B; transform: scale(1.04); }
+  .cta-arrow { font-size: 1.2rem; transition: transform 0.3s; }
+  .cta-btn:hover .cta-arrow { transform: translateX(4px); }
+
+  /* ===== AD VARIATION 2 — Savings Focus ===== */
+  .ad-v2 {
+    background: var(--warm-cream);
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+  }
+  .ad-v2 .visual-strip {
+    height: 180px;
+    background: linear-gradient(135deg, var(--sun-gold) 0%, var(--accent-orange) 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .ad-v2 .visual-strip::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 0; right: 0;
+    height: 60px;
+    background: var(--warm-cream);
+    border-radius: 50% 50% 0 0;
+  }
+  .ad-v2 .big-number {
+    font-family: 'Outfit', sans-serif;
+    font-size: 5rem;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    letter-spacing: -3px;
+    position: relative;
+    z-index: 2;
+  }
+  .ad-v2 .big-number span { font-size: 2.5rem; vertical-align: super; }
+  .ad-v2 .body {
+    padding: 28px 32px 36px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .ad-v2 .body h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--solar-blue);
+    margin-bottom: 10px;
+  }
+  .ad-v2 .body p {
+    color: #5A6B80;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .savings-chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .chip {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+  }
+  .chip-gold { background: rgba(247,166,0,0.15); color: #C47A00; }
+  .chip-green { background: rgba(45,139,78,0.12); color: var(--leaf-green); }
+  .chip-blue { background: rgba(27,58,92,0.1); color: var(--sky-blue); }
+
+  /* ===== AD VARIATION 3 — Trust / Testimonial ===== */
+  .ad-v3 {
+    background: white;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+  }
+  .ad-v3 .trust-bar {
+    background: var(--leaf-green);
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+  }
+  .ad-v3 .trust-bar .stars { font-size: 1.3rem; letter-spacing: 2px; }
+  .ad-v3 .trust-bar .rating-text {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .ad-v3 .testimonial-body {
+    padding: 32px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .ad-v3 .quote-mark {
+    font-family: Georgia, serif;
+    font-size: 4rem;
+    color: var(--sun-gold);
+    line-height: 1;
+    margin-bottom: -10px;
+  }
+  .ad-v3 .quote-text {
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: #3A4A5C;
+    margin-bottom: 16px;
+  }
+  .ad-v3 .reviewer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .ad-v3 .reviewer-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sun-gold), var(--accent-orange));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    color: white;
+    font-size: 1rem;
+  }
+  .ad-v3 .reviewer-info .name {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .ad-v3 .reviewer-info .role {
+    font-size: 0.8rem;
+    color: var(--soft-gray);
+  }
+  .ad-v3 .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid #E8ECF0;
+  }
+  .stat-item {
+    text-align: center;
+  }
+  .stat-item .num {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--solar-blue);
+  }
+  .stat-item .label {
+    font-size: 0.72rem;
+    color: var(--soft-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== AD VARIATION 4 — Urgency / Limited Offer ===== */
+  .ad-v4 {
+    background: linear-gradient(160deg, #1a0a00 0%, #2D1200 40%, #4A2000 100%);
+    color: white;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .ad-v4::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(247,166,0,0.03) 30px, rgba(247,166,0,0.03) 60px);
+  }
+  .ad-v4 .urgency-badge {
+    background: #E63946;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: flash-badge 2s ease-in-out infinite;
+  }
+  @keyframes flash-badge {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
+  }
+  .ad-v4 .offer-body {
+    padding: 36px 32px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+  .ad-v4 .offer-body h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .ad-v4 .offer-body h3 .gold { color: var(--sun-gold); }
+  .ad-v4 .offer-detail {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .ad-v4 .offer-features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .ad-v4 .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+  .ad-v4 .feature-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(247,166,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: var(--sun-gold);
+    flex-shrink: 0;
+  }
+
+  /* ===== AD VARIATION 5 — Google Search Ad (Text) ===== */
+  .ad-v5 {
+    background: white;
+    min-height: 300px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .ad-v5 .ad-type-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--soft-gray);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .ad-v5 .ad-type-badge .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--leaf-green);
+  }
+  .google-ad-block {
+    padding: 24px;
+    border: 1px solid #E0E5EB;
+    border-radius: 14px;
+    background: #FAFBFD;
+  }
+  .google-ad-block .ad-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--soft-gray);
+    border: 1.5px solid #CBD5E0;
+    border-radius: 4px;
+    padding: 2px 6px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+  .google-ad-block .headline {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1A0DAB;
+    margin-bottom: 4px;
+    cursor: pointer;
+  }
+  .google-ad-block .headline:hover { text-decoration: underline; }
+  .google-ad-block .url {
+    font-size: 0.82rem;
+    color: var(--leaf-green);
+    margin-bottom: 6px;
+  }
+  .google-ad-block .desc {
+    font-size: 0.88rem;
+    color: #545454;
+    line-height: 1.5;
+  }
+  .google-ad-block .extensions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .google-ad-block .ext {
+    font-size: 0.78rem;
+    color: #1A0DAB;
+    cursor: pointer;
+  }
+  .google-ad-block .ext:hover { text-decoration: underline; }
+  .google-ad-block + .google-ad-block { margin-top: 16px; }
+
+  /* ===== AD VARIATION 6 — Facebook / Meta Ad ===== */
+  .ad-v6 {
+    background: white;
+    min-height: 480px;
+  }
+  .ad-v6 .fb-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+  }
+  .ad-v6 .fb-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sun-gold), var(--accent-orange));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+  .ad-v6 .fb-meta .fb-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .ad-v6 .fb-meta .fb-sub {
+    font-size: 0.75rem;
+    color: var(--soft-gray);
+  }
+  .ad-v6 .fb-text {
+    padding: 0 20px 14px;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: #333;
+  }
+  .ad-v6 .fb-image {
+    width: 100%;
+    height: 240px;
+    background: linear-gradient(135deg, #0A1628 0%, #1B3A5C 40%, #2D8B4E 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .ad-v6 .fb-image::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,210,0,0.6) 0%, transparent 70%);
+    filter: blur(20px);
+  }
+  .ad-v6 .fb-image-text {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+  .ad-v6 .fb-image-text h4 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 1.6rem;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .ad-v6 .fb-image-text p {
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+  .ad-v6 .fb-cta-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    border-top: 1px solid #E8ECF0;
+  }
+  .ad-v6 .fb-cta-bar .link-text {
+    font-size: 0.78rem;
+    color: var(--soft-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .ad-v6 .fb-cta-bar .link-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .fb-cta-btn {
+    padding: 8px 20px;
+    border-radius: 6px;
+    background: #E4E6EB;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--solar-blue);
+    border: none;
+    cursor: pointer;
+  }
+
+  /* ===== INSTAGRAM POST SECTION ===== */
+  .ig-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+  }
+
+  .ig-card {
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    background: white;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .ig-card:hover { transform: translateY(-6px); }
+
+  .ig-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .ig-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #F7A600, #FF6B2C, #E63946);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+  .ig-username {
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+  .ig-verified {
+    color: #3897f0;
+    font-size: 0.85rem;
+  }
+
+  /* IG Post 1 — Educational / Carousel Style */
+  .ig-post-1 .ig-visual {
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(160deg, #0A1628 0%, #142E4D 60%, #1B3A5C 100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    overflow: hidden;
+  }
+  .ig-post-1 .ig-visual::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -15%;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(247,166,0,0.35) 0%, transparent 70%);
+    filter: blur(30px);
+  }
+  .ig-post-1 .ig-visual::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--sun-gold), var(--leaf-green), var(--sun-gold));
+  }
+  .ig-post-1 .post-badge {
+    position: relative;
+    z-index: 2;
+    background: rgba(247,166,0,0.15);
+    border: 1px solid rgba(247,166,0,0.3);
+    color: var(--sun-gold);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    padding: 5px 14px;
+    border-radius: 20px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .ig-post-1 .post-title {
+    position: relative;
+    z-index: 2;
+    font-family: 'Outfit', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: white;
+    text-align: center;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .ig-post-1 .post-title .gold { color: var(--sun-gold); }
+  .ig-post-1 .post-stats {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 20px;
+  }
+  .ig-post-1 .post-stat {
+    text-align: center;
+    color: white;
+  }
+  .ig-post-1 .post-stat .val {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: var(--sun-bright);
+  }
+  .ig-post-1 .post-stat .lbl {
+    font-size: 0.72rem;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .ig-post-1 .slide-dots {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 6px;
+    margin-top: 24px;
+  }
+  .ig-post-1 .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+  }
+  .ig-post-1 .dot.active {
+    background: white;
+    width: 20px;
+    border-radius: 10px;
+  }
+
+  /* IG Post 2 — Before/After Transformation */
+  .ig-post-2 .ig-visual {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--warm-cream);
+    position: relative;
+    display: flex;
+    overflow: hidden;
+  }
+  .ig-post-2 .split-left {
+    flex: 1;
+    background: linear-gradient(180deg, #E2E8F0 0%, #CBD5E0 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    position: relative;
+  }
+  .ig-post-2 .split-left::after {
+    content: 'BEFORE';
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: #64748B;
+    background: rgba(255,255,255,0.8);
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+  .ig-post-2 .bill-old {
+    background: white;
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    width: 85%;
+  }
+  .ig-post-2 .bill-old .bill-label {
+    font-size: 0.75rem;
+    color: var(--soft-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+  }
+  .ig-post-2 .bill-old .bill-amount {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 2.5rem;
+    color: #E63946;
+    line-height: 1;
+  }
+  .ig-post-2 .bill-old .bill-period {
+    font-size: 0.8rem;
+    color: var(--soft-gray);
+  }
+
+  .ig-post-2 .split-divider {
+    width: 50px;
+    background: var(--sun-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    clip-path: polygon(30% 0, 100% 0, 70% 100%, 0 100%);
+  }
+  .ig-post-2 .split-divider .arrow {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
+
+  .ig-post-2 .split-right {
+    flex: 1;
+    background: linear-gradient(180deg, #D5F5E3 0%, #A7E8C4 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    position: relative;
+  }
+  .ig-post-2 .split-right::after {
+    content: 'AFTER SOLAR';
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: var(--leaf-green);
+    background: rgba(255,255,255,0.8);
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+  .ig-post-2 .bill-new {
+    background: white;
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(45,139,78,0.15);
+    width: 85%;
+    border: 2px solid var(--leaf-green);
+  }
+  .ig-post-2 .bill-new .bill-amount {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 2.5rem;
+    color: var(--leaf-green);
+    line-height: 1;
+  }
+  .ig-post-2 .bill-new .savings-tag {
+    display: inline-block;
+    margin-top: 8px;
+    background: rgba(45,139,78,0.1);
+    color: var(--leaf-green);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 10px;
+  }
+
+  /* IG Caption Area */
+  .ig-actions {
+    display: flex;
+    gap: 16px;
+    padding: 12px 16px 4px;
+  }
+  .ig-action-icon {
+    font-size: 1.3rem;
+    cursor: pointer;
+    opacity: 0.8;
+  }
+  .ig-likes {
+    padding: 2px 16px;
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+  .ig-caption {
+    padding: 4px 16px 14px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #333;
+  }
+  .ig-caption .bold { font-weight: 700; }
+  .ig-caption .hashtags { color: #00376B; }
+
+  /* ===== COPY TEXT SECTION ===== */
+  .copy-section {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    padding: 0 24px;
+  }
+  .copy-card {
+    background: white;
+    border-radius: 18px;
+    padding: 36px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 24px;
+  }
+  .copy-card h4 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--solar-blue);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .copy-card .platform-tag {
+    font-size: 0.65rem;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .tag-google { background: #E8F0FE; color: #1A73E8; }
+  .tag-fb { background: #E7F3FF; color: #1877F2; }
+  .tag-ig { background: linear-gradient(135deg, #FFE8CC, #FFD6E0); color: #C13584; }
+  .copy-card .copy-text {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: #4A5568;
+    white-space: pre-line;
+    margin-top: 12px;
+    padding: 20px;
+    background: #F8FAFC;
+    border-radius: 12px;
+    border-left: 3px solid var(--sun-gold);
+  }
+
+  @media (max-width: 768px) {
+    .ad-grid { grid-template-columns: 1fr; padding: 0 16px 30px; }
+    .ig-grid { grid-template-columns: 1fr; padding: 0 16px 40px; }
+    .ad-v1 .tagline { font-size: 1.8rem; }
+    .ad-v2 .big-number { font-size: 3.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="page-header">
+  <h1>☀️ Solar Installation <span>Ad Kit</span></h1>
+  <p>Ad Variations + Instagram Posts — Ready to Deploy</p>
+</div>
+
+<!-- ===== SECTION: AD VARIATIONS ===== -->
+<div class="section-label">Ad Creative Variations</div>
+<div class="section-sublabel">6 variations across platforms — Display, Search, Social</div>
+
+<div class="ad-grid">
+
+  <!-- AD 1: Brand Awareness / Hero -->
+  <div class="ad-card ad-v1">
+    <div class="ad-label">Display Ad — Brand</div>
+    <div class="sun-icon"></div>
+    <div class="content">
+      <div class="tagline">Power Your Home<br>With The <span class="highlight">Sun.</span></div>
+      <p class="desc">Switch to clean solar energy and slash your electricity bills by up to 70%. Professional installation. 25-year warranty. Zero upfront cost options.</p>
+      <a class="cta-btn cta-gold">Get Free Quote <span class="cta-arrow">→</span></a>
+    </div>
+  </div>
+
+  <!-- AD 2: Savings Focus -->
+  <div class="ad-card ad-v2">
+    <div class="ad-label">Display Ad — Savings</div>
+    <div class="visual-strip">
+      <div class="big-number"><span>$</span>30K<span>+</span></div>
+    </div>
+    <div class="body">
+      <div>
+        <h3>Average Lifetime Savings With Solar Panels</h3>
+        <p>Stop paying rising utility bills. Our customers save an average of $150/month from day one. Plus, the 30% Federal Tax Credit makes going solar more affordable than ever.</p>
+        <div class="savings-chips">
+          <span class="chip chip-gold">30% Tax Credit</span>
+          <span class="chip chip-green">$0 Down Options</span>
+          <span class="chip chip-blue">Net Metering</span>
+        </div>
+      </div>
+      <a class="cta-btn cta-green">Calculate My Savings <span class="cta-arrow">→</span></a>
+    </div>
+  </div>
+
+  <!-- AD 3: Trust / Testimonial -->
+  <div class="ad-card ad-v3">
+    <div class="ad-label">Display Ad — Social Proof</div>
+    <div class="trust-bar">
+      <div class="stars">★★★★★</div>
+      <div class="rating-text">4.9/5 from 500+ Homeowners</div>
+    </div>
+    <div class="testimonial-body">
+      <div>
+        <div class="quote-mark">"</div>
+        <p class="quote-text">Best investment we've ever made. Our electricity bill went from $280/month to just $12. The installation team was professional and finished in just one day!</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">MR</div>
+          <div class="reviewer-info">
+            <div class="name">Michael R.</div>
+            <div class="role">Homeowner since 2023</div>
+          </div>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="num">500+</div>
+          <div class="label">Installs</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">4.9★</div>
+          <div class="label">Rating</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">25yr</div>
+          <div class="label">Warranty</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AD 4: Urgency / Limited Offer -->
+  <div class="ad-card ad-v4">
+    <div class="ad-label">Display Ad — Urgency</div>
+    <div class="urgency-badge">⚡ Limited Time Offer — Ends This Month</div>
+    <div class="offer-body">
+      <h3>Get <span class="gold">$0 Down</span> Solar + Free Battery Backup This Month Only</h3>
+      <p class="offer-detail">Lock in the 30% Federal Tax Credit before rates change. Our February special includes a free home battery with every full installation.</p>
+      <div class="offer-features">
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>$0 down payment — start saving immediately</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>Free Powerwall battery backup (value $8,000+)</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>Installation in as little as 1 day</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>25-year performance warranty included</span>
+        </div>
+      </div>
+      <a class="cta-btn cta-gold">Claim This Offer <span class="cta-arrow">→</span></a>
+    </div>
+  </div>
+
+  <!-- AD 5: Google Search Ads -->
+  <div class="ad-card ad-v5">
+    <div class="ad-label">Google Search Ad</div>
+    <div class="ad-type-badge"><span class="dot"></span> Google Ads — Search</div>
+
+    <div class="google-ad-block">
+      <div class="ad-badge">Sponsored</div>
+      <div class="headline">Top-Rated Solar Installation — Save Up to 70% on Energy Bills</div>
+      <div class="url">www.yoursolarbiz.com/free-quote</div>
+      <div class="desc">Go solar with $0 down. 30% Federal Tax Credit available. Professional installation with 25-year warranty. 500+ 5-star reviews. Get your free custom quote today.</div>
+      <div class="extensions">
+        <span class="ext">Free Solar Quote</span> · 
+        <span class="ext">Financing Options</span> · 
+        <span class="ext">See Our Reviews</span> · 
+        <span class="ext">Solar Calculator</span>
+      </div>
+    </div>
+
+    <div class="google-ad-block">
+      <div class="ad-badge">Sponsored</div>
+      <div class="headline">$0 Down Solar Panels — Lock In 30% Tax Credit Before It Drops</div>
+      <div class="url">www.yoursolarbiz.com/tax-credit</div>
+      <div class="desc">Don't miss the 30% Federal Solar Tax Credit. Average homeowner saves $30,000+ over system lifetime. Licensed, insured, and locally owned. Same-week consultations available.</div>
+      <div class="extensions">
+        <span class="ext">Tax Credit Guide</span> · 
+        <span class="ext">Residential Solar</span> · 
+        <span class="ext">Battery Storage</span> · 
+        <span class="ext">Call Now</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- AD 6: Facebook / Meta Ad -->
+  <div class="ad-card ad-v6">
+    <div class="ad-label">Facebook / Meta Ad</div>
+    <div class="fb-header">
+      <div class="fb-avatar">☀️</div>
+      <div class="fb-meta">
+        <div class="fb-name">Your Solar Company</div>
+        <div class="fb-sub">Sponsored · 🌍</div>
+      </div>
+    </div>
+    <div class="fb-text">
+      Your neighbor just cut their electric bill by 70%. Here's the secret: it's on their roof. ☀️<br><br>
+      Go solar with $0 down and start saving from month one. Our team handles everything — permits, installation, and monitoring. Plus, you still qualify for the 30% Federal Tax Credit.<br><br>
+      🔋 Free battery backup this month only.
+    </div>
+    <div class="fb-image">
+      <div class="fb-image-text">
+        <h4>Your Roof.<br>Your Power Plant.</h4>
+        <p>Free consultation • $0 Down • 25-Year Warranty</p>
+      </div>
+    </div>
+    <div class="fb-cta-bar">
+      <div>
+        <div class="link-text">yoursolarbiz.com</div>
+        <div class="link-title">Get Your Free Solar Quote Today</div>
+      </div>
+      <button class="fb-cta-btn">Learn More</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== SECTION: INSTAGRAM POSTS ===== -->
+<div class="section-label">Instagram Posts</div>
+<div class="section-sublabel">2 ready-to-post designs with captions</div>
+
+<div class="ig-grid">
+
+  <!-- IG POST 1 — Educational Stats -->
+  <div class="ig-card ig-post-1">
+    <div class="ig-header">
+      <div class="ig-avatar">☀️</div>
+      <span class="ig-username">yoursolarbiz</span>
+      <span class="ig-verified">✔</span>
+    </div>
+    <div class="ig-visual">
+      <div class="post-badge">☀️ Did You Know?</div>
+      <div class="post-title">Solar Pays For Itself In<br><span class="gold">5–7 Years</span></div>
+      <div class="post-stats">
+        <div class="post-stat">
+          <div class="val">70%</div>
+          <div class="lbl">Bill Reduction</div>
+        </div>
+        <div class="post-stat">
+          <div class="val">$30K+</div>
+          <div class="lbl">Lifetime Savings</div>
+        </div>
+        <div class="post-stat">
+          <div class="val">25yr</div>
+          <div class="lbl">Warranty</div>
+        </div>
+      </div>
+      <div class="slide-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+    <div class="ig-actions">
+      <span class="ig-action-icon">♡</span>
+      <span class="ig-action-icon">💬</span>
+      <span class="ig-action-icon">✈️</span>
+    </div>
+    <div class="ig-likes">2,847 likes</div>
+    <div class="ig-caption">
+      <span class="bold">yoursolarbiz</span> Still paying rising electric bills every month? Here's what your neighbors already figured out ☀️⬇️
+      <br><br>
+      Solar panels pay for themselves in just 5–7 years — and after that? It's pure savings for the next 20+ years.
+      <br><br>
+      Here's what you get:
+      <br>✅ Up to 70% lower electricity bills
+      <br>✅ $30,000+ in lifetime savings
+      <br>✅ 30% Federal Tax Credit (claim it while it lasts!)
+      <br>✅ 25-year performance warranty
+      <br>✅ Increase your home value by 4%+
+      <br><br>
+      The sun is free. Why are you still paying for power?
+      <br><br>
+      📩 DM us "SOLAR" or tap the link in bio for a FREE custom quote.
+      <br><br>
+      <span class="hashtags">#SolarEnergy #SolarPanels #GoSolar #CleanEnergy #SolarInstallation #RenewableEnergy #SolarPower #HomeImprovement #EnergySavings #SolarLife #GreenEnergy #SustainableLiving #ElectricBill #SolarInvestment #FederalTaxCredit</span>
+    </div>
+  </div>
+
+  <!-- IG POST 2 — Before/After -->
+  <div class="ig-card ig-post-2">
+    <div class="ig-header">
+      <div class="ig-avatar">☀️</div>
+      <span class="ig-username">yoursolarbiz</span>
+      <span class="ig-verified">✔</span>
+    </div>
+    <div class="ig-visual">
+      <div class="split-left">
+        <div class="bill-old">
+          <div class="bill-label">Monthly Electric Bill</div>
+          <div class="bill-amount">$285</div>
+          <div class="bill-period">/month</div>
+        </div>
+      </div>
+      <div class="split-divider">
+        <span class="arrow">→</span>
+      </div>
+      <div class="split-right">
+        <div class="bill-new">
+          <div class="bill-label" style="font-size:0.75rem;color:#94A3B8;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;font-family:'Outfit',sans-serif;font-weight:600;">Monthly Electric Bill</div>
+          <div class="bill-amount">$18</div>
+          <div style="font-size:0.8rem;color:#94A3B8;">/month</div>
+          <div class="savings-tag">Save $267/mo</div>
+        </div>
+      </div>
+    </div>
+    <div class="ig-actions">
+      <span class="ig-action-icon">♡</span>
+      <span class="ig-action-icon">💬</span>
+      <span class="ig-action-icon">✈️</span>
+    </div>
+    <div class="ig-likes">3,412 likes</div>
+    <div class="ig-caption">
+      <span class="bold">yoursolarbiz</span> POV: You switched to solar and your electric bill went from $285 ➡️ $18 💰☀️
+      <br><br>
+      This is a REAL result from one of our recent installations. Not a gimmick. Not a promo rate. This is what happens when you stop renting electricity and start owning your power.
+      <br><br>
+      💡 What changed?
+      <br>→ 24 premium solar panels installed in 1 day
+      <br>→ $0 down with flexible financing
+      <br>→ 30% Federal Tax Credit applied
+      <br>→ Net metering earning credits from the utility
+      <br><br>
+      That $267/month savings? That's $3,204/year back in your pocket. Over 25 years = $80,000+ saved.
+      <br><br>
+      Your roof is already sitting in the sun. Make it work for you.
+      <br><br>
+      🔗 Link in bio for your FREE savings estimate
+      <br>📩 Or DM us "SAVE" and we'll calculate your exact savings
+      <br><br>
+      <span class="hashtags">#SolarTransformation #BeforeAndAfter #SolarSavings #ElectricBill #GoSolar #SolarPanelInstallation #HomeEnergy #RenewableEnergy #SolarPower #EnergySavings #SolarLife #CleanEnergy #NetMetering #SolarROI #PowerYourHome</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== SECTION: AD COPY TEXT ===== -->
+<div class="section-label">📋 Ad Copy — Ready to Copy</div>
+<div class="section-sublabel">All ad text compiled for easy implementation</div>
+
+<div class="copy-section">
+
+  <div class="copy-card">
+    <h4>Google Search Ad — Variation 1 <span class="platform-tag tag-google">Google Ads</span></h4>
+    <div class="copy-text"><strong>Headline 1:</strong> Top-Rated Solar Installation
+<strong>Headline 2:</strong> Save Up to 70% on Energy Bills  
+<strong>Headline 3:</strong> $0 Down — Free Quote Today
+
+<strong>Description 1:</strong> Go solar with $0 down. 30% Federal Tax Credit available. Professional installation with 25-year warranty. 500+ 5-star reviews. Get your free custom quote today.
+
+<strong>Description 2:</strong> Trusted by 500+ homeowners. Licensed & insured. Same-week consultations available. Start saving from day one.
+
+<strong>Sitelinks:</strong> Free Solar Quote | Financing Options | See Our Reviews | Solar Calculator</div>
+  </div>
+
+  <div class="copy-card">
+    <h4>Google Search Ad — Variation 2 <span class="platform-tag tag-google">Google Ads</span></h4>
+    <div class="copy-text"><strong>Headline 1:</strong> $0 Down Solar Panels
+<strong>Headline 2:</strong> Lock In 30% Tax Credit Before It Drops
+<strong>Headline 3:</strong> #1 Local Solar Installer
+
+<strong>Description 1:</strong> Don't miss the 30% Federal Solar Tax Credit. Average homeowner saves $30,000+ over system lifetime. Licensed, insured, and locally owned. Same-week consultations available.
+
+<strong>Description 2:</strong> Premium panels. Expert installation. 25-year warranty. See why 500+ homeowners chose us. Free personalized quote in 60 seconds.
+
+<strong>Sitelinks:</strong> Tax Credit Guide | Residential Solar | Battery Storage | Call Now</div>
+  </div>
+
+  <div class="copy-card">
+    <h4>Facebook / Meta Ad <span class="platform-tag tag-fb">Facebook</span></h4>
+    <div class="copy-text"><strong>Primary Text:</strong>
+Your neighbor just cut their electric bill by 70%. Here's the secret: it's on their roof. ☀️
+
+Go solar with $0 down and start saving from month one. Our team handles everything — permits, installation, and monitoring. Plus, you still qualify for the 30% Federal Tax Credit.
+
+🔋 Free battery backup this month only.
+
+<strong>Headline:</strong> Get Your Free Solar Quote Today
+<strong>Description:</strong> Free consultation • $0 Down • 25-Year Warranty
+<strong>CTA Button:</strong> Learn More</div>
+  </div>
+
+  <div class="copy-card">
+    <h4>Instagram Post 1 — Caption <span class="platform-tag tag-ig">Instagram</span></h4>
+    <div class="copy-text">Still paying rising electric bills every month? Here's what your neighbors already figured out ☀️⬇️
+
+Solar panels pay for themselves in just 5–7 years — and after that? It's pure savings for the next 20+ years.
+
+Here's what you get:
+✅ Up to 70% lower electricity bills
+✅ $30,000+ in lifetime savings
+✅ 30% Federal Tax Credit (claim it while it lasts!)
+✅ 25-year performance warranty
+✅ Increase your home value by 4%+
+
+The sun is free. Why are you still paying for power?
+
+📩 DM us "SOLAR" or tap the link in bio for a FREE custom quote.
+
+#SolarEnergy #SolarPanels #GoSolar #CleanEnergy #SolarInstallation #RenewableEnergy #SolarPower #HomeImprovement #EnergySavings #SolarLife #GreenEnergy #SustainableLiving #ElectricBill #SolarInvestment #FederalTaxCredit</div>
+  </div>
+
+  <div class="copy-card">
+    <h4>Instagram Post 2 — Caption <span class="platform-tag tag-ig">Instagram</span></h4>
+    <div class="copy-text">POV: You switched to solar and your electric bill went from $285 ➡️ $18 💰☀️
+
+This is a REAL result from one of our recent installations. Not a gimmick. Not a promo rate. This is what happens when you stop renting electricity and start owning your power.
+
+💡 What changed?
+→ 24 premium solar panels installed in 1 day
+→ $0 down with flexible financing
+→ 30% Federal Tax Credit applied
+→ Net metering earning credits from the utility
+
+That $267/month savings? That's $3,204/year back in your pocket. Over 25 years = $80,000+ saved.
+
+Your roof is already sitting in the sun. Make it work for you.
+
+🔗 Link in bio for your FREE savings estimate
+📩 Or DM us "SAVE" and we'll calculate your exact savings
+
+#SolarTransformation #BeforeAndAfter #SolarSavings #ElectricBill #GoSolar #SolarPanelInstallation #HomeEnergy #RenewableEnergy #SolarPower #EnergySavings #SolarLife #CleanEnergy #NetMetering #SolarROI #PowerYourHome</div>
+  </div>
+
+</div>
+
+</body>
+</html>

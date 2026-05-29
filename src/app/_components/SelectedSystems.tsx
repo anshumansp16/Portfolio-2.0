@@ -1,348 +1,209 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Container } from '@/components/ui/Container'
 import Image from 'next/image'
 
-interface SystemProps {
-  index: string
-  name: string
-  domain: string
-  outcome: string
-  businessOutcome: string
-  constraints: string[]
-  role: string
-  image: string
-  link?: string
-  delay: number
-}
-
-function Exhibit({ index, name, domain, outcome, businessOutcome, constraints, role, image, link, delay }: SystemProps) {
-  return (
-    <motion.div
-      className="relative"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{
-        duration: 1.4,
-        delay,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-    >
-      {/* Business Outcome Badge */}
-      <motion.div
-        className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full"
-        style={{
-          background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(184, 134, 11, 0.04) 100%)',
-          border: '1px solid rgba(212, 175, 55, 0.15)',
-        }}
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: delay + 0.2 }}
-      >
-        <svg
-          className="w-4 h-4 text-accent-gold/70"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-          />
-        </svg>
-        <span
-          className="text-body-sm text-accent-gold/90"
-          style={{
-            fontWeight: 400,
-            letterSpacing: '0.01em',
-          }}
-        >
-          {businessOutcome}
-        </span>
-      </motion.div>
-
-      {/* Artifact Frame */}
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="relative group mb-8 block cursor-pointer"
-      >
-        {/* Browser Frame Container */}
-        <div
-          className="relative overflow-hidden rounded-xl"
-          style={{
-            border: '1px solid rgba(255, 255, 255, 0.06)',
-            background: 'rgba(255, 255, 255, 0.01)',
-          }}
-        >
-          {/* Browser Top Bar */}
-          <div
-            className="flex items-center gap-2 px-4 py-3"
-            style={{
-              background: 'rgba(255, 255, 255, 0.02)',
-              borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
-            }}
-          >
-            <div className="flex gap-1.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-graphite/40" />
-              <div className="w-2.5 h-2.5 rounded-full bg-graphite/40" />
-              <div className="w-2.5 h-2.5 rounded-full bg-graphite/40" />
-            </div>
-          </div>
-
-          {/* Image Container with Padding */}
-          <div className="relative px-6 py-6">
-            <div className="relative w-full aspect-[16/10]">
-              <Image
-                src={image}
-                alt={`${name} artifact`}
-                fill
-                className="object-contain transition-all duration-700 group-hover:scale-[1.05]"
-                style={{
-                  filter: 'grayscale(0.15) contrast(1.05)',
-                }}
-              />
-            </div>
-          </div>
-
-          {/* Hover Overlay - Slides from bottom */}
-          <div
-            className="absolute inset-0 flex items-end justify-center pb-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-            style={{
-              background: 'linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.8) 40%, transparent 100%)',
-            }}
-          >
-            <motion.div
-              className="flex items-center gap-3 px-6 py-3 rounded-full"
-              style={{
-                background: 'linear-gradient(135deg, #D4AF37 0%, #B8860B 100%)',
-                boxShadow: '0 8px 24px rgba(212, 175, 55, 0.4)',
-              }}
-              initial={{ y: 20, opacity: 0 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <span className="text-ink font-medium text-sm">Look at system</span>
-              <svg
-                className="w-4 h-4 text-ink"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                />
-              </svg>
-            </motion.div>
-          </div>
-
-          {/* Vignette */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.15) 100%)',
-            }}
-          />
-        </div>
-      </a>
-
-      {/* Label Row */}
-      <div className="flex items-baseline gap-4 mb-4">
-        <span
-          className="font-mono text-graphite/60"
-          style={{ fontSize: '11px', letterSpacing: '0.08em' }}
-        >
-          {index}
-        </span>
-        <h3
-          className="text-headline-md text-platinum font-display"
-          style={{
-            fontWeight: 400,
-            letterSpacing: '-0.02em',
-          }}
-        >
-          {name}
-        </h3>
-        <span
-          className="font-mono text-graphite/50 ml-auto"
-          style={{ fontSize: '10px', letterSpacing: '0.08em' }}
-        >
-          {domain}
-        </span>
-      </div>
-
-      {/* Outcome */}
-      <p
-        className="text-body-lg text-platinum/70 mb-6"
-        style={{
-          fontWeight: 300,
-          letterSpacing: '-0.01em',
-          lineHeight: 1.7,
-        }}
-      >
-        {outcome}
-      </p>
-
-      {/* Constraints */}
-      <div className="space-y-2.5 mb-6">
-        {constraints.map((constraint, idx) => (
-          <p
-            key={idx}
-            className="text-body text-silver/50 flex items-start gap-3"
-            style={{
-              fontWeight: 300,
-              letterSpacing: '0.01em',
-            }}
-          >
-            <span className="text-accent-gold/40 mt-1 text-xs">—</span>
-            {constraint}
-          </p>
-        ))}
-      </div>
-
-      {/* Role */}
-      <p
-        className="text-body-sm text-graphite/60"
-        style={{
-          fontWeight: 300,
-          fontStyle: 'italic',
-        }}
-      >
-        {role}
-      </p>
-
-      {/* Light falloff separator */}
-      <div
-        className="absolute -bottom-16 left-0 right-0 h-px"
-        style={{
-          background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%)',
-          filter: 'blur(0.5px)',
-        }}
-      />
-    </motion.div>
-  )
-}
-
-const allSystems = [
+const mainProjects = [
   {
-    index: '01',
+    name: 'ScrapeHub',
+    domain: 'AI Data Platform',
+    description: 'AI-powered web scraping that turns any website into structured data with just a prompt. Competitor monitoring, lead gen, and price intelligence.',
+    tags: ['AI', 'FastAPI', 'AWS', 'GPT-4o'],
+    image: '/images/assets/scrapehub-new.png',
+    link: 'https://scrape.anshumansp.com',
+    stat: 'Live',
+  },
+  {
+    name: 'LegalMind',
+    domain: 'Legal Tech',
+    description: 'Strategic legal intelligence platform. Track obligations, monitor portfolio risk, and maintain compliance — purpose-built for legal professionals.',
+    tags: ['AI', 'Next.js', 'Enterprise', 'Security'],
+    image: '/images/assets/legalmind.png',
+    link: 'https://legal.anshumansp.com',
+    stat: 'Live',
+  },
+  {
     name: 'TATVA',
-    domain: 'TOOLING',
-    outcome: 'A CLI that compresses setup → deploy into a repeatable path',
-    businessOutcome: 'Reduced setup time from days to 15 minutes',
-    constraints: [
-      'Scope: templates, environments, deploy steps',
-      'Constraint: consistency across projects',
-      'Owned: workflow design + automation surface',
-    ],
-    role: 'CLI development, SDLC automation',
+    domain: 'Developer Tool',
+    description: 'A CLI tool that compresses project setup from days to 15 minutes. Built-in best practices, templates, and automation for dev workflows.',
+    tags: ['CLI', 'Python', 'DevOps', 'Automation'],
     image: '/images/assets/tatva.png',
     link: 'https://tatva.anshumansp.com',
-  },
-  {
-    index: '02',
-    name: 'ScrapeHub',
-    domain: 'AI PLATFORM',
-    outcome: 'AI-powered web scraping infrastructure with intelligent extraction and async job processing',
-    businessOutcome: 'Built for industrial-grade data collection at scale',
-    constraints: [
-      'Scope: Apify integration, GPT-4o-mini extraction, async job queue',
-      'Constraint: Cost optimization (90% reduction), scalability',
-      'Owned: Full-stack architecture + dataset generation pipeline',
-    ],
-    role: 'Platform architecture, AI integration, distributed systems',
-    image: '/images/assets/scrapehub.png',
-    link: 'https://scrape.anshumansp.com',
-  },
-  {
-    index: '03',
-    name: 'CrownKing',
-    domain: 'COMMERCE',
-    outcome: 'Commerce system tuned for conversion, catalog scale, and clean operations',
-    businessOutcome: 'Optimized for conversion stability and clean ops under growth',
-    constraints: [
-      'Scope: product flows, payments, fulfillment',
-      'Constraint: speed + trust',
-      'Owned: end-to-end build + iteration',
-    ],
-    role: 'E-commerce architecture, payment systems',
-    image: '/images/assets/crownking.png',
-    link: 'https://resume.anshumansp.com',
-  },
-  {
-    index: '04',
-    name: 'Aarambh',
-    domain: 'PLATFORM',
-    outcome: 'A learning platform built around retention loops and operational reliability',
-    businessOutcome: 'Designed for 10K+ concurrent users with 99.9% uptime',
-    constraints: [
-      'Scope: user journeys, content delivery, admin ops',
-      'Constraint: performance under real traffic',
-      'Owned: platform architecture + delivery quality',
-    ],
-    role: 'Platform architecture, delivery systems',
-    image: '/images/assets/aarambh.png',
-    link: 'https://aarambh.anshumansp.com',
-  },
-  {
-    index: '05',
-    name: 'GwaliorFix',
-    domain: 'CIVIC TECH',
-    outcome: 'Civic complaint leaderboard enabling citizens to report, track, and verify municipal issues with public accountability',
-    businessOutcome: 'Built for transparency with dual verification and zero vendor lock-in',
-    constraints: [
-      'Scope: complaint reporting, AI verification, ward leaderboards',
-      'Constraint: public accountability, viral mechanics',
-      'Owned: full-stack civic platform + AI verification pipeline',
-    ],
-    role: 'Civic platform architecture, AI verification systems',
-    image: '/images/assets/gwaliorfix.png',
-    link: 'https://gwaliorfix.anshumansp.com',
+    stat: '15 min setup',
   },
 ]
 
-export function SelectedSystems() {
-  // Show only first 3 projects on homepage (TATVA, ScrapeHub, CrownKing)
-  const systems = allSystems.slice(0, 3)
+const smallProjects = [
+  {
+    name: 'GenAIVision',
+    description: 'AI automation & consulting — 50+ systems deployed',
+    link: 'https://genaivision.anshumansp.com',
+    tags: ['AI', 'Consulting'],
+  },
+  {
+    name: 'ResumePro',
+    description: 'ATS-optimized resume builder with AI suggestions',
+    link: 'https://resume.anshumansp.com',
+    tags: ['SaaS', 'AI'],
+  },
+  {
+    name: 'CrownKing',
+    description: 'Premium men\'s jewelry e-commerce platform',
+    link: 'https://crownking.anshumansp.com',
+    tags: ['E-Commerce', 'Next.js'],
+  },
+  {
+    name: 'Aarambh',
+    description: 'AI-powered learning platform for students',
+    link: 'https://aarambh.anshumansp.com',
+    tags: ['EdTech', 'AI'],
+  },
+]
 
+function ProjectCard({ proj, i }: { proj: typeof mainProjects[0]; i: number }) {
   return (
-    <section className="relative py-20 md:py-28">
-      <Container size="narrow">
-        {/* Section Label */}
-        <motion.div
-          className="mb-12 md:mb-16"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-        >
-          <p
-            className="font-mono text-graphite/60"
-            style={{ fontSize: '11px', letterSpacing: '0.1em' }}
-          >
-            SELECTED SYSTEMS
+    <motion.a
+      href={proj.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.8, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {/* Image frame */}
+      <div className="relative overflow-hidden rounded-2xl mb-6"
+        style={{ border: '1px solid rgba(255,255,255,0.06)', background: 'rgba(9,9,18,0.8)' }}>
+        {/* Browser bar */}
+        <div className="flex items-center gap-2 px-4 py-3" style={{ borderBottom: '1px solid rgba(255,255,255,0.04)', background: 'rgba(255,255,255,0.015)' }}>
+          <div className="flex gap-1.5">
+            {['rgba(255,95,87,0.4)', 'rgba(255,189,46,0.4)', 'rgba(39,201,63,0.4)'].map((c, ci) => (
+              <div key={ci} className="w-2.5 h-2.5 rounded-full" style={{ background: c }} />
+            ))}
+          </div>
+          <div className="flex-1 mx-4">
+            <div className="h-4 rounded" style={{ background: 'rgba(255,255,255,0.04)', maxWidth: '180px' }} />
+          </div>
+        </div>
+
+        <div className="relative w-full aspect-[16/10] overflow-hidden">
+          <Image
+            src={proj.image}
+            alt={proj.name}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+          />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-400"
+            style={{ background: 'rgba(5,5,15,0.5)', backdropFilter: 'blur(2px)' }}>
+            <div className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium"
+              style={{ background: 'rgba(59,130,246,0.9)', color: 'white', boxShadow: '0 8px 24px rgba(59,130,246,0.4)' }}>
+              View Project
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M3 9L9 3M9 3H5M9 3V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Meta */}
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="text-label text-graphite" style={{ letterSpacing: '0.06em' }}>{proj.domain}</span>
+          </div>
+          <h3 className="text-headline-sm text-platinum mb-2" style={{ fontWeight: 500, letterSpacing: '-0.015em' }}>
+            {proj.name}
+          </h3>
+          <p className="text-body-sm text-silver mb-4" style={{ fontWeight: 300, lineHeight: 1.7 }}>
+            {proj.description}
           </p>
+          <div className="flex flex-wrap gap-2">
+            {proj.tags.map((tag) => (
+              <span key={tag} className="px-2.5 py-1 rounded font-mono text-label"
+                style={{ background: 'rgba(59,130,246,0.06)', border: '1px solid rgba(59,130,246,0.1)', color: 'rgba(96,165,250,0.6)' }}>
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="flex-shrink-0 text-right">
+          <span className="text-body-sm font-mono" style={{ color: '#22D3EE', opacity: 0.7 }}>{proj.stat}</span>
+        </div>
+      </div>
+    </motion.a>
+  )
+}
+
+export function SelectedSystems() {
+  return (
+    <section className="relative py-24 md:py-32">
+      <div className="container-wide">
+        {/* Main Projects */}
+        <motion.div
+          className="mb-14"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="section-chip mb-6">More Work</div>
+          <h2 className="text-display-sm md:text-display-md font-display text-platinum max-w-lg" style={{ fontWeight: 400, letterSpacing: '-0.025em', lineHeight: 1.1 }}>
+            Products I&apos;ve shipped
+          </h2>
         </motion.div>
 
-        {/* Exhibits */}
-        <div className="space-y-20 md:space-y-28">
-          {systems.map((system, index) => (
-            <Exhibit
-              key={system.name}
-              {...system}
-              delay={index * 0.15}
-            />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 mb-20">
+          {mainProjects.map((proj, i) => (
+            <ProjectCard key={proj.name} proj={proj} i={i} />
           ))}
         </div>
-      </Container>
+
+        {/* Smaller projects */}
+        <motion.div
+          className="mb-8"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <h3 className="text-headline-md font-display text-platinum" style={{ fontWeight: 400, letterSpacing: '-0.02em' }}>
+            Other projects
+          </h3>
+        </motion.div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {smallProjects.map((proj, i) => (
+            <motion.a
+              key={proj.name}
+              href={proj.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass-card p-5 group"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+            >
+              <div className="flex items-center justify-between mb-3">
+                <h4 className="text-body text-platinum font-medium">{proj.name}</h4>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-graphite group-hover:text-accent-electric transition-colors">
+                  <path d="M3 11L11 3M11 3H6M11 3V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              </div>
+              <p className="text-body-sm text-silver mb-3" style={{ fontWeight: 300, lineHeight: 1.6 }}>
+                {proj.description}
+              </p>
+              <div className="flex gap-2">
+                {proj.tags.map((tag) => (
+                  <span key={tag} className="text-label text-graphite">{tag}</span>
+                ))}
+              </div>
+            </motion.a>
+          ))}
+        </div>
+      </div>
     </section>
   )
 }

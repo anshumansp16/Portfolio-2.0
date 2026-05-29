@@ -4,19 +4,19 @@ import { motion } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 
 const goodFit = [
-  'Businesses ready to integrate AI into operations',
-  'Teams seeking custom AI solutions for specific needs',
-  'Companies wanting AI without the hiring overhead',
-  'Organizations needing production-grade AI systems',
-  'Businesses looking to leverage AI for competitive advantage',
+  'Marketing agencies managing 5-20 clients',
+  'Agencies spending 10+ hours per client on content',
+  'Teams in solar, home services, or local businesses',
+  'Want AI that learns each client\'s brand voice',
+  'Ready to scale content without hiring more people',
 ]
 
 const notFit = [
-  'Looking for quick demos or experiments only',
-  'Want consulting without implementation',
-  'Need someone local or in-office only',
-  'Exploring AI without clear business goals',
-  'Looking for the cheapest possible option',
+  'One-off content projects or individual clients',
+  'Need fully custom creative work with no templates',
+  'Want to maintain 100% manual content control',
+  'Under 3 clients (not cost-effective yet)',
+  'Looking for generic AI tools without customization',
 ]
 
 export function WhoThisIsFor() {
@@ -35,7 +35,7 @@ export function WhoThisIsFor() {
             className="font-mono text-graphite/60 mb-4"
             style={{ fontSize: '11px', letterSpacing: '0.1em' }}
           >
-            WHO I WORK WITH
+            WHO THIS IS FOR
           </p>
           <h2
             className="text-headline-md md:text-headline-lg lg:text-display-sm font-display text-platinum max-w-2xl mx-auto"
@@ -45,7 +45,7 @@ export function WhoThisIsFor() {
               lineHeight: 1.3,
             }}
           >
-            Is This a Good Fit?
+            Is This Right for Your Agency?
           </h2>
         </motion.div>
 
@@ -217,8 +217,8 @@ export function WhoThisIsFor() {
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          I work with a small number of clients at a time to design and ship systems that last.
-          If you're experiencing real operational pain, let's talk.
+          We work with select agencies to ensure each client receives brand-trained AI that matches their voice.
+          If content creation is your bottleneck, let's talk.
         </motion.p>
       </Container>
     </section>

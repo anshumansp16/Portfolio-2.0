@@ -82,19 +82,19 @@ function Problem({ title, pain, solution, index }: ProblemProps) {
 
 const problems = [
   {
-    title: 'AI Without Direction',
-    pain: 'You know AI could transform your business, but unclear where to start or how to implement it effectively.',
-    solution: 'I assess your operations and build custom AI solutions that solve real business problems.',
+    title: 'Content Creation Bottleneck',
+    pain: 'Each client needs 30+ social posts monthly. Your team spends 15+ hours per client on content alone, leaving no time for strategy.',
+    solution: 'AI generates 30 posts, 10 ad variations, and landing page copy in 2 minutes per client—consistent brand voice guaranteed.',
   },
   {
-    title: 'Drowning in Manual Work',
-    pain: 'Teams spend hours on tasks AI could handle—data processing, customer queries, reporting.',
-    solution: 'Custom AI systems handle repetitive work 24/7, freeing teams for strategic initiatives.',
+    title: 'Every Client Needs Unique Voice',
+    pain: 'Templates don\'t work. Each brand has different tone, style, and messaging requirements. Manual customization doesn\'t scale.',
+    solution: 'AI learns each client\'s brand voice from examples, generating authentic content that sounds like them—not generic AI.',
   },
   {
-    title: 'AI Demos That Don\'t Ship',
-    pain: 'Experiments and prototypes work great, but nothing survives production or delivers ROI.',
-    solution: 'I build production-grade AI systems with 99.9% reliability that actually ship and scale.',
+    title: 'Quality Review Takes Forever',
+    pain: 'Even with tools, content needs heavy editing. Your team becomes full-time editors instead of strategists.',
+    solution: 'Brand-trained AI produces 80% ready content. Your team spends time on high-value edits and approval, not creation.',
   },
 ]
 
@@ -114,7 +114,7 @@ export function ProblemsISolve() {
             className="font-mono text-graphite/60 mb-4"
             style={{ fontSize: '11px', letterSpacing: '0.1em' }}
           >
-            WHAT I FIX
+            AGENCY PAIN POINTS
           </p>
           <h2
             className="text-headline-md md:text-headline-lg lg:text-display-sm font-display text-platinum max-w-3xl mx-auto"
@@ -124,7 +124,7 @@ export function ProblemsISolve() {
               lineHeight: 1.3,
             }}
           >
-            What I'm Usually Called To Fix
+            What We Solve for Agencies
           </h2>
         </motion.div>
 

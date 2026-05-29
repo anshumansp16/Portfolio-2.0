@@ -4,8 +4,22 @@ import { Container } from '@/components/ui/Container'
 import { ContactForm } from './_components/ContactForm'
 
 export const metadata: Metadata = {
-  title: 'Connect - Anshuman Parmar',
-  description: 'Get in touch to discuss AI solutions and intelligent systems for your business.',
+  title: 'Connect — Anshuman Parmar',
+  description: 'Get in touch for AI product builds, brand collaborations, YouTube sponsorships, or just to talk tech. Always open to interesting conversations.',
+  keywords: ['Contact', 'Hire AI Engineer', 'Brand Deal', 'YouTube Sponsorship', 'Anshuman Parmar'],
+  alternates: { canonical: 'https://anshumansp.com/connect' },
+  openGraph: {
+    title: 'Connect — Anshuman Parmar',
+    description: 'Get in touch for AI product builds, brand collaborations, or to talk tech.',
+    url: 'https://anshumansp.com/connect',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Connect with Anshuman Parmar' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Connect — Anshuman Parmar',
+    description: 'Get in touch for AI product builds, brand collaborations, or to talk tech.',
+    images: ['/og-image.jpg'],
+  },
 }
 
 export default function ConnectPage() {
