@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useContent, defaultContent, SiteContent } from '@/lib/content'
 import { useRouter } from 'next/navigation'
 
-const ADMIN_PASSWORD = 'anshuman2024' // Change this
+import { ADMIN_PASSWORD } from '@/lib/adminAuth'
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   const [open, setOpen] = useState(true)

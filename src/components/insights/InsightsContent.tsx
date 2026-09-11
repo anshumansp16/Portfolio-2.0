@@ -4,11 +4,17 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { BlogPost } from '@/data/blogs'
+import type { BlogPost } from '@/data/blogs'
+
+interface TopicHub {
+  slug: string
+  label: string
+}
 
 interface InsightsContentProps {
   posts: BlogPost[]
   categories: string[]
+  topicHubs: TopicHub[]
 }
 
 // Search Icon
@@ -25,7 +31,7 @@ const ArrowIcon = () => (
   </svg>
 )
 
-export function InsightsContent({ posts, categories }: InsightsContentProps) {
+export function InsightsContent({ posts, categories, topicHubs }: InsightsContentProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
 
@@ -89,6 +95,27 @@ export function InsightsContent({ posts, categories }: InsightsContentProps) {
           discover these before reaching out—they're a window into how I think and solve problems.
         </motion.p>
       </div>
+
+      {/* Topic Hubs */}
+      <motion.div
+        className="mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.25 }}
+      >
+        <p className="text-label text-graphite text-center mb-4">BROWSE BY TOPIC</p>
+        <div className="flex flex-wrap justify-center gap-3">
+          {topicHubs.map((hub) => (
+            <Link
+              key={hub.slug}
+              href={`/insights/topics/${hub.slug}`}
+              className="px-4 py-2 rounded-full text-body-sm bg-white/[0.03] border border-white/[0.06] text-silver/70 hover:text-platinum hover:border-accent-gold/40 transition-colors"
+            >
+              {hub.label}
+            </Link>
+          ))}
+        </div>
+      </motion.div>
 
       {/* Search and Filters */}
       <motion.div

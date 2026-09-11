@@ -2,8 +2,9 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getBlogBySlug, getAllBlogSlugs } from '@/data/blogs'
+import { getBlogBySlug, getAllBlogSlugs, getTopicHub } from '@/data/blogs'
 import { BlogContent } from '@/components/blog/BlogContent'
+import { breadcrumbJsonLd } from '@/lib/seo'
 
 // Social Icons
 const LinkedInIcon = () => (
@@ -99,12 +100,35 @@ export default async function BlogPage({ params }: BlogPageProps) {
       name: 'Anshuman Parmar',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://anshumansp.com/logo.png', // Assume a logo exists
+        url: 'https://anshumansp.com/images/assets/anshuman-portrait.png',
       },
     },
     datePublished: new Date(post.date).toISOString(),
     dateModified: new Date(post.date).toISOString(),
   }
+
+  const faqJsonLd =
+    post.faq.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: post.faq.map((item) => ({
+            '@type': 'Question',
+            name: item.question,
+            acceptedAnswer: { '@type': 'Answer', text: item.answer },
+          })),
+        }
+      : null
+
+  const primaryTopic = post.topics[0] ? getTopicHub(post.topics[0]) : undefined
+  const breadcrumbs = breadcrumbJsonLd([
+    { name: 'Home', url: 'https://anshumansp.com' },
+    { name: 'Insights', url: 'https://anshumansp.com/insights' },
+    ...(primaryTopic
+      ? [{ name: primaryTopic.label, url: `https://anshumansp.com/insights/topics/${primaryTopic.slug}` }]
+      : []),
+    { name: post.title, url: `https://anshumansp.com/insights/${post.slug}` },
+  ])
 
   return (
     <main className="relative min-h-screen bg-noir-primary pt-32 pb-20">
@@ -112,6 +136,16 @@ export default async function BlogPage({ params }: BlogPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       {/* Wide container for blog layout */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Back Link */}

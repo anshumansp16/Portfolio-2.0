@@ -7,6 +7,8 @@ import { PageTransition } from '@/components/layouts/PageTransition'
 import { Footer } from '@/components/layouts/Footer'
 import { ChatPopup } from '@/components/ui/ChatPopup'
 import { CursorGlow } from '@/components/ui/CursorGlow'
+import { Analytics } from '@/components/Analytics'
+import { rootJsonLd } from '@/lib/seo'
 
 // Font configurations with display swap for optimal loading
 const inter = Inter({
@@ -54,7 +56,7 @@ export const metadata: Metadata = {
     description: 'Building AI products, creating tech content with 13.3% CTR, and shipping ideas that reach thousands.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/images/assets/anshuman-portrait.png',
         width: 1200,
         height: 630,
         alt: 'Anshuman Parmar — AI Engineer, Content Creator & Entrepreneur',
@@ -65,7 +67,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Anshuman Parmar — AI Engineer, Content Creator & Entrepreneur',
     description: 'Building AI products, creating tech content with 13.3% CTR, and shipping ideas that reach thousands.',
-    images: ['/og-image.jpg'],
+    images: ['/images/assets/anshuman-portrait.png'],
     creator: '@anshumansp',
   },
   robots: {
@@ -79,8 +81,13 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  // Fill these in once you create the properties in Google Search Console
+  // and Bing Webmaster Tools — each gives you a verification token/meta tag.
   verification: {
-    google: 'add-your-google-search-console-token-here',
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { 'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined,
   },
 }
 
@@ -95,6 +102,10 @@ export default function RootLayout({
       className={`${inter.variable} ${lora.variable} ${jetbrainsMono.variable} ${allura.variable}`}
     >
       <body className="antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(rootJsonLd()) }}
+        />
         <SmoothScroll />
         <CursorGlow />
         <Navigation />
@@ -103,6 +114,7 @@ export default function RootLayout({
         </PageTransition>
         <Footer />
         <ChatPopup />
+        <Analytics />
       </body>
     </html>
   )
