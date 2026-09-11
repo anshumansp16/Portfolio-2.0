@@ -6,7 +6,7 @@ topics: []
 readTime: "5 min read"
 date: "November 2025"
 author: "Anshuman Parmar"
-heroImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1600&h=900&fit=crop"
+heroImage: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1600&h=900&fit=crop"
 faq:
   - question: "Do constraints actually help you build better software?"
     answer: "In my experience, yes. Some of my best work came from the tightest limits, a weekend hackathon, a tiny budget, a deadline that felt impossible. Endless time just leads to endless debate."

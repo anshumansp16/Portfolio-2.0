@@ -31,9 +31,12 @@ const ArrowIcon = () => (
   </svg>
 )
 
+const POSTS_PER_PAGE = 9
+
 export function InsightsContent({ posts, categories, topicHubs }: InsightsContentProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
+  const [page, setPage] = useState(1)
 
   // Filter posts based on search and category
   const filteredPosts = useMemo(() => {
@@ -64,6 +67,19 @@ export function InsightsContent({ posts, categories, topicHubs }: InsightsConten
     return counts
   }, [posts])
 
+  // The list pagination applies to: everything when searching/filtering,
+  // or "regular" posts (featured one excluded) on the default view.
+  const isDefaultView = selectedCategory === 'All' && searchQuery === ''
+  const listToPaginate = isDefaultView ? regularPosts : filteredPosts
+  const totalPages = Math.max(1, Math.ceil(listToPaginate.length / POSTS_PER_PAGE))
+  const currentPage = Math.min(page, totalPages)
+  const paginatedPosts = listToPaginate.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  )
+
+  const resetToFirstPage = () => setPage(1)
+
   return (
     <div className="max-w-7xl mx-auto px-6 lg:px-8">
       {/* Hero Section */}
@@ -92,7 +108,7 @@ export function InsightsContent({ posts, categories, topicHubs }: InsightsConten
         >
           I write about building production AI systems, scaling automation responsibly,
           and making technical decisions that survive real-world constraints. Many clients
-          discover these before reaching out—they're a window into how I think and solve problems.
+          discover these before reaching out, they're a window into how I think and solve problems.
         </motion.p>
       </div>
 
@@ -133,7 +149,10 @@ export function InsightsContent({ posts, categories, topicHubs }: InsightsConten
             type="text"
             placeholder="Search articles..."
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => {
+              setSearchQuery(e.target.value)
+              resetToFirstPage()
+            }}
             className="w-full pl-12 pr-4 py-4 bg-noir-subtle border border-white/[0.06] rounded-xl text-platinum placeholder:text-silver/40 focus:border-accent-gold/50 focus:outline-none transition-colors"
           />
           {searchQuery && (
@@ -153,7 +172,10 @@ export function InsightsContent({ posts, categories, topicHubs }: InsightsConten
           {categories.map((category) => (
             <button
               key={category}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => {
+                setSelectedCategory(category)
+                resetToFirstPage()
+              }}
               className={`px-4 py-2 rounded-full text-body-sm transition-all duration-300 ${
                 selectedCategory === category
                   ? 'bg-accent-gold text-noir-primary font-medium'
@@ -236,7 +258,7 @@ export function InsightsContent({ posts, categories, topicHubs }: InsightsConten
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             layout
           >
-            {(selectedCategory === 'All' && searchQuery === '' ? regularPosts : filteredPosts).map((post, index) => (
+            {paginatedPosts.map((post, index) => (
               <motion.div
                 key={post.slug}
                 layout
@@ -306,6 +328,39 @@ export function InsightsContent({ posts, categories, topicHubs }: InsightsConten
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-2 mt-12">
+          <button
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            disabled={currentPage === 1}
+            className="px-4 py-2 rounded-lg text-body-sm bg-white/[0.03] text-silver/60 hover:bg-white/[0.06] hover:text-silver disabled:opacity-30 disabled:pointer-events-none transition-colors"
+          >
+            Prev
+          </button>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+            <button
+              key={pageNum}
+              onClick={() => setPage(pageNum)}
+              className={`w-10 h-10 rounded-lg text-body-sm transition-colors ${
+                currentPage === pageNum
+                  ? 'bg-accent-gold text-noir-primary font-medium'
+                  : 'bg-white/[0.03] text-silver/60 hover:bg-white/[0.06] hover:text-silver'
+              }`}
+            >
+              {pageNum}
+            </button>
+          ))}
+          <button
+            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 rounded-lg text-body-sm bg-white/[0.03] text-silver/60 hover:bg-white/[0.06] hover:text-silver disabled:opacity-30 disabled:pointer-events-none transition-colors"
+          >
+            Next
+          </button>
+        </div>
+      )}
 
       {/* Newsletter Section */}
       <motion.div

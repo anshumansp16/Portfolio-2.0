@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getBlogBySlug, getAllBlogSlugs, getTopicHub } from '@/data/blogs'
+import { getBlogBySlug, getAllBlogSlugs, getTopicHub, getRelatedPosts } from '@/data/blogs'
 import { BlogContent } from '@/components/blog/BlogContent'
 import { breadcrumbJsonLd } from '@/lib/seo'
 
@@ -119,6 +119,8 @@ export default async function BlogPage({ params }: BlogPageProps) {
           })),
         }
       : null
+
+  const relatedPosts = getRelatedPosts(post, 3)
 
   const primaryTopic = post.topics[0] ? getTopicHub(post.topics[0]) : undefined
   const breadcrumbs = breadcrumbJsonLd([
@@ -254,6 +256,39 @@ export default async function BlogPage({ params }: BlogPageProps) {
             </div>
           </div>
         </footer>
+
+        {/* You might also be interested in */}
+        {relatedPosts.length > 0 && (
+          <div className="max-w-5xl mt-20 pt-12 border-t border-white/[0.06]">
+            <p className="text-label text-graphite mb-8">YOU MIGHT ALSO BE INTERESTED IN</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {relatedPosts.map((related) => (
+                <Link key={related.slug} href={`/insights/${related.slug}`} className="group block h-full">
+                  <article className="h-full rounded-xl bg-gradient-to-br from-white/[0.02] to-transparent border border-white/[0.06] hover:border-white/[0.1] transition-all duration-300 overflow-hidden">
+                    <div className="relative aspect-[16/9] overflow-hidden">
+                      <Image
+                        src={related.heroImage}
+                        alt={related.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-noir-primary via-noir-primary/20 to-transparent" />
+                      <span className="absolute bottom-4 left-4 px-3 py-1 bg-noir-primary/80 backdrop-blur-sm rounded-full text-label-sm text-accent-gold">
+                        {related.category}
+                      </span>
+                    </div>
+                    <div className="p-5">
+                      <h3 className="text-body font-display text-platinum mb-2 group-hover:text-accent-gold transition-colors line-clamp-2">
+                        {related.title}
+                      </h3>
+                      <p className="text-body-sm text-silver/50 line-clamp-2">{related.excerpt}</p>
+                    </div>
+                  </article>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* CTA */}
         <div className="max-w-3xl mt-16 p-8 rounded-2xl bg-gradient-to-br from-white/[0.03] to-transparent border border-white/[0.06]">

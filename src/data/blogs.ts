@@ -114,3 +114,22 @@ export function getPostsByTopic(topic: string): BlogPost[] {
 export function getTopicHub(topic: string) {
   return topicHubs.find((h) => h.slug === topic)
 }
+
+/** Posts sharing a topic or category with `post`, newest first, falling
+ * back to just "other recent posts" if nothing matches closely. */
+export function getRelatedPosts(post: BlogPost, limit = 3): BlogPost[] {
+  const others = blogPosts.filter((p) => p.slug !== post.slug)
+
+  const scored = others
+    .map((p) => {
+      const sharedTopics = p.topics.filter((t) => post.topics.includes(t)).length
+      const sameCategory = p.category === post.category ? 1 : 0
+      return { post: p, score: sharedTopics * 2 + sameCategory }
+    })
+    .sort((a, b) => b.score - a.score)
+
+  const related = scored.filter((s) => s.score > 0).map((s) => s.post)
+  const fallback = others.filter((p) => !related.includes(p))
+
+  return [...related, ...fallback].slice(0, limit)
+}
