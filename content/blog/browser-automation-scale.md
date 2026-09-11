@@ -1,34 +1,35 @@
 ---
-title: "Browser Automation at Scale: 50K Tasks Daily"
-excerpt: "How we architected an enterprise browser automation platform processing 50K+ daily tasks with 99.9% reliability using Selenium and Playwright."
+title: "How Do You Run 50,000 Browser Automation Tasks a Day Without It All Breaking?"
+excerpt: "We needed 50K+ browser tasks a day at 99.9% reliability. Here's the architecture that actually got us there."
 category: "AI & Systems"
 topics: ["systems-i-build"]
 readTime: "10 min read"
 date: "October 2025"
 author: "Anshuman Parmar"
 heroImage: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=1600&h=900&fit=crop"
+faq:
+  - question: "Should I use Selenium or Playwright for browser automation at scale?"
+    answer: "Playwright. It auto-waits for elements, has proper browser isolation, and its network interception is far better. We saw 40% fewer flaky tests just from migrating."
+  - question: "How do you keep browser automation reliable at scale?"
+    answer: "Classify failures instead of treating them all the same. Retry transient errors, back off on rate limits, alert a human when a site's structure actually changed, and never retry permanent failures."
+  - question: "Do you scale browser workers based on CPU?"
+    answer: "No, scale on queue depth. Browser automation is I/O bound, waiting on network and page loads, so CPU usage is a misleading signal."
 ---
-## Introduction
+When I joined Thunder Marketing Corporation, the ask was simple to say and hard to do: automate browser workflows at real scale.
 
-When I joined Thunder Marketing Corporation, we had a challenge: automate browser-based workflows at enterprise scale. Not hundreds of tasks—tens of thousands daily, with 99.9% reliability requirements.
+Not hundreds of tasks a day. Tens of thousands. With 99.9% reliability, meaning basically no room for random failures.
 
-This article shares how we built a browser automation platform processing 50K+ tasks daily, the architectural decisions that made it possible, and the lessons learned along the way.
+Here's how we actually got there.
 
-## The Challenge
+## What we were up against
 
-Our requirements were demanding:
+50,000+ tasks a day. Only about 50 allowed failures in that whole day. Most tasks needed to finish inside 30 seconds. And every task hit a different website with a different structure, any of which could change without warning.
 
-- **Volume**: 50,000+ automated tasks per day
-- **Reliability**: 99.9% success rate (only 50 failures allowed per day)
-- **Latency**: Most tasks complete within 30 seconds
-- **Diversity**: Handle multiple websites with different structures
-- **Resilience**: Graceful degradation when target sites change
+Normal automation scripts fall apart under this kind of load.
 
-Traditional automation approaches couldn't meet these requirements.
+## The system we built
 
-## Architecture Overview
-
-We built a distributed system with these components:
+We split it into four pieces working together: a Redis task queue holding pending work with priority, a pool of Kubernetes workers actually running the browsers, a FastAPI scheduler handing out tasks and retries, and PostgreSQL storing results and logs.
 
 ```
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
@@ -42,48 +43,28 @@ We built a distributed system with these components:
                         └───────────────┘
 ```
 
-### Component Breakdown
+## We started with Selenium, then switched
 
-1. **Task Queue (Redis)**: Holds pending tasks with priority levels
-2. **Worker Pool (Kubernetes)**: Scalable browser workers running Playwright
-3. **Scheduler (FastAPI)**: Orchestrates task distribution and retries
-4. **Result Store (PostgreSQL)**: Persists results and audit logs
+Selenium worked, technically. But we were constantly writing manual waits, and tests were flaky.
 
-## Why Playwright Over Selenium
-
-We started with Selenium but migrated to Playwright for several reasons:
-
-| Feature | Selenium | Playwright |
-|---------|----------|------------|
-| Auto-wait | Manual | Built-in |
-| Browser contexts | Slow | Fast, isolated |
-| Network interception | Limited | First-class |
-| Debugging | Basic | Excellent (trace viewer) |
-| Parallelization | Complex | Simple |
-
-### The Migration
+Playwright waits for elements automatically, isolates browser sessions properly, and its trace viewer makes debugging so much easier.
 
 ```python
-# Before: Selenium with explicit waits everywhere
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
+# Before: manual wait, every single time
 element = WebDriverWait(driver, 10).until(
     EC.presence_of_element_located((By.ID, "submit"))
 )
 element.click()
 
-# After: Playwright with auto-wait
-await page.click("#submit")  # Auto-waits for element
+# After: Playwright just handles it
+await page.click("#submit")
 ```
 
-This alone reduced our flaky tests by 40%.
+That switch alone cut our flaky tests by 40%.
 
-## Scaling to 50K Tasks Daily
+## Getting to 50K tasks a day
 
-### Worker Pool Design
-
-Each worker runs in a Kubernetes pod with:
+Each worker runs in its own Kubernetes pod, and we scale the pool based on Redis queue depth, not CPU, because this kind of work is mostly waiting on the network, not crunching numbers.
 
 ```yaml
 apiVersion: apps/v1
@@ -91,7 +72,7 @@ kind: Deployment
 metadata:
   name: browser-worker
 spec:
-  replicas: 20  # Scales based on queue depth
+  replicas: 20
   template:
     spec:
       containers:
@@ -101,12 +82,7 @@ spec:
           requests:
             memory: "2Gi"
             cpu: "1000m"
-          limits:
-            memory: "4Gi"
-            cpu: "2000m"
 ```
-
-### Horizontal Pod Autoscaling
 
 ```yaml
 apiVersion: autoscaling/v2
@@ -114,10 +90,6 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: browser-worker-hpa
 spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: browser-worker
   minReplicas: 10
   maxReplicas: 50
   metrics:
@@ -126,59 +98,35 @@ spec:
       metric:
         name: redis_queue_length
       target:
-        type: AverageValue
         averageValue: 100
 ```
 
-We scale based on queue depth, not CPU—because browser automation is I/O bound.
+## Getting to 99.9% reliability
 
-## Achieving 99.9% Reliability
+This is the part people underestimate. Not all failures are the same, and treating them the same is how you either give up too early or retry forever.
 
-### Strategy 1: Intelligent Retries
-
-Not all failures are equal. We classify them:
+We classify every failure into one of four types, and only retry the ones worth retrying.
 
 ```python
 class FailureType(Enum):
-    TRANSIENT = "transient"      # Network timeout, retry immediately
-    RATE_LIMITED = "rate_limit"  # Back off exponentially
-    STRUCTURAL = "structural"    # Site changed, alert humans
-    PERMANENT = "permanent"      # Invalid input, don't retry
-
-async def execute_with_retry(task: Task) -> Result:
-    for attempt in range(MAX_RETRIES):
-        try:
-            return await execute_task(task)
-        except AutomationError as e:
-            failure_type = classify_failure(e)
-
-            if failure_type == FailureType.PERMANENT:
-                raise  # Don't retry
-            elif failure_type == FailureType.RATE_LIMITED:
-                await asyncio.sleep(2 ** attempt * 10)  # Exponential backoff
-            elif failure_type == FailureType.STRUCTURAL:
-                alert_on_call(task, e)
-                raise
-            else:
-                await asyncio.sleep(attempt * 2)  # Linear backoff
+    TRANSIENT = "transient"      # network hiccup, retry now
+    RATE_LIMITED = "rate_limit"  # back off and wait
+    STRUCTURAL = "structural"    # site actually changed, alert a human
+    PERMANENT = "permanent"      # bad input, don't bother retrying
 ```
 
-### Strategy 2: Health Checks and Circuit Breakers
+On top of that, we use circuit breakers so a failing site stops getting hammered:
 
 ```python
 from circuitbreaker import circuit
 
 @circuit(failure_threshold=5, recovery_timeout=60)
 async def automate_site_a(task: Task) -> Result:
-    # If this fails 5 times in a row, stop trying for 60 seconds
     async with async_playwright() as p:
         browser = await p.chromium.launch()
-        # ... automation logic
 ```
 
-### Strategy 3: Self-Healing Selectors
-
-Sites change their HTML. We use multiple selector strategies:
+And selectors that fall back to alternatives when a site changes its HTML:
 
 ```python
 class ResilientLocator:
@@ -188,78 +136,23 @@ class ResilientLocator:
     async def find(self, page) -> ElementHandle:
         for strategy in self.strategies:
             try:
-                element = await page.wait_for_selector(
-                    strategy,
-                    timeout=5000
-                )
+                element = await page.wait_for_selector(strategy, timeout=5000)
                 if element:
                     return element
             except:
                 continue
         raise ElementNotFound(self.strategies)
 
-# Usage
 submit_button = ResilientLocator([
-    "#submit-btn",                    # ID
-    "button[type='submit']",          # Attribute
-    "text=Submit",                    # Text content
-    "button:has-text('Submit')",      # Playwright-specific
+    "#submit-btn",
+    "button[type='submit']",
+    "text=Submit",
 ])
 ```
 
-## Monitoring and Observability
+## When even that fails, we use AI as the last resort
 
-You can't maintain 99.9% reliability without visibility.
-
-### Metrics We Track
-
-```python
-from prometheus_client import Counter, Histogram, Gauge
-
-tasks_total = Counter(
-    'automation_tasks_total',
-    'Total tasks processed',
-    ['site', 'status']
-)
-
-task_duration = Histogram(
-    'automation_task_duration_seconds',
-    'Task execution time',
-    ['site'],
-    buckets=[1, 5, 10, 30, 60, 120]
-)
-
-queue_depth = Gauge(
-    'automation_queue_depth',
-    'Current queue depth',
-    ['priority']
-)
-```
-
-### Alerting Rules
-
-```yaml
-groups:
-- name: automation
-  rules:
-  - alert: HighFailureRate
-    expr: |
-      sum(rate(automation_tasks_total{status="failed"}[5m]))
-      / sum(rate(automation_tasks_total[5m])) > 0.01
-    for: 5m
-    labels:
-      severity: critical
-    annotations:
-      summary: "Automation failure rate above 1%"
-```
-
-## AI-Powered Enhancements
-
-We integrated LLMs to handle edge cases:
-
-### Dynamic Element Detection
-
-When standard selectors fail, we use GPT-4 Vision:
+For sites with genuinely obfuscated or randomly generated class names, standard selectors just don't work. We fall back to asking GPT-4 Vision to look at a screenshot and point at the right element.
 
 ```python
 async def find_element_with_ai(page, description: str):
@@ -270,7 +163,7 @@ async def find_element_with_ai(page, description: str):
         messages=[{
             "role": "user",
             "content": [
-                {"type": "text", "text": f"Find the {description} element and return its approximate coordinates"},
+                {"type": "text", "text": f"Find the {description} element"},
                 {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{screenshot}"}}
             ]
         }]
@@ -280,27 +173,28 @@ async def find_element_with_ai(page, description: str):
     await page.click(position=coordinates)
 ```
 
-This handles sites with obfuscated selectors or dynamic class names.
+It's slower and costs more, so we only reach for it when everything else fails.
 
-## Results
+## You have to be able to see what's happening
 
-After 9 months of iteration:
+At this scale, you cannot maintain 99.9% reliability blind. We track task counts, latency, and queue depth with Prometheus, and alert automatically when failure rate crosses 1% over 5 minutes.
 
-- **50K+ tasks daily** with consistent throughput
-- **99.9% success rate** (averaging 30-40 failures per day)
-- **P95 latency under 25 seconds** for standard tasks
-- **60% cost reduction** compared to manual processing
-- **85% improvement** in system reliability vs. initial version
+## Where we landed after 9 months
 
-## Key Takeaways
+50K+ tasks daily, consistently. 99.9% success rate, usually 30 to 40 failures in a whole day. P95 latency under 25 seconds. 60% cheaper than doing it manually. And reliability improved 85% compared to our first version.
 
-1. **Choose the right tool**: Playwright's auto-wait and browser contexts are game-changers
-2. **Design for failure**: Intelligent retries and circuit breakers are essential
-3. **Make selectors resilient**: Multiple fallback strategies prevent breakage
-4. **Scale horizontally**: Browser automation is I/O bound; scale on queue depth
-5. **Observe everything**: You can't fix what you can't see
+The honest takeaway: pick tools that handle waiting for you, design for things to fail gracefully instead of pretending they won't, and scale on the bottleneck that's actually real, which for browser work is almost always I/O, not CPU.
 
-Browser automation at scale is challenging, but with the right architecture, it's achievable.
+## FAQ
+
+**Should I use Selenium or Playwright for browser automation at scale?**
+Playwright. Auto-wait and proper isolation alone cut our flaky tests by 40%.
+
+**How do you keep browser automation reliable at scale?**
+Classify failures and only retry the ones worth retrying. Alert a human when a site's structure actually changed instead of retrying forever.
+
+**Do you scale browser workers based on CPU?**
+No, scale on queue depth. This kind of work is I/O bound, so CPU usage doesn't tell you much.
 
 ---
 

@@ -1,159 +1,83 @@
 ---
-title: "From Startup to Scale: Technical Lessons in Growth"
-excerpt: "The technical decisions that matter when scaling from 0 to 1, and from 1 to 100. What I wish I knew earlier."
+title: "What I Wish I Knew Before Scaling My First Startup's Codebase"
+excerpt: "Going from 0 to 1 and going from 1 to 100 are completely different games. Most advice mixes them up. Here's how to tell them apart."
 category: "Building"
 topics: []
 readTime: "9 min read"
 date: "July 2025"
 author: "Anshuman Parmar"
 heroImage: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1600&h=900&fit=crop"
+faq:
+  - question: "Should an early startup use microservices?"
+    answer: "Almost never. Before product-market fit, a monolith is faster to build and easier to change. Microservices before you need them is one of the most common ways startups waste their early months."
+  - question: "When should a startup start caring about scale?"
+    answer: "Roughly once you have real customers depending on you. Before 10 customers, ship daily and don't worry about scale. Before 100, add basic monitoring and automated deployments."
 ---
-## Two Different Games
+Building from zero to one is a different game than scaling from one to a hundred. The first is about finding something that works. The second is about making it hold up.
 
-Building from 0 to 1 is a different game than scaling from 1 to 100.
+Most technical advice mixes these two up. Don't let it.
 
-The first is about finding something that works.
-The second is about making it work at scale.
+## Phase one: finding it
 
-Most technical advice conflates these. Don't.
+At this stage there's really only one goal, find product-market fit. Everything else is secondary.
 
-## Phase 1: Zero to One
+Ship fast, because learning speed is everything. Stay flexible, you will pivot. Minimize investment, most of this code gets thrown away anyway.
 
-### The Only Goal
+What actually matters here: can you ship a new feature in a day, can you change direction in a week, are you talking to real users daily?
 
-Find product-market fit. Everything else is secondary.
+What doesn't matter yet: scalability beyond what you need right now, perfect code quality, comprehensive tests, thorough documentation.
 
-Technical priorities:
-- **Ship fast** - Learning velocity is everything
-- **Stay flexible** - You will pivot
-- **Minimize investment** - Most code will be thrown away
+The right calls at this stage are usually a monolith, boring technology you already know the failure modes of, managed services so someone else handles ops, and as little infrastructure as you can get away with.
 
-### What Matters
+## Phase two: making it reliable
 
-- Can you ship a new feature in a day?
-- Can you change direction in a week?
-- Can you talk to users daily?
+You've found something that works. Now the job shifts to making it dependable.
 
-### What Doesn't Matter
+Stability matters now, because users actually depend on you. Observability matters, so you understand what's happening when something breaks. Some process becomes necessary because coordination stops happening automatically.
 
-- Scalability beyond current needs
-- Perfect code quality
-- Comprehensive testing
-- Documentation
+Ask yourself: can you deploy without being scared, can you figure out problems quickly, can users actually rely on you?
 
-### Technical Decisions
+This is the point to add monitoring before you need it, add testing for the paths that really matter, add documentation for onboarding, and formalize deployments so human error stops being the main cause of outages.
 
-- **Monolith** - Faster to develop, easier to change
-- **Boring technology** - You know the failure modes
-- **Managed services** - Let someone else handle ops
-- **Minimal infrastructure** - Every piece is maintenance burden
+## Phase three: handling real scale
 
-## Phase 2: One to Ten
+Scale isn't just traffic anymore. It's team size, complexity, and coordination.
 
-### The Shift
+Now scalability, maintainability, and letting teams work in parallel actually matter.
 
-You've found something. Now make it reliable.
+Ask: can the system take 10x the load, can a new engineer contribute quickly, can teams work without stepping on each other?
 
-Technical priorities:
-- **Stability** - Users depend on you
-- **Observability** - Understand what's happening
-- **Process** - Coordination becomes necessary
+This is when splitting into services starts making sense, when it's actually worth it, when the cost of coordinating inside a monolith exceeds the cost of the network calls between services. It's also when investing in developer experience starts compounding, and when formalizing architecture keeps everyone moving in the same direction instead of colliding.
 
-### What Matters Now
+## The two mistakes that kill you
 
-- Can you deploy without fear?
-- Can you diagnose problems quickly?
-- Can users depend on you?
+Building for scale you don't have yet. Microservices before product-market fit, Kubernetes before your first paying customer, complex caching before you actually need it. This kills startups before they even get going.
 
-### Technical Decisions
+Not building the foundations when you finally do need them. Frequent outages, slow feature delivery, onboarding that takes months, every change breaking something else. This kills companies that were actually scaling.
 
-- **Add monitoring** - Before you need it
-- **Add testing** - For critical paths
-- **Add documentation** - For onboarding
-- **Formalize deployments** - Reduce human error
+And doing the right thing at the wrong time is still the wrong decision. Microservices are genuinely great, after product-market fit and team scale. Moving fast and breaking things is great, until real people depend on you not breaking things.
 
-## Phase 3: Ten to Hundred
+## A rough checklist by stage
 
-### The Challenge
+Before 10 customers: ship daily, talk to users, keep infrastructure minimal, and genuinely don't worry about scale yet.
 
-Scale isn't just about traffic. It's about team, complexity, and coordination.
+Before 100 customers: basic monitoring, error tracking, automated deployments, and testing for the critical paths.
 
-Technical priorities:
-- **Scalability** - Handle growth
-- **Maintainability** - Manage complexity
-- **Team velocity** - Enable parallel work
+Before 1000 customers: comprehensive monitoring, an on-call rotation, load testing, and an actual disaster recovery plan.
 
-### What Matters Now
+Before 10,000 customers: a real platform team, an architecture review process, performance budgets, and capacity planning.
 
-- Can the system handle 10x load?
-- Can new engineers contribute quickly?
-- Can teams work independently?
+## What scaling actually taught me
 
-### Technical Decisions
+Match your investment to your actual stage, don't over-build and don't under-build either. Boring technology scales better, exciting technology tends to have exciting failure modes. People are the hardest thing to scale, technical scaling is genuinely the easier half. Good foundations compound, invest in developer experience early. And yes, premature optimization is real, but so is waiting too long to optimize.
 
-- **Consider services** - When monolith coordination costs exceed network costs
-- **Invest in platform** - Developer experience compounds
-- **Formalize architecture** - Consistency enables velocity
+## FAQ
 
-## Common Scaling Mistakes
+**Should an early startup use microservices?**
+Almost never. Before product-market fit, a monolith is faster to build and change. This is one of the most common ways startups waste their early months.
 
-### Premature Optimization
-Building for scale you don't have. This kills startups.
-
-Signs you're doing this:
-- Microservices before product-market fit
-- Kubernetes before your first customer
-- Complex caching before you need it
-
-### Under-Investment in Foundations
-Not building foundations when you need them. This kills scaling companies.
-
-Signs you're doing this:
-- Frequent outages
-- Slow feature development
-- Onboarding takes months
-- Every change breaks something
-
-### Wrong Timing
-
-The right decision at the wrong time is the wrong decision.
-
-Microservices are great—after you have product-market fit and team scale.
-Move fast and break things is great—until people depend on you.
-
-## The Scaling Checklist
-
-### Before 10 Customers
-- ✅ Ship daily
-- ✅ Talk to users
-- ✅ Minimal infrastructure
-- ❌ Don't worry about scale
-
-### Before 100 Customers
-- ✅ Basic monitoring
-- ✅ Error tracking
-- ✅ Automated deployments
-- ✅ Critical path testing
-
-### Before 1000 Customers
-- ✅ Comprehensive monitoring
-- ✅ On-call rotation
-- ✅ Load testing
-- ✅ Disaster recovery
-
-### Before 10000 Customers
-- ✅ Platform team
-- ✅ Architecture review process
-- ✅ Performance budgets
-- ✅ Capacity planning
-
-## Lessons from Scaling
-
-1. **Match investment to stage** - Don't over-build, don't under-build
-2. **Boring scales better** - Exciting technology has exciting failure modes
-3. **People scale hardest** - Technical scaling is easier than organizational scaling
-4. **Foundations compound** - Invest early in developer experience
-5. **Premature optimization is real** - But so is premature under-optimization
+**When should a startup start caring about scale?**
+Roughly once real customers depend on you. Before 10 customers, don't worry about it. Before 100, add basic monitoring and automated deployments.
 
 ---
 

@@ -13,6 +13,7 @@
   "author": "Anshuman Parmar",
   "license": "MIT",
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.26",
     "gray-matter": "^4.0.3",

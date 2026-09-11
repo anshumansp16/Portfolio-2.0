@@ -1,99 +1,77 @@
 ---
-title: "The Business of Software: Lessons from Building Products"
-excerpt: "Technical excellence means nothing without business viability. Here's what I've learned about the intersection of code and commerce."
+title: "Why Nobody Bought My Beautifully Coded Product"
+excerpt: "I used to believe great code sells itself. It doesn't. Here's what I learned about the business side of building software."
 category: "Business"
 topics: []
 readTime: "6 min read"
 date: "October 2025"
 author: "Anshuman Parmar"
 heroImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&h=900&fit=crop"
+faq:
+  - question: "Is technical excellence enough to make a software product succeed?"
+    answer: "No. It's necessary but nowhere near sufficient. There are plenty of beautifully engineered products that nobody wanted, because they solved a problem nobody was actually paying to solve."
+  - question: "Why does recurring revenue matter so much?"
+    answer: "Project work is a treadmill, you finish one and immediately need the next. Recurring revenue is a foundation, each month builds on the last instead of starting from zero."
 ---
-## Code Doesn't Pay Bills
-
-I used to believe that if I wrote elegant code, success would follow. Build it well, and they will come.
+I used to believe that if I wrote elegant code, success would just follow. Build it well and they will come.
 
 They don't.
 
-Technical excellence is necessary but not sufficient. The graveyard of startups is filled with beautifully engineered products that no one wanted.
+Technical excellence is necessary. It is absolutely not sufficient on its own. There's a graveyard of beautifully engineered products that nobody actually wanted.
 
-## The Value Equation
+## Value isn't about features
 
-Software creates value when it solves problems people will pay to solve. Not problems we think they should have—problems they actually have.
+Software creates value when it solves problems people will actually pay to solve. Not problems we think they should have. Problems they genuinely have.
 
-### Understanding Value
+Value shows up as time saved that gets spent elsewhere, money saved that gets invested elsewhere, risk reduced so people sleep better, or a new capability that wasn't possible before.
 
-Value isn't about features. It's about outcomes:
-- **Time saved** that can be spent elsewhere
-- **Money saved** that can be invested elsewhere
-- **Risk reduced** that lets people sleep better
-- **Capability gained** that wasn't possible before
+If you can't say the outcome in words the customer actually cares about, you probably don't understand the value you're creating yet.
 
-If you can't articulate the outcome in terms the customer cares about, you don't understand the value you're creating.
+## How you price says what you think you're selling
 
-## Pricing as a Mirror
+Hourly billing says "I'm selling time." Project billing says "I'm selling a deliverable." Value billing says "I'm selling an outcome."
 
-How you price reflects how you think about value.
+Moving from selling time to selling outcomes changed everything for me.
 
-- **Hourly billing** says "I'm selling time"
-- **Project billing** says "I'm selling deliverables"
-- **Value billing** says "I'm selling outcomes"
+## The customer isn't always right, but they're always the customer
 
-The shift from selling time to selling outcomes changed everything for me.
+They can absolutely be wrong about the solution they're asking for. But they're never wrong about the problem they actually have.
 
-## The Customer Is Not Always Right
+Our job is understanding that problem deeply enough to offer something better than what they originally imagined.
 
-But they're always the customer.
+## Most technical people over-build and under-sell
 
-They might be wrong about the solution they want. But they're never wrong about the problem they have.
+The uncomfortable truth: a mediocre product with great distribution beats an excellent product that nobody hears about.
 
-Our job is to understand the problem deeply enough to propose better solutions than they imagined.
+There's a rough order to how distribution works, from direct sales at the top, down through partnerships, content, referrals, and paid acquisition. The strongest businesses end up using more than one of these, not just one.
 
-## Building vs. Selling
+## Recurring revenue changes how you think
 
-Most technical founders over-invest in building and under-invest in selling.
+Project work is a treadmill. Finish one, you need the next one immediately.
 
-The uncomfortable truth: a mediocre product with excellent distribution beats an excellent product with mediocre distribution.
+Recurring revenue is a foundation instead. Each month builds on the last one.
 
-### The Distribution Hierarchy
+When I moved from project work to products with recurring revenue, my whole relationship with risk changed.
 
-1. **Direct sales** - highest effort, highest control
-2. **Partnerships** - leverage others' distribution
-3. **Content** - build audience over time
-4. **Referrals** - let customers sell for you
-5. **Paid acquisition** - buy attention
+## This is a long game
 
-The best businesses master multiple channels.
+Sustainable businesses get built over years, not months. Roughly: year one is figuring out what to build, year two is figuring out how to sell it, year three is figuring out how to scale it, and from year four you're compounding whatever advantages you've built.
 
-## Recurring Revenue Changes Everything
+Most people quit somewhere in year two, right before it starts working.
 
-Project work is a treadmill. You finish one project, you need another.
+## What the business side actually taught me
 
-Recurring revenue is a foundation. Each month builds on the last.
+Revenue solves most problems, because profitability creates options you didn't have before. Cash flow is oxygen, revenue means nothing if you can't actually collect it. Reputation compounds, so guard it carefully. Relationships matter more than any single transaction. And focus beats spreading yourself thin.
 
-When I shifted from projects to products with recurring revenue, my relationship with risk changed completely.
+The best software businesses aren't run by pure engineers or pure business people. They're run by people who understand both sides, and know which one should lead in a given moment.
 
-## The Long Game
+## FAQ
 
-Sustainable businesses are built over years, not months.
+**Is technical excellence enough to make a software product succeed?**
+No. It's necessary but not sufficient. Plenty of beautifully engineered products fail because nobody was paying to solve that problem.
 
-- Year 1: Figure out what to build
-- Year 2: Figure out how to sell it
-- Year 3: Figure out how to scale it
-- Year 4+: Compound the advantages
-
-Most people give up in Year 2.
-
-## Lessons from the Business Side
-
-1. **Revenue solves most problems** - profitability creates options
-2. **Cash flow is oxygen** - revenue means nothing if you can't collect
-3. **Reputation compounds** - guard it carefully
-4. **Relationships matter more than transactions** - play long-term games
-5. **Focus beats diversification** - do one thing exceptionally well
-
-## The Integration
-
-The best software businesses aren't run by pure technologists or pure businesspeople. They're run by people who understand both—and know when each perspective should lead.
+**Why does recurring revenue matter so much?**
+Project work means starting from zero every time. Recurring revenue means each month builds on the last one.
 
 ---
 

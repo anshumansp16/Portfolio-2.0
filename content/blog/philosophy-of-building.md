@@ -1,80 +1,78 @@
 ---
-title: "The Philosophy of Building: Why Constraints Create Excellence"
-excerpt: "How embracing limitations—time, resources, technology—forces creativity and leads to more elegant solutions than unlimited freedom ever could."
+title: "Why I Stopped Adding Features and Started Deleting Them"
+excerpt: "I used to think unlimited time and budget would produce my best work. It's actually the opposite. Here's what changed my mind."
 category: "Philosophy"
 topics: []
 readTime: "5 min read"
 date: "November 2025"
 author: "Anshuman Parmar"
 heroImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1600&h=900&fit=crop"
+faq:
+  - question: "Do constraints actually help you build better software?"
+    answer: "In my experience, yes. Some of my best work came from the tightest limits, a weekend hackathon, a tiny budget, a deadline that felt impossible. Endless time just leads to endless debate."
+  - question: "How do you decide what to build?"
+    answer: "Ask what actually solves the core problem well. Reliability, speed, and simplicity matter more than extra features. Most of what you could add is just decoration."
 ---
-## The Paradox of Freedom
-
-When I started my career, I believed that unlimited resources would lead to the best work. More time, more budget, more team members—surely these would produce superior results.
+When I started out, I genuinely believed more resources meant better work. More time, more budget, more people on the team, surely that adds up to something great.
 
 I was wrong.
 
-Some of my best work has emerged from the tightest constraints. A weekend hackathon. A limited budget forcing creative solutions. A deadline that seemed impossible.
+Some of my best work has come from the tightest constraints. A weekend hackathon. A tiny budget that forced a creative fix instead of buying a solution. A deadline that felt impossible on day one.
 
-## Constraints as Creative Fuel
+## Constraints force you to actually decide
 
-Constraints force decisions. And decisions are where craft lives.
+When you have unlimited time, you just keep debating. When you have 48 hours, you ship.
 
-When you have unlimited time, you endlessly debate. When you have 48 hours, you ship. When you have unlimited budget, you buy solutions. When resources are scarce, you invent them.
+When money is scarce, you invent a way around the problem instead of throwing money at it.
 
-### The 80/20 of Building
+That's where the craft actually lives. In the decision, not in the extra time.
+
+## Most things don't matter
 
 Most features don't matter. Most optimizations don't matter. Most meetings don't matter.
 
-What matters:
-- **Solving the core problem** exceptionally well
-- **Reliability** that users can depend on
-- **Speed** that respects user time
-- **Simplicity** that reduces cognitive load
+What actually matters is solving the core problem really well, being reliable enough that people can depend on you, being fast enough that you respect their time, and being simple enough that using it doesn't take effort.
 
-Everything else is decoration.
+Everything else is just decoration on top.
 
-## The Craft of Reduction
+## Every addition is also a subtraction
 
-The best systems aren't those with the most features—they're those with the fewest features that still solve the problem completely.
+More code means more bugs hiding somewhere. More features mean more confusion for the person using it. More options mean more decisions dumped on the user.
 
-Every addition is a subtraction:
-- More code means more bugs
-- More features mean more confusion
-- More options mean more decisions
+The discipline isn't in what you add. Honestly, it's in what you have the guts to leave out.
 
-The discipline isn't in what you add. It's in what you choose not to add.
+## Build for two years from now, not for the demo
 
-## Building for the Long Term
+Short-term thinking optimizes for how the demo looks today. Long-term thinking asks how this decision feels in two years.
 
-Short-term thinking optimizes for launches. Long-term thinking optimizes for maintenance.
+The code you write today is the code you're stuck maintaining tomorrow. Whatever architecture you pick now, you're going to live with it for a long time.
 
-I've learned to ask: "How will this decision feel in two years?" Not "How does this look in the demo?"
+## Saying no is the actual skill
 
-The code you write today is the code you maintain tomorrow. The architecture you choose today is the architecture you live with for years.
+Every "yes" is a hundred "no"s hiding behind it. Yes to this feature is no to a hundred others. Yes to this meeting is no to deep focused work.
 
-## The Importance of Saying No
+The real skill isn't saying yes to good ideas. Plenty of ideas are good. It's having the judgment to say no anyway.
 
-Every "yes" is a hundred "nos" in disguise. Yes to this feature means no to a hundred others. Yes to this meeting means no to deep work. Yes to this client means no to that opportunity.
+## What building has actually taught me
 
-The power isn't in saying yes. It's in having the wisdom to say no.
+Simple beats complex, basically every time. Boring, proven technology often beats the exciting new thing. The user's actual problem matters more than how elegant your code looks. Constraints are a feature, not something to complain about. And sustainability beats one big heroic push.
 
-## Lessons from Building
+## Knowing when it's enough
 
-After years of building systems, here's what I've learned:
+There's a point in every project where you've done enough. Not perfect, just enough.
 
-1. **Simple beats complex** every time
-2. **Boring technology** often wins over exciting technology
-3. **User problems** matter more than technical elegance
-4. **Constraints** are features, not bugs
-5. **Sustainability** beats heroics
+The real discipline is noticing that moment and actually shipping instead of polishing forever.
 
-## The Art of Enough
+Perfection is the enemy of done. And done is what actually creates value for anyone.
 
-There's a moment in every project where you've done enough. Not perfect—enough. The discipline is recognizing that moment and shipping.
+## FAQ
 
-Perfection is the enemy of done. And done is what creates value.
+**Do constraints actually help you build better software?**
+In my experience, yes. My best work came from tight limits, not unlimited time and budget. Limits force real decisions instead of endless debate.
+
+**How do you decide what to build?**
+Ask what solves the core problem well. Reliability, speed, and simplicity matter more than piling on features.
 
 ---
 
-*These reflections come from years of building—and more importantly, from years of learning what not to build.*
+*These reflections come from years of building, and more importantly, from years of learning what not to build. Let's discuss on [LinkedIn](https://www.linkedin.com/in/anshumansp16).*

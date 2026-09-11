@@ -1,141 +1,73 @@
 ---
-title: "Technical Decision Making: A Framework for Engineering Leaders"
-excerpt: "How to make better technical decisions faster—a framework for evaluating trade-offs, managing risk, and choosing wisely."
+title: "How Do You Make a Big Technical Decision When You Might Be Wrong?"
+excerpt: "Most technical decisions are reversible. A few aren't. Knowing the difference changes how fast you should decide."
 category: "Craft"
 topics: []
 readTime: "8 min read"
 date: "August 2025"
 author: "Anshuman Parmar"
 heroImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&h=900&fit=crop"
+faq:
+  - question: "How do I know if a technical decision needs careful analysis or a quick call?"
+    answer: "Ask how hard it would be to reverse. Core technology, database architecture, and public API contracts deserve real analysis. Internal tools and code organization should be decided fast."
+  - question: "Is a fast decision better than a slow, perfect one?"
+    answer: "Usually yes. A fast decision at 80% confidence tends to beat a slow one at 95% confidence, because you learn more from actually doing something than from analyzing it further."
 ---
-## The Decision Burden
+Engineering leadership is mostly just decisions. Which technology, which architecture, which trade-off to accept.
 
-Engineering leadership is largely about decisions. Which technology? Which architecture? Which trade-off?
+Most of these decisions are reversible. A few genuinely aren't. Knowing which kind you're facing changes everything about how you should approach it.
 
-Most decisions are reversible. A few are not. Knowing the difference is crucial.
+## Two kinds of doors
 
-## The Two Types of Decisions
+Some decisions are one-way doors, hard or impossible to walk back. Core technology choices, database architecture, public API contracts, big vendor commitments. These deserve real analysis and broad input.
 
-### Type 1: One-Way Doors
-Decisions that are difficult or impossible to reverse:
-- Core technology choices
-- Database architecture
-- Public API contracts
-- Major vendor commitments
+Others are two-way doors, easy to reverse. Internal tool choices, how you organize code, most feature implementations. These should get decided fast, with minimal ceremony.
 
-These deserve careful analysis, broad input, and deliberate consideration.
+## A simple way to work through it
 
-### Type 2: Two-Way Doors
-Decisions that can be easily reversed:
-- Internal tool choices
-- Code organization
-- Most feature implementations
-- Process experiments
+First, classify it. Ask yourself: if this turns out wrong, how hard is it to change? Easy to change means decide quickly and learn from what happens. Hard to change means it's worth investing real time in analysis.
 
-These should be made quickly with minimal ceremony.
+Then define what "good" actually looks like before you choose. What's a must-have, what's nice to have, what would be a dealbreaker.
 
-## The Decision Framework
+Think past the first effect too. "This database is faster" is the first-order effect. "But we don't have anyone who knows how to run it" is the second-order effect that actually bites you later. Most bad decisions come from skipping this step.
 
-### Step 1: Classify the Decision
+Also ask what it costs to reverse if you need to. How long would it take, what would it cost, what would you lose.
 
-Ask: "If this is wrong, how hard is it to change?"
+Then just decide, write down why, and move on.
 
-- Easy to change → Decide quickly, learn from results
-- Hard to change → Invest in analysis
+## Traps that get people every time
 
-### Step 2: Define Success Criteria
+Spending more time analyzing a decision than the decision is actually worth. Overweighting whatever happened most recently, that technology that burned you once might genuinely still be right. Sticking with a bad call because you've already invested in it, when the investment is gone either way. Waiting for total consensus, sometimes the right call makes someone unhappy and that's fine. And picking a technology because it's interesting rather than because it's actually appropriate here.
 
-Before choosing, define what "good" looks like:
-- What are the must-haves?
-- What are the nice-to-haves?
-- What are the deal-breakers?
+## Making a decision actually stick
 
-### Step 3: Consider Second-Order Effects
+Write down what options you considered, why you picked this one, and what trade-offs you accepted knowingly. Future you, or whoever replaces you, needs this.
 
-First-order: "This database is faster"
-Second-order: "But it requires specialized knowledge we don't have"
+For anything significant, set a real review point. "In six months we'll check if this was right" stops both premature panic and decisions that quietly outlive their usefulness.
 
-Most bad decisions come from ignoring second-order effects.
+And stay willing to revisit. Decisions should guide you, not trap you, when new information shows up.
 
-### Step 4: Identify the Reversibility Cost
+## Speed usually beats certainty
 
-If we need to change this decision:
-- How long will it take?
-- How much will it cost?
-- What will we lose?
+A fast decision at 80% confidence tends to beat a slow one chasing 95% confidence. The learning you get from actually doing something outweighs the learning from more analysis, delayed decisions have their own hidden cost, and conditions keep changing while you deliberate.
 
-### Step 5: Decide and Document
+## Who actually decides
 
-Make the decision. Document the reasoning. Move on.
+Clear ownership stops decisions from getting diffused into nothing. Some people should just be informed, some should be consulted, and exactly one person should actually decide.
 
-## Common Decision Traps
+Help your team make good calls without needing you in the room. Share the reasoning behind a decision, not just the answer, and celebrate good decision-making process even on the days the outcome disappoints.
 
-### Analysis Paralysis
-Spending more time analyzing than the decision is worth. Set time limits for Type 2 decisions.
+## What years of decisions taught me
 
-### Recency Bias
-Overweighting recent experiences. That technology that burned you once might still be the right choice.
+Speed matters, a good decision now beats a perfect one later. Reversibility matters more than being right, optimize for learning fast. Write down the why, not just the what. Decision fatigue is real, so protect your energy for the ones that actually matter. And honestly, most decisions don't matter that much.
 
-### Sunk Cost Fallacy
-Continuing with a bad decision because you've already invested. The investment is gone either way.
+## FAQ
 
-### Consensus Seeking
-Waiting for everyone to agree. Sometimes the right decision makes some people unhappy.
+**How do I know if a technical decision needs careful analysis or a quick call?**
+Ask how hard it would be to reverse. Core technology and database choices deserve real analysis. Internal tools should be decided fast.
 
-### Technology Worship
-Choosing technology because it's interesting, not because it's appropriate.
-
-## Making Decisions Stick
-
-### Document the Context
-
-Future you (or your replacement) needs to understand:
-- What options were considered
-- Why this option was chosen
-- What trade-offs were accepted
-
-### Set Review Points
-
-For significant decisions, schedule a review:
-- "In 6 months, we'll evaluate whether this was the right choice"
-- Prevents both premature abandonment and zombie decisions
-
-### Allow Adaptation
-
-Decisions should guide, not constrain. When new information emerges, be willing to revisit.
-
-## The Speed-Quality Trade-off
-
-Fast decisions with 80% confidence usually beat slow decisions with 95% confidence.
-
-Why:
-- The learning from action exceeds the learning from analysis
-- Delayed decisions have their own costs
-- Conditions change while you deliberate
-
-## Team Decision Making
-
-### Who Decides?
-
-Clear ownership prevents decision diffusion:
-- **Inform**: These people should know
-- **Consult**: These people should input
-- **Decide**: This person chooses
-
-### Building Decision Capability
-
-Help your team make decisions without you:
-- Share frameworks, not just answers
-- Explain reasoning, not just conclusions
-- Celebrate good decision-making process, even when outcomes disappoint
-
-## Lessons from Many Decisions
-
-1. **Speed matters** - A good decision now beats a perfect decision later
-2. **Reversibility matters more than correctness** - Optimize for learning
-3. **Context preservation matters** - Document the why, not just the what
-4. **Decision fatigue is real** - Protect capacity for important choices
-5. **Most decisions don't matter much** - Focus energy on the few that do
+**Is a fast decision better than a slow, perfect one?**
+Usually yes. You learn more from doing something than from analyzing it further, and conditions change while you deliberate.
 
 ---
 

@@ -1,43 +1,31 @@
 ---
-title: "Integrating LLMs in Production: GPT-4, Claude, and Beyond"
-excerpt: "Practical lessons from integrating multiple LLM providers into production systems—orchestration, fallbacks, and cost optimization."
+title: "What Happens When Your Only LLM Provider Goes Down?"
+excerpt: "Depending on one LLM provider is risky. Here's how we built fallbacks across GPT-4, Claude, and Gemini without losing our minds."
 category: "AI & Systems"
 topics: ["agents-llms", "systems-i-build"]
 readTime: "6 min read"
 date: "June 2025"
 author: "Anshuman Parmar"
 heroImage: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1600&h=900&fit=crop"
+faq:
+  - question: "Should I use just one LLM provider in production?"
+    answer: "I wouldn't. Outages happen, rate limits happen, and one provider might just be worse at your specific task. A fallback chain across two or three providers costs little and saves you on a bad day."
+  - question: "How do you keep LLM costs under control?"
+    answer: "Cache repeated prompts, send simple tasks to cheaper models, and keep your prompts short. Cutting prompt verbosity alone reduced our token usage by 30%."
+  - question: "How do you get consistent output from an LLM?"
+    answer: "Don't ask it to just write text and hope. Use a structured output parser (Pydantic works well) so the response has to match a schema you define."
 ---
-## Introduction
+The first time our only LLM provider had an outage mid-production, I learned this lesson the hard way. Everything just stopped.
 
-Integrating LLMs into production systems is more than just API calls. After deploying AI-powered automation systems at Thunder Marketing and building agentic AI architectures at Sazag Infotech, I've learned that the real challenges are reliability, cost management, and orchestration.
+After that, working across GPT-4, Claude, and Gemini for clients at Thunder Marketing and Sazag Infotech, the real lessons weren't about prompting. They were about reliability, cost, and not depending on any single vendor.
 
-This article shares practical lessons from integrating GPT-4, Claude, and Gemini into production systems.
+## Why one provider is a bad bet
 
-## The Multi-Provider Strategy
+OpenAI has had real outages. Rate limits hit you when you least expect it. Different providers are genuinely better at different things, Claude handles long context better, GPT-4 is often stronger at reasoning.
 
-Relying on a single LLM provider is risky:
-
-- **Outages happen**: OpenAI has had multiple significant outages
-- **Rate limits**: Heavy usage can hit limits unexpectedly
-- **Cost variation**: Different providers excel at different tasks
-- **Capability differences**: Claude handles long contexts better; GPT-4 excels at reasoning
-
-We use a multi-provider approach:
+So we built a thin abstraction that tries providers in order and falls back automatically.
 
 ```python
-from enum import Enum
-from typing import Protocol
-
-class LLMProvider(Enum):
-    OPENAI = "openai"
-    ANTHROPIC = "anthropic"
-    GOOGLE = "google"
-
-class LLMClient(Protocol):
-    async def complete(self, prompt: str, **kwargs) -> str:
-        ...
-
 class MultiProviderLLM:
     def __init__(self):
         self.providers = {
@@ -51,16 +39,10 @@ class MultiProviderLLM:
             LLMProvider.GOOGLE,
         ]
 
-    async def complete(
-        self,
-        prompt: str,
-        preferred_provider: LLMProvider | None = None,
-        **kwargs
-    ) -> str:
+    async def complete(self, prompt: str, preferred_provider=None, **kwargs) -> str:
         providers = (
             [preferred_provider] + self.fallback_order
-            if preferred_provider
-            else self.fallback_order
+            if preferred_provider else self.fallback_order
         )
 
         for provider in providers:
@@ -73,283 +55,106 @@ class MultiProviderLLM:
         raise AllProvidersFailedError()
 ```
 
-## Provider Selection: When to Use What
+## Which provider for which job
 
-Based on our production experience:
-
-| Use Case | Best Provider | Why |
-|----------|--------------|-----|
-| Complex reasoning | GPT-4 | Best logical capabilities |
-| Long documents | Claude | 200K context window |
-| Code generation | GPT-4 / Claude | Both excellent |
-| Fast, cheap tasks | GPT-3.5 / Gemini Flash | Cost-effective |
-| Vision tasks | GPT-4V / Claude 3 | Best multimodal |
-
-### Dynamic Provider Selection
+From actual production use: GPT-4 for complex reasoning, Claude when the document is long (that 200K context window matters), either one for code, a cheaper fast model like Gemini Flash for simple stuff, and GPT-4V or Claude 3 for anything with images.
 
 ```python
 def select_provider(task: Task) -> LLMProvider:
     if task.requires_vision:
-        return LLMProvider.OPENAI  # GPT-4V
-
+        return LLMProvider.OPENAI
     if task.context_length > 100_000:
-        return LLMProvider.ANTHROPIC  # Claude's long context
-
+        return LLMProvider.ANTHROPIC
     if task.complexity == "simple":
-        return LLMProvider.GOOGLE  # Gemini Flash for cost
-
-    return LLMProvider.OPENAI  # GPT-4 as default
+        return LLMProvider.GOOGLE
+    return LLMProvider.OPENAI
 ```
 
-## Cost Optimization
+## Keeping the bill under control
 
-LLM costs can explode quickly. Here's how we keep them manageable.
+LLM costs sneak up on you fast if you're not careful. Three things helped a lot.
 
-### 1. Prompt Caching
-
-Many prompts are repeated. Cache them:
+Caching repeated prompts, since a surprising number of prompts repeat:
 
 ```python
-import hashlib
-from functools import lru_cache
+async def complete(self, prompt: str, **kwargs) -> str:
+    cache_key = hashlib.sha256(f"{prompt}:{kwargs}".encode()).hexdigest()
+    cached = await self.cache.get(cache_key)
+    if cached:
+        return cached
 
-class CachedLLM:
-    def __init__(self, llm: LLMClient, cache: Redis):
-        self.llm = llm
-        self.cache = cache
-
-    async def complete(self, prompt: str, **kwargs) -> str:
-        # Create cache key from prompt + params
-        cache_key = hashlib.sha256(
-            f"{prompt}:{kwargs}".encode()
-        ).hexdigest()
-
-        # Check cache
-        cached = await self.cache.get(cache_key)
-        if cached:
-            return cached
-
-        # Call LLM
-        result = await self.llm.complete(prompt, **kwargs)
-
-        # Cache result (1 hour TTL)
-        await self.cache.setex(cache_key, 3600, result)
-
-        return result
+    result = await self.llm.complete(prompt, **kwargs)
+    await self.cache.setex(cache_key, 3600, result)
+    return result
 ```
 
-### 2. Tiered Model Usage
-
-Use cheaper models when possible:
+Sending simple tasks to cheaper models instead of the expensive one by default:
 
 ```python
 async def smart_complete(prompt: str, task_type: str) -> str:
     if task_type in ["classification", "extraction", "simple_qa"]:
-        # Use cheaper model
         return await gpt35_client.complete(prompt)
-
     if task_type in ["summarization", "translation"]:
-        # Medium tier
         return await claude_instant_client.complete(prompt)
-
-    # Complex tasks get GPT-4
     return await gpt4_client.complete(prompt)
 ```
 
-### 3. Prompt Optimization
-
-Shorter prompts = lower costs:
+And just writing shorter prompts. Verbose, polite prompts cost more tokens for no real benefit.
 
 ```python
-# Bad: Verbose prompt
-prompt = """
-You are a helpful assistant that extracts information from text.
-Your task is to carefully read the following document and extract
-all the key information including names, dates, and amounts.
-Please be thorough and accurate in your extraction.
-Here is the document:
-{document}
-"""
+# Wastes tokens on politeness
+prompt = """You are a helpful assistant that extracts information...
+Please be thorough and accurate. Here is the document: {document}"""
 
-# Good: Concise prompt
+# Same result, fewer tokens
 prompt = """Extract names, dates, and amounts from this document:
 {document}
-
 Return as JSON: {{"names": [], "dates": [], "amounts": []}}"""
 ```
 
-This reduced our token usage by 30%.
+That last change alone cut our token usage by 30%.
 
-## Orchestration with LangChain
+## Making the output actually reliable
 
-For complex workflows, LangChain provides excellent abstractions:
-
-```python
-from langchain.chains import LLMChain, SequentialChain
-from langchain.prompts import PromptTemplate
-
-# Step 1: Extract key points
-extract_chain = LLMChain(
-    llm=llm,
-    prompt=PromptTemplate(
-        input_variables=["document"],
-        template="Extract key points from: {document}"
-    ),
-    output_key="key_points"
-)
-
-# Step 2: Generate summary
-summary_chain = LLMChain(
-    llm=llm,
-    prompt=PromptTemplate(
-        input_variables=["key_points"],
-        template="Summarize these points: {key_points}"
-    ),
-    output_key="summary"
-)
-
-# Combine into pipeline
-pipeline = SequentialChain(
-    chains=[extract_chain, summary_chain],
-    input_variables=["document"],
-    output_variables=["summary"]
-)
-
-result = await pipeline.arun(document=doc)
-```
-
-## Agentic AI with LangGraph
-
-For complex decision-making, we use LangGraph:
+Asking an LLM to "just write JSON" and hoping is not a strategy. Force the structure with a parser.
 
 ```python
-from langgraph.graph import StateGraph, END
-from typing import TypedDict
-
-class AgentState(TypedDict):
-    task: str
-    research: str
-    plan: str
-    result: str
-
-def should_continue(state: AgentState) -> str:
-    if state.get("result"):
-        return END
-    if state.get("plan"):
-        return "execute"
-    if state.get("research"):
-        return "plan"
-    return "research"
-
-# Build the graph
-workflow = StateGraph(AgentState)
-
-workflow.add_node("research", research_node)
-workflow.add_node("plan", planning_node)
-workflow.add_node("execute", execution_node)
-
-workflow.add_conditional_edges(
-    "research",
-    should_continue,
-    {"plan": "plan", END: END}
-)
-workflow.add_conditional_edges(
-    "plan",
-    should_continue,
-    {"execute": "execute", END: END}
-)
-workflow.add_conditional_edges(
-    "execute",
-    should_continue,
-    {END: END}
-)
-
-workflow.set_entry_point("research")
-agent = workflow.compile()
-```
-
-## Reliability Patterns
-
-### Structured Outputs
-
-Force consistent outputs with Pydantic:
-
-```python
-from langchain.output_parsers import PydanticOutputParser
-from pydantic import BaseModel
-
 class ExtractedData(BaseModel):
     names: list[str]
     dates: list[str]
     amounts: list[float]
 
 parser = PydanticOutputParser(pydantic_object=ExtractedData)
-
-prompt = f"""Extract data from this document:
-{document}
-
-{parser.get_format_instructions()}"""
-
-response = await llm.complete(prompt)
-data = parser.parse(response)  # Validated ExtractedData object
+response = await llm.complete(prompt + parser.get_format_instructions())
+data = parser.parse(response)
 ```
 
-### Retry with Backoff
+Wrap every call with retries and backoff, since transient failures happen more than you'd think.
 
 ```python
-from tenacity import retry, stop_after_attempt, wait_exponential
-
-@retry(
-    stop=stop_after_attempt(3),
-    wait=wait_exponential(multiplier=1, min=4, max=60)
-)
+@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=4, max=60))
 async def robust_llm_call(prompt: str) -> str:
     return await llm.complete(prompt)
 ```
 
-### Monitoring and Observability
+And track everything, requests by provider and status, latency, and token usage, so you actually see problems before your users complain about them.
 
-```python
-from prometheus_client import Counter, Histogram
+## What this bought us
 
-llm_requests = Counter(
-    'llm_requests_total',
-    'Total LLM requests',
-    ['provider', 'model', 'status']
-)
+85% task automation accuracy in production, 99.5% availability thanks to the fallbacks, 40% lower cost from caching and tiered models, and no lock-in to a single vendor.
 
-llm_latency = Histogram(
-    'llm_request_duration_seconds',
-    'LLM request latency',
-    ['provider', 'model']
-)
+None of this is exciting engineering. But it's the difference between an AI feature that works reliably and one that quietly breaks the day your main provider has a bad afternoon.
 
-llm_tokens = Counter(
-    'llm_tokens_total',
-    'Total tokens used',
-    ['provider', 'model', 'type']  # type: prompt/completion
-)
-```
+## FAQ
 
-## Results
+**Should I use just one LLM provider in production?**
+I wouldn't. Outages and rate limits happen. A fallback chain across two or three providers costs little and saves you on a bad day.
 
-Our LLM integration strategy delivered:
+**How do you keep LLM costs under control?**
+Cache repeated prompts, send simple tasks to cheaper models, keep prompts short. That last one alone cut our tokens by 30%.
 
-- **85% task automation accuracy** in production
-- **99.5% availability** with multi-provider fallbacks
-- **40% cost reduction** through caching and tiered models
-- **Sub-2s latency** for most requests
-- **Zero vendor lock-in** with abstraction layers
-
-## Key Takeaways
-
-1. **Multi-provider is essential**: Don't depend on a single LLM provider
-2. **Match model to task**: Use cheaper models for simple tasks
-3. **Cache aggressively**: Many prompts repeat; cache the results
-4. **Structure your outputs**: Pydantic parsers ensure consistency
-5. **Monitor everything**: Track costs, latency, and success rates
-
-LLMs are powerful tools, but production integration requires careful architecture. The patterns in this article have proven reliable across multiple enterprise deployments.
+**How do you get consistent output from an LLM?**
+Use a structured output parser like Pydantic so the response has to match a schema, instead of hoping the model formats things correctly.
 
 ---
 

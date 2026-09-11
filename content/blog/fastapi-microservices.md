@@ -1,36 +1,33 @@
 ---
-title: "From FastAPI to Microservices: Handling 10K Concurrent Requests"
-excerpt: "Our journey building production FastAPI microservices—reducing API response time by 40% and achieving predictable failure modes."
+title: "Why I Ditched Flask and Never Looked Back"
+excerpt: "We moved from a Flask monolith to FastAPI microservices and cut response time by 40%. Here's exactly what changed."
 category: "AI & Systems"
 topics: ["systems-i-build"]
 readTime: "7 min read"
 date: "August 2025"
 author: "Anshuman Parmar"
 heroImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1600&h=900&fit=crop"
+faq:
+  - question: "Is FastAPI actually faster than Flask?"
+    answer: "In our load tests, yes, by a good margin, mostly because async is native instead of bolted on. We saw roughly 3000 RPS versus 1000 RPS on comparable endpoints."
+  - question: "When should I split a monolith into microservices?"
+    answer: "When one part of your system needs to scale, fail, or deploy independently from the rest. Not before that. Splitting too early just adds network overhead for no benefit."
+  - question: "What actually helped us handle 10K concurrent requests?"
+    answer: "Going async everywhere, pooling database connections properly, and caching read-heavy endpoints in Redis. Those three changes did most of the work."
 ---
-## Introduction
+FastAPI is my go-to for Python backends now. But it wasn't always. We started on Flask, and moved for real reasons, not just because FastAPI was newer.
 
-FastAPI has become my go-to framework for building Python backends. Its async-first design, automatic OpenAPI docs, and type safety make it perfect for high-performance APIs.
+Here's what actually changed, and the numbers that came with it.
 
-This article shares how we built FastAPI microservices handling 10K+ concurrent requests, reduced response times by 40%, and designed for predictable failure modes.
+## Why we left Flask
 
-## Why FastAPI?
+Flask's async support always felt bolted on afterward. FastAPI has it built in from the start, plus automatic API docs and real type checking through Pydantic.
 
-Before FastAPI, we used Flask. The migration was driven by:
+In our load tests, FastAPI handled roughly 3000 requests per second where Flask managed about 1000 on the same hardware. That gap alone justified the migration.
 
-| Aspect | Flask | FastAPI |
-|--------|-------|---------|
-| Async support | Bolted on | Native |
-| Type checking | Optional | Built-in |
-| API docs | Manual | Automatic |
-| Performance | ~1000 RPS | ~3000 RPS |
-| Validation | External | Pydantic |
+## From one big app to several small ones
 
-The performance difference alone justified the migration.
-
-## Architecture: From Monolith to Microservices
-
-### Before: The Monolith
+We had a single Flask app doing auth, users, tasks, and data, all tangled together. One bug in any part could take down everything, and we couldn't scale just the busy part.
 
 ```
 ┌────────────────────────────────────────┐
@@ -41,12 +38,7 @@ The performance difference alone justified the migration.
 └────────────────────────────────────────┘
 ```
 
-Problems:
-- Single point of failure
-- Can't scale components independently
-- Deployments affect everything
-
-### After: Microservices
+We split it into separate services behind an API gateway, each with its own database, each deployable on its own.
 
 ```
 ┌─────────────┐
@@ -54,53 +46,32 @@ Problems:
 └──────┬──────┘
        │
 ┌──────┴──────┬──────────────┬──────────────┐
-│             │              │              │
 ▼             ▼              ▼              ▼
 ┌─────┐   ┌──────┐    ┌──────┐    ┌──────┐
 │Auth │   │ User │    │ Task │    │ Data │
-│ API │   │ API  │    │ API  │    │ API  │
 └─────┘   └──────┘    └──────┘    └──────┘
 ```
 
-Each service:
-- Scales independently
-- Has its own database
-- Can be deployed separately
-- Fails in isolation
+## Going async, properly
 
-## Building High-Performance FastAPI Services
-
-### Async All The Way
-
-The key to FastAPI performance is embracing async:
+The real win in FastAPI only shows up if you actually go async everywhere, not just in the framework.
 
 ```python
-from fastapi import FastAPI
-from httpx import AsyncClient
-from sqlalchemy.ext.asyncio import AsyncSession
-
-app = FastAPI()
-
-# Bad: Blocking database call
+# Blocking, holds up the whole event loop
 @app.get("/users/{user_id}")
 def get_user(user_id: int, db: Session = Depends(get_db)):
     return db.query(User).filter(User.id == user_id).first()
 
-# Good: Async database call
+# Async, doesn't block anything else
 @app.get("/users/{user_id}")
 async def get_user(user_id: int, db: AsyncSession = Depends(get_async_db)):
     result = await db.execute(select(User).where(User.id == user_id))
     return result.scalar_one_or_none()
 ```
 
-### Connection Pooling
-
-Database connections are expensive. Pool them:
+Database connections are expensive to open, so we pool them instead of creating new ones per request.
 
 ```python
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from sqlalchemy.orm import sessionmaker
-
 engine = create_async_engine(
     DATABASE_URL,
     pool_size=20,
@@ -108,214 +79,65 @@ engine = create_async_engine(
     pool_timeout=30,
     pool_recycle=1800,
 )
-
-AsyncSessionLocal = sessionmaker(
-    engine,
-    class_=AsyncSession,
-    expire_on_commit=False
-)
 ```
 
-### Response Caching
-
-Not everything needs to hit the database:
+And a lot of reads don't need to hit the database every single time.
 
 ```python
-from fastapi_cache import FastAPICache
-from fastapi_cache.backends.redis import RedisBackend
-from fastapi_cache.decorator import cache
-
-@app.on_event("startup")
-async def startup():
-    redis = aioredis.from_url("redis://localhost")
-    FastAPICache.init(RedisBackend(redis), prefix="api-cache")
-
 @app.get("/products/{product_id}")
-@cache(expire=300)  # Cache for 5 minutes
+@cache(expire=300)
 async def get_product(product_id: int):
-    # This result will be cached
     return await fetch_product(product_id)
 ```
 
-## Handling 10K Concurrent Requests
+## What happened at 10K concurrent users
 
-### Load Testing Results
+We load tested with Locust before and after these changes.
 
-Using Locust for load testing:
-
-```python
-# locustfile.py
-from locust import HttpUser, task, between
-
-class APIUser(HttpUser):
-    wait_time = between(0.1, 0.5)
-
-    @task(3)
-    def get_tasks(self):
-        self.client.get("/api/v1/tasks")
-
-    @task(1)
-    def create_task(self):
-        self.client.post("/api/v1/tasks", json={
-            "title": "Test task",
-            "priority": "high"
-        })
-```
-
-**Results at 10K concurrent users:**
-
-| Metric | Before Optimization | After Optimization |
-|--------|--------------------|--------------------|
+| Metric | Before | After |
+|--------|--------|-------|
 | RPS | 2,500 | 4,200 |
 | P50 Latency | 180ms | 95ms |
 | P95 Latency | 850ms | 280ms |
-| P99 Latency | 2.1s | 520ms |
 | Error Rate | 2.3% | 0.1% |
 
-### Key Optimizations
+The biggest wins came from switching to an async database driver, connection pooling, Redis caching, and just adding pagination to list endpoints instead of returning everything at once.
 
-1. **Async database driver** (asyncpg instead of psycopg2)
-2. **Connection pooling** (20 base, 30 overflow)
-3. **Redis caching** for read-heavy endpoints
-4. **Pagination** for list endpoints
-5. **Query optimization** (proper indexes, eager loading)
+## Designing for things to fail well
 
-## Predictable Failure Modes
+Systems fail. The goal is making sure they fail in a way you can predict and recover from.
 
-Systems will fail. The goal is predictable, graceful failure.
-
-### Structured Error Responses
-
-```python
-from fastapi import HTTPException
-from pydantic import BaseModel
-
-class ErrorResponse(BaseModel):
-    error_code: str
-    message: str
-    details: dict | None = None
-
-@app.exception_handler(HTTPException)
-async def http_exception_handler(request, exc):
-    return JSONResponse(
-        status_code=exc.status_code,
-        content=ErrorResponse(
-            error_code=f"ERR_{exc.status_code}",
-            message=exc.detail,
-        ).dict()
-    )
-```
-
-### Circuit Breakers
-
-```python
-from circuitbreaker import circuit
-
-@circuit(failure_threshold=5, recovery_timeout=30)
-async def call_external_service(data: dict):
-    async with httpx.AsyncClient() as client:
-        response = await client.post(EXTERNAL_URL, json=data)
-        response.raise_for_status()
-        return response.json()
-```
-
-### Health Checks
-
-```python
-@app.get("/health")
-async def health_check():
-    checks = {
-        "database": await check_database(),
-        "redis": await check_redis(),
-        "external_api": await check_external_api(),
-    }
-
-    status = "healthy" if all(checks.values()) else "degraded"
-    return {"status": status, "checks": checks}
-```
-
-### Graceful Degradation
+We return structured errors instead of raw stack traces, wrap external calls in circuit breakers, expose a real health check endpoint, and fall back gracefully instead of crashing.
 
 ```python
 @app.get("/recommendations/{user_id}")
 async def get_recommendations(user_id: int):
     try:
-        # Try personalized recommendations
         return await ml_service.get_personalized(user_id)
     except ServiceUnavailable:
-        # Fall back to popular items
         return await get_popular_items()
     except Exception:
-        # Ultimate fallback
         return {"recommendations": [], "fallback": True}
 ```
 
-## Observability
+We also added structured logging with a request ID on every log line, so tracing one request across the system actually works, plus Prometheus metrics for request counts, latency, and status codes.
 
-### Structured Logging
+## Where we ended up
 
-```python
-import structlog
+40% faster average response time, reliably handling 10K+ concurrent requests, 99.5% deployment success with CI/CD, and zero-downtime rolling deployments.
 
-logger = structlog.get_logger()
+None of it was exotic. Go async everywhere, pool your connections, cache what you can, and plan for failure instead of hoping it won't happen.
 
-@app.middleware("http")
-async def logging_middleware(request: Request, call_next):
-    request_id = str(uuid.uuid4())
+## FAQ
 
-    with structlog.contextvars.bound_contextvars(
-        request_id=request_id,
-        path=request.url.path,
-        method=request.method,
-    ):
-        logger.info("request_started")
+**Is FastAPI actually faster than Flask?**
+In our tests, yes, roughly 3000 RPS versus 1000 RPS, mostly because async is native instead of added on top.
 
-        start = time.perf_counter()
-        response = await call_next(request)
-        duration = time.perf_counter() - start
+**When should I split a monolith into microservices?**
+When a specific part needs to scale, fail, or deploy independently. Splitting earlier than that just adds overhead.
 
-        logger.info(
-            "request_completed",
-            status_code=response.status_code,
-            duration_ms=round(duration * 1000, 2)
-        )
-
-        return response
-```
-
-### Metrics
-
-```python
-from prometheus_fastapi_instrumentator import Instrumentator
-
-Instrumentator().instrument(app).expose(app)
-```
-
-This gives you automatic metrics for:
-- Request count by endpoint
-- Request latency histograms
-- Response status codes
-- In-flight requests
-
-## Results
-
-After the migration and optimizations:
-
-- **40% reduction** in average response time
-- **10K+ concurrent requests** handled reliably
-- **99.5% deployment success rate** with CI/CD
-- **Zero-downtime deployments** with rolling updates
-- **Predictable failure modes** with circuit breakers
-
-## Key Takeaways
-
-1. **Go async**: FastAPI's async support is its superpower—use it everywhere
-2. **Pool connections**: Database connections are expensive; pool aggressively
-3. **Cache strategically**: Redis caching can eliminate most database load
-4. **Design for failure**: Circuit breakers and graceful degradation are essential
-5. **Observe everything**: You can't optimize what you can't measure
-
-FastAPI makes building high-performance Python APIs accessible. The key is understanding async patterns and designing for scale from the start.
+**What actually helped us handle 10K concurrent requests?**
+Going async everywhere, proper connection pooling, and Redis caching on read-heavy endpoints.
 
 ---
 

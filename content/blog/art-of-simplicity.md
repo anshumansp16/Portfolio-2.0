@@ -1,104 +1,71 @@
 ---
-title: "The Art of Simplicity in Software Design"
-excerpt: "Why the hardest part of software engineering isn't building complex systems—it's building simple ones that work."
+title: "Why Simple Code Is Harder to Write Than Complex Code"
+excerpt: "Junior engineers add complexity to solve problems. Senior engineers remove it. Here's why that's actually the harder skill."
 category: "Philosophy"
 topics: []
 readTime: "5 min read"
 date: "June 2025"
 author: "Anshuman Parmar"
 heroImage: "https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?w=1600&h=900&fit=crop"
+faq:
+  - question: "Why is simple code so much harder to write than complex code?"
+    answer: "Because complexity is the default path and feels productive, lines written, patterns added. Simplicity takes the discipline to remove things and the courage to leave things out."
+  - question: "How do I know if I'm overcomplicating something?"
+    answer: "Ask yourself if you'll actually understand this in six months. If the answer is no, simplify it. If it's still no after that, simplify again."
 ---
-## The Complexity Trap
+Junior engineers add complexity to solve a problem. Senior engineers remove complexity to solve the same problem.
 
-Junior engineers add complexity to solve problems.
-Senior engineers remove complexity to solve problems.
+The difference is just wisdom, earned the hard way.
 
-The difference is wisdom.
+## Why we reach for complexity
 
-## Why We Add Complexity
+Complexity feels productive. Lines of code written, abstractions created, patterns implemented, it all looks like progress.
 
-Complexity feels productive. Lines of code written. Abstractions created. Patterns implemented.
+But it has real costs. Every abstraction is one more concept someone has to learn. Every extra layer is a new place for bugs to hide. Every pattern is a new constraint on how easily you can change things later.
 
-But complexity has costs:
-- Every abstraction is a new concept to learn
-- Every layer is a new place for bugs to hide
-- Every pattern is a new constraint on change
+## What simplicity actually means
 
-## The Simplicity Discipline
+Simplicity isn't about having fewer features. It's about having more clarity.
 
-Simplicity isn't the absence of features. It's the presence of clarity.
+A simple system does one thing well, behaves in obvious ways, fails in predictable ways, and is easy to change when you need to.
 
-Simple systems:
-- Do one thing well
-- Have obvious behavior
-- Fail predictably
-- Change easily
+Before adding anything, it's worth asking: does this solve a real problem, is there a simpler way, what will it cost to maintain, and could I remove something instead of adding this?
 
-### The Questions
+## Simplicity at every layer
 
-Before adding anything, ask:
-- Does this solve a real problem?
-- Is there a simpler solution?
-- What's the cost of maintaining this?
-- Can I remove something instead?
+In code, that's clear naming, small functions, an obvious flow, and minimal hidden state.
 
-## Layers of Simplicity
+In architecture, that's few moving parts, clear boundaries between them, explicit dependencies, and behavior you can actually predict.
 
-### Code Simplicity
-- Clear naming
-- Small functions
-- Obvious flow
-- Minimal state
+In process, that's minimal ceremony, clear ownership of decisions, fast feedback loops, and an easy way to recover when something goes wrong.
 
-### Architecture Simplicity
-- Few components
-- Clear boundaries
-- Explicit dependencies
-- Predictable behavior
+## Refactoring isn't about being elegant
 
-### Process Simplicity
-- Minimal ceremony
-- Clear ownership
-- Fast feedback
-- Easy recovery
+The goal of refactoring isn't making code look more elegant. It's making it more obvious.
 
-## The Refactoring Paradox
+Good refactoring removes indirection, makes intent clearer, cuts down the number of concepts someone has to hold in their head, and makes future change easier, not harder.
 
-The goal of refactoring isn't to make code more elegant.
-It's to make code more obvious.
+## What experienced engineers actually know
 
-Good refactoring:
-- Removes indirection
-- Clarifies intent
-- Reduces concepts
-- Simplifies change
+The mark of real expertise isn't knowing how to build complicated systems. Anyone can add complexity. It's knowing when not to.
 
-## What Experts Know
+Experienced engineers start simple, add complexity reluctantly, remove it eagerly when they find it, and consistently value clarity over cleverness.
 
-The mark of expertise isn't knowing how to build complex systems.
-It's knowing when not to.
+## A simple test before you ship
 
-Experts:
-- Start simple
-- Add complexity reluctantly
-- Remove complexity eagerly
-- Value clarity over cleverness
+Ask yourself: will I understand this in six months?
 
-## The Maintenance Test
+If no, simplify. If still no, simplify again. Keep going until the answer is yes.
 
-Before shipping, ask: "Will I understand this in six months?"
+Perfection is the enemy of done, but cleverness is the enemy of maintainable. Future you is the one who pays the interest on today's clever shortcut.
 
-If no, simplify.
-If still no, simplify more.
-Repeat until yes.
+## FAQ
 
-## Lessons in Simplicity
+**Why is simple code so much harder to write than complex code?**
+Complexity is the default path and feels productive. Simplicity takes the discipline to remove things and the courage to leave things out.
 
-1. **Simple is hard** - It requires discipline and courage
-2. **Complexity is easy** - It's the default path
-3. **Clarity compounds** - Simple systems stay simple
-4. **Cleverness is debt** - Future you pays the interest
-5. **Less is more** - But only after you understand what more looks like
+**How do I know if I'm overcomplicating something?**
+Ask if you'll understand it in six months. If no, simplify. If still no, simplify again.
 
 ---
 

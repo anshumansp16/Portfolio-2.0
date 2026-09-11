@@ -1,123 +1,77 @@
 ---
-title: "Remote Engineering: Building High-Performance Distributed Teams"
-excerpt: "After years of remote work, here's what actually matters for distributed engineering teams—and what's just noise."
+title: "Why Most Remote Work Advice Is Wrong"
+excerpt: "Constant video calls and activity monitoring aren't what makes remote teams work. Here's what actually does, after years of doing it."
 category: "Building"
 topics: []
 readTime: "7 min read"
 date: "September 2025"
 author: "Anshuman Parmar"
 heroImage: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&h=900&fit=crop"
+faq:
+  - question: "Does remote work require constant video calls to stay aligned?"
+    answer: "No, and it usually drains a team more than it helps. Async, written communication is the actual backbone of a remote team that works well."
+  - question: "How do you build trust on a remote team?"
+    answer: "Consistency, doing what you said you'd do, sharing context generously, and being honest about mistakes. Micromanagement and information hoarding destroy trust faster than anything."
 ---
-## The Remote Reality
+Remote work isn't the future anymore. It's just the present. The real question isn't whether to support it, it's how to make a remote team actually thrive.
 
-Remote work isn't the future—it's the present. The question isn't whether to support remote teams, but how to make them thrive.
+After working remotely and leading distributed teams for years, I've noticed most "remote work advice" misses what actually matters.
 
-After working remotely and leading distributed teams, I've learned that most "remote work advice" misses what actually matters.
+## What doesn't actually matter
 
-## What Doesn't Matter
+Constant video calls drain energy more than they build it. Activity monitoring signals distrust, and trust works far better than surveillance. Trying to make everything synchronous defeats the whole point. And copying your old office culture onto Zoom doesn't work, because remote is different, not a worse version of the same thing.
 
-- **Constant video calls** - These drain energy, not build it
-- **Activity monitoring** - Trust is more effective than surveillance
-- **Synchronous everything** - Async-first is the way
-- **Replicating office culture** - Remote is different, not worse
+## What actually matters
 
-## What Actually Matters
+### Writing clearly is the real skill
 
-### 1. Written Communication Excellence
+In a remote team, writing is the main way work actually happens. If you can't write clearly, you genuinely can't lead a remote team.
 
-In remote teams, writing is the primary medium of work. If you can't write clearly, you can't lead remotely.
+Good remote writing assumes the reader doesn't share your context, uses structure so it's scannable, ends with a clear next step and owner, and stays searchable for whoever needs it later.
 
-Great remote communication:
-- **Context-rich** - Assume the reader doesn't share your context
-- **Structured** - Use headers, bullets, and formatting
-- **Action-oriented** - Clear next steps and owners
-- **Permanent** - Searchable and referenceable
+### Being async first, actually
 
-### 2. Async-First Culture
+The whole point of remote work is using time zones to your advantage. That only works if you actually commit to async.
 
-The magic of remote work is leveraging time zones. But only if you embrace async.
+That means decisions get written down, meetings become the exception rather than the default, progress doesn't require everyone online at once, and deep focus time is genuinely protected.
 
-Async-first means:
-- Decisions documented in writing
-- Meetings are the exception, not the rule
-- Progress doesn't require simultaneous presence
-- Deep work is protected
+### Judge outcomes, not hours
 
-### 3. Outcome Over Output
+Remote work makes hours worked hard to track and outcomes easy to track. That's a feature, not a problem.
 
-Remote work makes output hard to measure and outcomes easy to measure. This is a feature, not a bug.
+Stop counting hours logged, messages sent, or meetings attended. Start looking at problems actually solved and value actually delivered.
 
-Stop measuring:
-- Hours worked
-- Messages sent
-- Meetings attended
+### Make the meetings you do have count
 
-Start measuring:
-- Problems solved
-- Value delivered
-- Progress made
+When you do get together in real time, use it well. Building relationships, solving something genuinely complex together, having a hard conversation that text can't handle gently, or just celebrating a win as a team.
 
-### 4. Intentional Synchronous Time
+## The tools, briefly
 
-When you do meet, make it count.
+Tools matter less than how you use them, but for reference: Slack or Discord for async chat, Loom for async video walkthroughs, Notion for long-form docs and decisions, GitHub for code discussions, Figma for design, Linear for project tracking, and Zoom for when sync time is actually needed.
 
-Good uses of sync time:
-- **Relationship building** - The human connection matters
-- **Complex problem-solving** - Some things need real-time collaboration
-- **Difficult conversations** - Text lacks nuance for sensitive topics
-- **Celebration** - Shared joy builds team cohesion
+## Trust is the whole foundation
 
-## The Remote Tech Stack
+Without trust, nothing else on this list works.
 
-Tools matter less than how you use them, but here's what works:
+Trust gets built through consistency, doing what you said you would, through transparency, sharing context generously, through admitting mistakes honestly, and through just being reliably there when it matters.
 
-### Communication
-- **Slack/Discord** - Async chat with clear channel structure
-- **Loom** - Async video for complex explanations
-- **Notion** - Long-form documentation and decisions
+Trust gets destroyed through micromanagement, through hoarding information, through a culture that looks for blame, and through being inconsistent.
 
-### Collaboration
-- **GitHub** - Code and code-adjacent discussions
-- **Figma** - Design collaboration
-- **Linear** - Project management
+## What a remote manager's job actually becomes
 
-### Connection
-- **Zoom/Meet** - When sync is necessary
-- **Gather/Spatial** - Virtual office for spontaneous connection
+It shifts from watching over people to enabling them. Day to day, that means removing blockers, giving context proactively, protecting people's deep work time, and connecting the right people at the right moment.
 
-## Building Trust Remotely
+## What years of this taught me
 
-Trust is the foundation of remote work. Without it, nothing else works.
+Write everything down, because if it's not written, it effectively didn't happen. Over-share context, you genuinely cannot over-communicate it remotely. Default to trust, and only verify when there's a real reason to. Protect deep work time fiercely. And invest in relationships on purpose, because they don't build themselves without an office to force it.
 
-Trust is built through:
-- **Consistency** - Do what you say you'll do
-- **Transparency** - Share context generously
-- **Vulnerability** - Admit mistakes and uncertainties
-- **Reliability** - Be there when it matters
+## FAQ
 
-Trust is destroyed through:
-- **Micromanagement** - Signals distrust
-- **Information hoarding** - Creates silos
-- **Blame culture** - Kills psychological safety
-- **Inconsistency** - Erodes predictability
+**Does remote work require constant video calls to stay aligned?**
+No. It usually drains a team more than it helps. Async written communication is the real backbone.
 
-## The Remote Manager's Job
-
-Remote management is different. Your job shifts from oversight to enablement.
-
-Daily focus:
-- Remove blockers
-- Provide context
-- Protect deep work time
-- Connect people who should be connected
-
-## Lessons from Distributed Teams
-
-1. **Write everything down** - If it's not written, it didn't happen
-2. **Over-communicate context** - You can't over-share context
-3. **Trust by default** - Verify only when necessary
-4. **Protect deep work** - Async enables focus
-5. **Invest in relationships** - They don't build themselves remotely
+**How do you build trust on a remote team?**
+Consistency, sharing context generously, and being honest about mistakes. Micromanagement destroys trust fastest.
 
 ---
 

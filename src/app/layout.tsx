@@ -8,6 +8,7 @@ import { Footer } from '@/components/layouts/Footer'
 import { ChatPopup } from '@/components/ui/ChatPopup'
 import { CursorGlow } from '@/components/ui/CursorGlow'
 import { Analytics } from '@/components/Analytics'
+import { Analytics as VercelAnalytics } from '@vercel/analytics/next'
 import { rootJsonLd } from '@/lib/seo'
 
 // Font configurations with display swap for optimal loading
@@ -115,6 +116,7 @@ export default function RootLayout({
         <Footer />
         <ChatPopup />
         <Analytics />
+        <VercelAnalytics />
       </body>
     </html>
   )

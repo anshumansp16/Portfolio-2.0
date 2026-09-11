@@ -1,52 +1,42 @@
 ---
-title: "Building Production RAG Systems: Lessons from the Field"
-excerpt: "What I learned designing RAG architectures for enterprise clients—from vector database optimization to achieving 40% better query accuracy."
+title: "Why My RAG System Kept Giving Wrong Answers (Until I Fixed These 5 Things)"
+excerpt: "I built a RAG system that worked great in the demo, then fell apart in production. Here's what was actually wrong, and how I fixed it."
 category: "AI & Systems"
 topics: ["agents-llms", "systems-i-build"]
 readTime: "8 min read"
 date: "December 2025"
 author: "Anshuman Parmar"
 heroImage: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1600&h=900&fit=crop"
+faq:
+  - question: "Why does my RAG system work in the demo but fail in production?"
+    answer: "Usually it's the chunking. Fixed-size chunks that ignore document structure look fine on a small demo doc, then quietly break on real enterprise documents with headers and sections."
+  - question: "Should I only use vector search for RAG?"
+    answer: "No. Pure vector search misses exact matches like error codes or IDs. Combine it with keyword search (BM25) and merge the results. This alone can meaningfully improve accuracy."
+  - question: "How do I know if my RAG system is actually getting better?"
+    answer: "Build a small set of real test questions with known correct answers, and run them automatically every time you change something. Without this, you're just guessing."
 ---
-## Introduction
+I built my first "production" RAG system thinking it was basically done. Load documents, embed them, retrieve chunks, ask the LLM. Simple.
 
-Retrieval-Augmented Generation (RAG) has become the cornerstone of enterprise AI applications. After designing and deploying multiple RAG systems for enterprise clients at Sazag Infotech, I've learned that building a demo is easy—building a production system that delivers consistent, accurate results is an entirely different challenge.
+It worked great in the demo. Then real users started asking real questions, and it fell apart.
 
-In this article, I'll share the key lessons I learned while improving query accuracy by 40% and building systems that handle real enterprise workloads.
+Here's what I actually had to fix, working with RAG systems for enterprise clients at Sazag Infotech.
 
-## The Gap Between Demo and Production
+## Chunking was the first problem
 
-Most RAG tutorials show you how to:
-1. Load documents into a vector database
-2. Embed a query
-3. Retrieve similar chunks
-4. Pass them to an LLM
+The default advice is "just split every 500 tokens." That breaks the moment your documents have real structure, like headers and sections.
 
-This works great for demos. But in production, you'll face:
-
-- **Inconsistent retrieval quality**: Sometimes the most relevant chunks aren't the most semantically similar
-- **Context window limitations**: Enterprise documents are long; you can't just stuff everything into the prompt
-- **Latency requirements**: Users expect sub-second responses
-- **Cost management**: GPT-4 calls add up quickly at scale
-
-## Lesson 1: Chunking Strategy Matters More Than You Think
-
-The default "split by 500 tokens" approach fails for structured documents. Here's what actually works:
-
-### Semantic Chunking
-
-Instead of fixed-size chunks, split documents at natural boundaries:
+Fixed size chunks cut sentences in half and lose all context.
 
 ```python
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-# Bad: Fixed size chunks
+# What breaks: fixed size, no awareness of structure
 bad_splitter = RecursiveCharacterTextSplitter(
     chunk_size=500,
     chunk_overlap=50
 )
 
-# Better: Respect document structure
+# What actually works: split at natural document boundaries
 good_splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000,
     chunk_overlap=200,
@@ -54,9 +44,7 @@ good_splitter = RecursiveCharacterTextSplitter(
 )
 ```
 
-### Document-Aware Chunking
-
-For technical documentation, maintain context by including headers:
+I also started keeping the section header attached to every chunk from that section:
 
 ```python
 def chunk_with_headers(document):
@@ -73,52 +61,39 @@ def chunk_with_headers(document):
     return chunks
 ```
 
-This simple change improved our retrieval accuracy by 15%.
+Small change. 15% better retrieval accuracy.
 
-## Lesson 2: Hybrid Search is Non-Negotiable
+## Vector search alone was missing obvious answers
 
-Pure vector similarity search has a critical flaw: it can miss exact matches. When a user searches for "error code E-4502", semantic search might return chunks about error handling in general, missing the specific error code documentation.
+Here's a real failure. A user searches for "error code E-4502". Pure vector similarity search happily returns chunks about error handling in general, and completely misses the actual documentation for that specific code.
 
-### Implementing Hybrid Search
+Because semantically, "error handling" and "E-4502" look kind of similar to an embedding model. But they are not the same thing at all.
 
-We use a combination of:
-1. **Dense retrieval** (vector similarity)
-2. **Sparse retrieval** (BM25/keyword matching)
-3. **Reciprocal Rank Fusion** to combine results
+The fix is combining dense retrieval (vector similarity) with sparse retrieval (plain keyword matching, BM25), and merging the results.
 
 ```python
 from langchain.retrievers import EnsembleRetriever
 from langchain.retrievers import BM25Retriever
 
-# Create retrievers
 vector_retriever = vectorstore.as_retriever(search_kwargs={"k": 10})
 bm25_retriever = BM25Retriever.from_documents(documents)
 bm25_retriever.k = 10
 
-# Combine with ensemble
 ensemble_retriever = EnsembleRetriever(
     retrievers=[vector_retriever, bm25_retriever],
     weights=[0.6, 0.4]
 )
 ```
 
-This hybrid approach improved our query accuracy by 25%.
+This one change gave us a 25% jump in query accuracy.
 
-## Lesson 3: Vector Database Choice Matters
+## Picking the vector database mattered more than I expected
 
-We evaluated ChromaDB, Pinecone, and Weaviate for different use cases:
+We tried ChromaDB, Pinecone, and Weaviate.
 
-| Database | Best For | Trade-offs |
-|----------|----------|------------|
-| ChromaDB | Prototyping, small datasets | Limited scalability |
-| Pinecone | Production, managed infrastructure | Cost at scale |
-| Weaviate | Self-hosted, hybrid search | Operational overhead |
+ChromaDB is nice for prototyping but doesn't hold up at scale. We ended up using Pinecone for managed deployments, and Weaviate when a client needed everything on their own servers.
 
-For most enterprise clients, we settled on **Pinecone** for managed deployments and **Weaviate** for on-premise requirements.
-
-### Optimization: Metadata Filtering
-
-Don't just rely on vector similarity. Use metadata to pre-filter:
+One thing that helped a lot everywhere: don't rely on vector similarity alone, pre-filter with metadata first.
 
 ```python
 results = vectorstore.similarity_search(
@@ -132,13 +107,13 @@ results = vectorstore.similarity_search(
 )
 ```
 
-This reduces the search space and improves both accuracy and latency.
+Smaller search space, better accuracy, faster too.
 
-## Lesson 4: Query Understanding Changes Everything
+## People don't ask perfect questions
 
-Users don't always ask perfect questions. A production RAG system needs query preprocessing:
+Real users type messy, half-formed questions. If your system only handles the clean version, it will disappoint people constantly.
 
-### Query Expansion
+Two things helped. First, generating a few alternate phrasings of the same query before searching:
 
 ```python
 def expand_query(original_query: str, llm) -> list[str]:
@@ -153,31 +128,11 @@ def expand_query(original_query: str, llm) -> list[str]:
     return [original_query] + alternatives
 ```
 
-### Intent Classification
+Second, figuring out what the user actually wants before searching (a lookup? a how-to? troubleshooting?), so you can pick the right retrieval strategy for that.
 
-Before retrieval, classify the query intent:
+## You can't improve what you don't measure
 
-```python
-intents = ["factual_lookup", "how_to", "troubleshooting", "comparison"]
-
-def classify_intent(query: str) -> str:
-    # Use a lightweight classifier or LLM
-    # This helps select the right retrieval strategy
-    pass
-```
-
-## Lesson 5: Evaluation is Continuous
-
-You can't improve what you can't measure. We built a continuous evaluation pipeline:
-
-### Metrics We Track
-
-1. **Retrieval Precision@K**: Are the retrieved chunks relevant?
-2. **Answer Correctness**: Does the final answer match ground truth?
-3. **Faithfulness**: Is the answer grounded in retrieved context?
-4. **Latency P95**: What's the worst-case response time?
-
-### Automated Testing
+This one sounds obvious but most teams skip it. We built a small evaluation pipeline with real test cases, and ran it every time we changed anything.
 
 ```python
 test_cases = [
@@ -186,7 +141,6 @@ test_cases = [
         "expected_answer": "50MB",
         "relevant_doc_ids": ["doc_123", "doc_456"]
     },
-    # ... more test cases
 ]
 
 def evaluate_rag_system(rag_chain, test_cases):
@@ -201,24 +155,24 @@ def evaluate_rag_system(rag_chain, test_cases):
     return aggregate_metrics(results)
 ```
 
-## Results: 40% Improvement in Query Accuracy
+We tracked retrieval precision, answer correctness, whether the answer was actually grounded in the retrieved text, and P95 latency.
 
-By implementing these lessons, we achieved:
+## Where we ended up
 
-- **40% improvement** in query accuracy (measured by answer correctness)
-- **60% reduction** in "I don't know" responses
-- **Sub-500ms** P95 latency for most queries
-- **30% cost reduction** through better caching and retrieval
+After fixing all five of these: 40% better query accuracy, 60% fewer "I don't know" responses, most answers under 500ms, and 30% lower cost from better caching.
 
-## Key Takeaways
+None of these fixes were fancy. Better chunking, hybrid search, smarter filtering, handling messy questions, and actually measuring results. Boring stuff, but it's what actually moves the needle.
 
-1. **Chunking is foundational**: Invest time in document-aware chunking strategies
-2. **Hybrid search is essential**: Don't rely on vector similarity alone
-3. **Preprocess queries**: Users ask imperfect questions; help them
-4. **Measure everything**: Build evaluation into your pipeline from day one
-5. **Iterate continuously**: RAG systems improve through constant refinement
+## FAQ
 
-Building production RAG systems is challenging, but the payoff—accurate, helpful AI assistants that actually work—is worth the investment.
+**Why does my RAG system work in the demo but fail in production?**
+Usually it's the chunking. Fixed-size chunks that ignore document structure look fine on a small demo doc, then quietly break on real enterprise documents with headers and sections.
+
+**Should I only use vector search for RAG?**
+No. Pure vector search misses exact matches like error codes or IDs. Combine it with keyword search (BM25) and merge the results.
+
+**How do I know if my RAG system is actually getting better?**
+Build a small set of real test questions with known correct answers, and run them automatically every time you change something.
 
 ---
 
