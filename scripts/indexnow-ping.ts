@@ -13,6 +13,14 @@
  */
 import sitemap from '../src/app/sitemap'
 
+// Next.js auto-loads .env.local for the app itself, but this is a
+// standalone script run outside Next, so load it explicitly.
+try {
+  process.loadEnvFile('.env.local')
+} catch {
+  // fine if it doesn't exist; INDEXNOW_KEY may already be in the shell env
+}
+
 const SITE_URL = 'https://anshumansp.com'
 const HOST = 'anshumansp.com'
 
