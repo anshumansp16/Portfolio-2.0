@@ -6,7 +6,7 @@ topics: ["agents-llms", "apps-i-publish", "systems-i-build"]
 readTime: "7 min read"
 date: "September 2026"
 author: "Anshuman Parmar"
-heroImage: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&h=900&fit=crop"
+heroImage: "https://images.unsplash.com/photo-1591453089816-0fbb971b454c?w=1600&h=900&fit=crop"
 faq:
   - question: "What is LegalMind?"
     answer: "An AI platform built for India's legal and compliance professionals, company secretaries, chartered accountants, corporate legal teams, that reviews documents, flags compliance risk, and drafts filings. Live at legal.anshumansp.com."

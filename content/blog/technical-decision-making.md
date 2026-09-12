@@ -6,7 +6,7 @@ topics: []
 readTime: "8 min read"
 date: "August 2025"
 author: "Anshuman Parmar"
-heroImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&h=900&fit=crop"
+heroImage: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1600&h=900&fit=crop"
 faq:
   - question: "How do I know if a technical decision needs careful analysis or a quick call?"
     answer: "Ask how hard it would be to reverse. Core technology, database architecture, and public API contracts deserve real analysis. Internal tools and code organization should be decided fast."
