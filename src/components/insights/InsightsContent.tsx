@@ -85,7 +85,7 @@ export function InsightsContent({ posts, categories, topicHubs }: InsightsConten
       {/* Hero Section */}
       <div className="text-center mb-16">
         <motion.p
-          className="text-label text-accent-gold mb-4"
+          className="text-label text-accent-electric mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -125,7 +125,7 @@ export function InsightsContent({ posts, categories, topicHubs }: InsightsConten
             <Link
               key={hub.slug}
               href={`/insights/topics/${hub.slug}`}
-              className="px-4 py-2 rounded-full text-body-sm bg-white/[0.03] border border-white/[0.06] text-silver/70 hover:text-platinum hover:border-accent-gold/40 transition-colors"
+              className="px-4 py-2 rounded-full text-body-sm bg-white/[0.03] border border-white/[0.06] text-silver/70 hover:text-platinum hover:border-accent-electric/40 transition-colors"
             >
               {hub.label}
             </Link>
@@ -153,7 +153,7 @@ export function InsightsContent({ posts, categories, topicHubs }: InsightsConten
               setSearchQuery(e.target.value)
               resetToFirstPage()
             }}
-            className="w-full pl-12 pr-4 py-4 bg-noir-subtle border border-white/[0.06] rounded-xl text-platinum placeholder:text-silver/40 focus:border-accent-gold/50 focus:outline-none transition-colors"
+            className="w-full pl-12 pr-4 py-4 bg-noir-subtle border border-white/[0.06] rounded-xl text-platinum placeholder:text-silver/40 focus:border-accent-electric/50 focus:outline-none transition-colors"
           />
           {searchQuery && (
             <button
@@ -178,7 +178,7 @@ export function InsightsContent({ posts, categories, topicHubs }: InsightsConten
               }}
               className={`px-4 py-2 rounded-full text-body-sm transition-all duration-300 ${
                 selectedCategory === category
-                  ? 'bg-accent-gold text-noir-primary font-medium'
+                  ? 'bg-accent-electric text-noir-primary font-medium'
                   : 'bg-white/[0.03] text-silver/60 hover:bg-white/[0.06] hover:text-silver'
               }`}
             >
@@ -216,10 +216,10 @@ export function InsightsContent({ posts, categories, topicHubs }: InsightsConten
 
                 {/* Content */}
                 <div className="relative p-8 md:p-12 flex flex-col justify-center">
-                  <span className="inline-block px-3 py-1 bg-accent-gold/10 rounded-full text-label text-accent-gold mb-4 w-fit">
+                  <span className="inline-block px-3 py-1 bg-accent-electric/10 rounded-full text-label text-accent-electric mb-4 w-fit">
                     {featuredPost.category}
                   </span>
-                  <h2 className="text-headline-lg md:text-display-sm font-display text-platinum mb-4 group-hover:text-accent-gold transition-colors">
+                  <h2 className="text-headline-lg md:text-display-sm font-display text-platinum mb-4 group-hover:text-accent-electric transition-colors">
                     {featuredPost.title}
                   </h2>
                   <p className="text-body text-silver/70 mb-6 line-clamp-3">
@@ -231,7 +231,7 @@ export function InsightsContent({ posts, categories, topicHubs }: InsightsConten
                       <span className="text-graphite">·</span>
                       <span>{featuredPost.readTime}</span>
                     </div>
-                    <span className="flex items-center gap-2 text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="flex items-center gap-2 text-accent-electric opacity-0 group-hover:opacity-100 transition-opacity">
                       Read article <ArrowIcon />
                     </span>
                   </div>
@@ -278,14 +278,14 @@ export function InsightsContent({ posts, categories, topicHubs }: InsightsConten
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-noir-primary via-noir-primary/20 to-transparent" />
-                      <span className="absolute bottom-4 left-4 px-3 py-1 bg-noir-primary/80 backdrop-blur-sm rounded-full text-label-sm text-accent-gold">
+                      <span className="absolute bottom-4 left-4 px-3 py-1 bg-noir-primary/80 backdrop-blur-sm rounded-full text-label-sm text-accent-electric">
                         {post.category}
                       </span>
                     </div>
 
                     {/* Content */}
                     <div className="p-6">
-                      <h3 className="text-headline-sm font-display text-platinum mb-3 group-hover:text-accent-gold transition-colors line-clamp-2">
+                      <h3 className="text-headline-sm font-display text-platinum mb-3 group-hover:text-accent-electric transition-colors line-clamp-2">
                         {post.title}
                       </h3>
                       <p className="text-body-sm text-silver/60 mb-4 line-clamp-2">
@@ -321,7 +321,7 @@ export function InsightsContent({ posts, categories, topicHubs }: InsightsConten
                 setSearchQuery('')
                 setSelectedCategory('All')
               }}
-              className="text-accent-gold hover:underline"
+              className="text-accent-electric hover:underline"
             >
               Clear filters
             </button>
@@ -345,7 +345,7 @@ export function InsightsContent({ posts, categories, topicHubs }: InsightsConten
               onClick={() => setPage(pageNum)}
               className={`w-10 h-10 rounded-lg text-body-sm transition-colors ${
                 currentPage === pageNum
-                  ? 'bg-accent-gold text-noir-primary font-medium'
+                  ? 'bg-accent-electric text-noir-primary font-medium'
                   : 'bg-white/[0.03] text-silver/60 hover:bg-white/[0.06] hover:text-silver'
               }`}
             >
@@ -364,7 +364,7 @@ export function InsightsContent({ posts, categories, topicHubs }: InsightsConten
 
       {/* Newsletter Section */}
       <motion.div
-        className="mt-20 p-8 md:p-12 rounded-2xl bg-gradient-to-br from-accent-gold/10 via-accent-gold/5 to-transparent border border-accent-gold/20"
+        className="mt-20 p-8 md:p-12 rounded-2xl bg-gradient-to-br from-accent-electric/10 via-accent-electric/5 to-transparent border border-accent-electric/20"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -382,11 +382,11 @@ export function InsightsContent({ posts, categories, topicHubs }: InsightsConten
             <input
               type="email"
               placeholder="your@email.com"
-              className="flex-1 px-4 py-3 bg-noir-primary border border-white/[0.1] rounded-lg text-platinum placeholder:text-silver/40 focus:border-accent-gold/50 focus:outline-none transition-colors"
+              className="flex-1 px-4 py-3 bg-noir-primary border border-white/[0.1] rounded-lg text-platinum placeholder:text-silver/40 focus:border-accent-electric/50 focus:outline-none transition-colors"
             />
             <button
               type="submit"
-              className="px-6 py-3 bg-accent-gold text-noir-primary font-medium rounded-lg hover:bg-accent-gold/90 transition-colors whitespace-nowrap"
+              className="px-6 py-3 bg-accent-electric text-noir-primary font-medium rounded-lg hover:bg-accent-electric/90 transition-colors whitespace-nowrap"
             >
               Subscribe
             </button>

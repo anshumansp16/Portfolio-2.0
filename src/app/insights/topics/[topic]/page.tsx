@@ -100,7 +100,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
         </Link>
 
         <div className="text-center mb-16">
-          <p className="text-label text-accent-gold mb-4">TOPIC</p>
+          <p className="text-label text-accent-electric mb-4">TOPIC</p>
           <h1 className="text-display-md md:text-display-lg font-display text-platinum mb-6">
             {hub.label}
           </h1>
@@ -117,7 +117,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
               href={`/insights/topics/${t.slug}`}
               className={`px-4 py-2 rounded-full text-body-sm transition-all duration-300 ${
                 t.slug === hub.slug
-                  ? 'bg-accent-gold text-noir-primary font-medium'
+                  ? 'bg-accent-electric text-noir-primary font-medium'
                   : 'bg-white/[0.03] text-silver/60 hover:bg-white/[0.06] hover:text-silver'
               }`}
             >
@@ -139,12 +139,12 @@ export default async function TopicPage({ params }: TopicPageProps) {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-noir-primary via-noir-primary/20 to-transparent" />
-                    <span className="absolute bottom-4 left-4 px-3 py-1 bg-noir-primary/80 backdrop-blur-sm rounded-full text-label-sm text-accent-gold">
+                    <span className="absolute bottom-4 left-4 px-3 py-1 bg-noir-primary/80 backdrop-blur-sm rounded-full text-label-sm text-accent-electric">
                       {post.category}
                     </span>
                   </div>
                   <div className="p-6">
-                    <h3 className="text-headline-sm font-display text-platinum mb-3 group-hover:text-accent-gold transition-colors line-clamp-2">
+                    <h3 className="text-headline-sm font-display text-platinum mb-3 group-hover:text-accent-electric transition-colors line-clamp-2">
                       {post.title}
                     </h3>
                     <p className="text-body-sm text-silver/60 mb-4 line-clamp-2">
@@ -167,7 +167,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
             <p className="text-body-sm text-silver/60 mb-6 max-w-md mx-auto">
               This hub is being built out. In the meantime, browse everything I&apos;ve written so far.
             </p>
-            <Link href="/insights" className="text-accent-gold hover:underline">
+            <Link href="/insights" className="text-accent-electric hover:underline">
               View all insights →
             </Link>
           </div>

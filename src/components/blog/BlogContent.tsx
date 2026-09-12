@@ -26,8 +26,8 @@ function CodeBlock({ code, language }: { code: string; language: string }) {
   return (
     <div className="relative group my-6">
       {/* Language badge */}
-      <div className="absolute top-0 left-4 -translate-y-1/2 px-3 py-1 bg-accent-gold/20 rounded-full">
-        <span className="text-xs font-mono text-accent-gold uppercase">{language || 'code'}</span>
+      <div className="absolute top-0 left-4 -translate-y-1/2 px-3 py-1 bg-accent-electric/20 rounded-full">
+        <span className="text-xs font-mono text-accent-electric uppercase">{language || 'code'}</span>
       </div>
 
       {/* Copy button */}
@@ -320,8 +320,8 @@ export function BlogContent({ content }: BlogContentProps) {
     return text
       .replace(/\*\*(.+?)\*\*/g, '<strong class="text-platinum font-medium">$1</strong>')
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
-      .replace(/`([^`]+)`/g, '<code class="bg-noir-subtle px-1.5 py-0.5 rounded text-accent-gold/80 text-sm font-mono">$1</code>')
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-accent-gold hover:underline">$1</a>')
+      .replace(/`([^`]+)`/g, '<code class="bg-noir-subtle px-1.5 py-0.5 rounded text-accent-electric/80 text-sm font-mono">$1</code>')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-accent-electric hover:underline">$1</a>')
   }
 
   return (
@@ -329,7 +329,7 @@ export function BlogContent({ content }: BlogContentProps) {
       {/* Reading Progress Bar */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-noir-subtle z-50">
         <div
-          className="h-full bg-gradient-to-r from-accent-gold to-accent-gold/60 transition-all duration-150"
+          className="h-full bg-gradient-to-r from-accent-electric to-accent-electric/60 transition-all duration-150"
           style={{ width: `${readingProgress}%` }}
         />
       </div>
@@ -353,7 +353,7 @@ export function BlogContent({ content }: BlogContentProps) {
                     item.level === 3 ? 'pl-4' : ''
                   } ${
                     activeSection === item.id
-                      ? 'text-accent-gold'
+                      ? 'text-accent-electric'
                       : 'text-silver/50 hover:text-silver/80'
                   }`}
                   style={{
@@ -406,7 +406,7 @@ export function BlogContent({ content }: BlogContentProps) {
               <div className="flex items-center gap-3">
                 <div className="flex-1 h-1 bg-white/[0.06] rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-accent-gold/60 transition-all duration-150"
+                    className="h-full bg-accent-electric/60 transition-all duration-150"
                     style={{ width: `${readingProgress}%` }}
                   />
                 </div>

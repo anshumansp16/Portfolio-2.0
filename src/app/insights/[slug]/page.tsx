@@ -164,7 +164,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
         {/* Article Header - Centered */}
         <header className="max-w-3xl mb-12">
           <div className="flex items-center gap-3 mb-6">
-            <span className="px-3 py-1 bg-accent-gold/10 rounded-full text-label text-accent-gold">
+            <span className="px-3 py-1 bg-accent-electric/10 rounded-full text-label text-accent-electric">
               {post.category}
             </span>
             <span className="text-body-sm text-silver/40">{post.readTime}</span>
@@ -211,7 +211,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
         {/* Author Section */}
         <footer className="max-w-3xl mt-20 pt-12 border-t border-white/[0.06]">
           <div className="flex items-start gap-6">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-accent-gold/20 to-accent-gold/5 border border-white/[0.06] flex items-center justify-center">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-accent-electric/20 to-accent-electric/5 border border-white/[0.06] flex items-center justify-center">
               <span className="text-3xl font-display text-platinum">AP</span>
             </div>
             <div className="flex-1">
@@ -273,12 +273,12 @@ export default async function BlogPage({ params }: BlogPageProps) {
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-noir-primary via-noir-primary/20 to-transparent" />
-                      <span className="absolute bottom-4 left-4 px-3 py-1 bg-noir-primary/80 backdrop-blur-sm rounded-full text-label-sm text-accent-gold">
+                      <span className="absolute bottom-4 left-4 px-3 py-1 bg-noir-primary/80 backdrop-blur-sm rounded-full text-label-sm text-accent-electric">
                         {related.category}
                       </span>
                     </div>
                     <div className="p-5">
-                      <h3 className="text-body font-display text-platinum mb-2 group-hover:text-accent-gold transition-colors line-clamp-2">
+                      <h3 className="text-body font-display text-platinum mb-2 group-hover:text-accent-electric transition-colors line-clamp-2">
                         {related.title}
                       </h3>
                       <p className="text-body-sm text-silver/50 line-clamp-2">{related.excerpt}</p>
@@ -301,8 +301,11 @@ export default async function BlogPage({ params }: BlogPageProps) {
                 Explore more insights on AI, automation, and system design.
               </p>
             </div>
-            <Link href="/insights" className="luxury-button group whitespace-nowrap">
-              <span className="relative z-10">View All Insights</span>
+            <Link href="/insights" className="btn-primary group whitespace-nowrap">
+              View All Insights
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="transition-transform duration-300 group-hover:translate-x-0.5">
+                <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
             </Link>
           </div>
         </div>
