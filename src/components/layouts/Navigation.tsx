@@ -19,7 +19,7 @@ function APMark() {
   )
 }
 
-const navLinks = ['Work', 'About', 'Connect']
+const navLinks = ['Work', 'Insights', 'About', 'Connect']
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false)

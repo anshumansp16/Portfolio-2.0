@@ -157,12 +157,12 @@ export default function ConnectPage() {
                     href="mailto:anshumansp16@gmail.com"
                     className="group flex items-start gap-4 transition-colors"
                   >
-                    <div className="mt-1 p-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06] group-hover:border-accent-gold/50 transition-colors">
-                      <Mail className="w-5 h-5 text-graphite group-hover:text-accent-gold transition-colors" />
+                    <div className="mt-1 p-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06] group-hover:border-accent-electric/50 transition-colors">
+                      <Mail className="w-5 h-5 text-graphite group-hover:text-accent-electric transition-colors" />
                     </div>
                     <div>
                       <p className="text-label text-graphite mb-1">Email</p>
-                      <p className="text-body text-platinum group-hover:text-accent-gold transition-colors">
+                      <p className="text-body text-platinum group-hover:text-accent-electric transition-colors">
                         anshumansp16@gmail.com
                       </p>
                     </div>
@@ -174,12 +174,12 @@ export default function ConnectPage() {
                     rel="noopener noreferrer"
                     className="group flex items-start gap-4 transition-colors"
                   >
-                    <div className="mt-1 p-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06] group-hover:border-accent-gold/50 transition-colors">
-                      <Linkedin className="w-5 h-5 text-graphite group-hover:text-accent-gold transition-colors" />
+                    <div className="mt-1 p-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06] group-hover:border-accent-electric/50 transition-colors">
+                      <Linkedin className="w-5 h-5 text-graphite group-hover:text-accent-electric transition-colors" />
                     </div>
                     <div>
                       <p className="text-label text-graphite mb-1">LinkedIn</p>
-                      <p className="text-body text-platinum group-hover:text-accent-gold transition-colors">
+                      <p className="text-body text-platinum group-hover:text-accent-electric transition-colors">
                         linkedin.com/in/anshumansp16
                       </p>
                     </div>
@@ -191,12 +191,12 @@ export default function ConnectPage() {
                     rel="noopener noreferrer"
                     className="group flex items-start gap-4 transition-colors"
                   >
-                    <div className="mt-1 p-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06] group-hover:border-accent-gold/50 transition-colors">
-                      <Github className="w-5 h-5 text-graphite group-hover:text-accent-gold transition-colors" />
+                    <div className="mt-1 p-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06] group-hover:border-accent-electric/50 transition-colors">
+                      <Github className="w-5 h-5 text-graphite group-hover:text-accent-electric transition-colors" />
                     </div>
                     <div>
                       <p className="text-label text-graphite mb-1">GitHub</p>
-                      <p className="text-body text-platinum group-hover:text-accent-gold transition-colors">
+                      <p className="text-body text-platinum group-hover:text-accent-electric transition-colors">
                         github.com/anshumansp16
                       </p>
                     </div>
@@ -208,12 +208,12 @@ export default function ConnectPage() {
                     rel="noopener noreferrer"
                     className="group flex items-start gap-4 transition-colors"
                   >
-                    <div className="mt-1 p-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06] group-hover:border-accent-gold/50 transition-colors">
-                      <X className="w-5 h-5 text-graphite group-hover:text-accent-gold transition-colors" />
+                    <div className="mt-1 p-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06] group-hover:border-accent-electric/50 transition-colors">
+                      <X className="w-5 h-5 text-graphite group-hover:text-accent-electric transition-colors" />
                     </div>
                     <div>
                       <p className="text-label text-graphite mb-1">X (Twitter)</p>
-                      <p className="text-body text-platinum group-hover:text-accent-gold transition-colors">
+                      <p className="text-body text-platinum group-hover:text-accent-electric transition-colors">
                         @anshumansp16
                       </p>
                     </div>

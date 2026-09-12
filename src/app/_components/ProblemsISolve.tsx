@@ -54,7 +54,7 @@ function Problem({ title, pain, solution, index }: ProblemProps) {
 
           {/* Solution with arrow */}
           <div className="flex items-start gap-3 pt-4 border-t border-white/[0.04]">
-            <span className="text-accent-gold/60 mt-1 text-sm">→</span>
+            <span className="text-accent-electric/60 mt-1 text-sm">→</span>
             <p
               className="text-body text-platinum/90"
               style={{

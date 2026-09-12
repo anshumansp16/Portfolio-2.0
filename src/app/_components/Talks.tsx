@@ -58,7 +58,7 @@ function Note({ title, excerpt, date, index }: NoteProps) {
 
       {/* Read indicator */}
       <motion.div
-        className="absolute bottom-0 left-0 h-px bg-gradient-to-r from-accent-gold/0 via-accent-gold/30 to-accent-gold/0"
+        className="absolute bottom-0 left-0 h-px bg-gradient-to-r from-accent-electric/0 via-accent-electric/30 to-accent-electric/0"
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 0 }}
         whileHover={{ scaleX: 1 }}

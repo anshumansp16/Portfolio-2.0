@@ -22,12 +22,12 @@ export function Button({
 }: ButtonProps) {
   const { handleMouseMove, handleMouseLeave, style } = useMagneticCursor(0.3)
 
-  const baseStyles = 'luxury-button relative inline-flex items-center justify-center font-medium tracking-wider transition-all duration-300 ease-luxury'
+  const baseStyles = 'relative inline-flex items-center justify-center gap-2 font-medium tracking-wide transition-all duration-300 ease-luxury border'
 
   const variants = {
-    primary: 'border-platinum text-platinum hover:border-accent-gold hover:text-noir-void',
-    secondary: 'border-graphite text-silver hover:border-silver hover:text-platinum',
-    text: 'border-transparent text-platinum hover:text-accent-gold underline-offset-4',
+    primary: 'border-transparent text-platinum bg-gradient-to-br from-accent-blue to-[#2563EB] shadow-blue-sm hover:shadow-blue-glow hover:-translate-y-0.5',
+    secondary: 'border-white/10 text-silver bg-white/[0.03] hover:border-white/20 hover:text-platinum hover:bg-white/[0.06]',
+    text: 'border-transparent text-platinum hover:text-accent-electric underline-offset-4 px-0',
   }
 
   const sizes = {

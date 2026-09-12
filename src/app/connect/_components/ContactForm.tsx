@@ -141,7 +141,7 @@ export function ContactForm() {
             className={`w-full pl-11 pr-4 py-3 bg-white/[0.03] backdrop-blur-sm border rounded-lg text-platinum placeholder:text-silver/40 focus:outline-none transition-all duration-300 ${
               errors.name
                 ? 'border-red-500/50 focus:border-red-500 focus:bg-red-500/[0.05]'
-                : 'border-white/[0.08] focus:border-accent-gold/40 focus:bg-white/[0.05] hover:border-white/[0.12]'
+                : 'border-white/[0.08] focus:border-accent-electric/40 focus:bg-white/[0.05] hover:border-white/[0.12]'
             }`}
             placeholder="Your name"
           />
@@ -172,7 +172,7 @@ export function ContactForm() {
             className={`w-full pl-11 pr-4 py-3 bg-white/[0.03] backdrop-blur-sm border rounded-lg text-platinum placeholder:text-silver/40 focus:outline-none transition-all duration-300 ${
               errors.email
                 ? 'border-red-500/50 focus:border-red-500 focus:bg-red-500/[0.05]'
-                : 'border-white/[0.08] focus:border-accent-gold/40 focus:bg-white/[0.05] hover:border-white/[0.12]'
+                : 'border-white/[0.08] focus:border-accent-electric/40 focus:bg-white/[0.05] hover:border-white/[0.12]'
             }`}
             placeholder="your.email@example.com"
           />
@@ -203,7 +203,7 @@ export function ContactForm() {
             className={`w-full pl-11 pr-4 py-3 bg-white/[0.03] backdrop-blur-sm border rounded-lg text-platinum placeholder:text-silver/40 focus:outline-none transition-all duration-300 ${
               errors.subject
                 ? 'border-red-500/50 focus:border-red-500 focus:bg-red-500/[0.05]'
-                : 'border-white/[0.08] focus:border-accent-gold/40 focus:bg-white/[0.05] hover:border-white/[0.12]'
+                : 'border-white/[0.08] focus:border-accent-electric/40 focus:bg-white/[0.05] hover:border-white/[0.12]'
             }`}
             placeholder="What would you like to discuss?"
           />
@@ -234,7 +234,7 @@ export function ContactForm() {
             className={`w-full pl-11 pr-4 py-3 bg-white/[0.03] backdrop-blur-sm border rounded-lg text-platinum placeholder:text-silver/40 focus:outline-none transition-all duration-300 resize-none ${
               errors.message
                 ? 'border-red-500/50 focus:border-red-500 focus:bg-red-500/[0.05]'
-                : 'border-white/[0.08] focus:border-accent-gold/40 focus:bg-white/[0.05] hover:border-white/[0.12]'
+                : 'border-white/[0.08] focus:border-accent-electric/40 focus:bg-white/[0.05] hover:border-white/[0.12]'
             }`}
             placeholder="Tell me about your project or idea..."
           />
@@ -265,12 +265,15 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="luxury-button disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+        className="btn-primary w-full justify-center text-base py-3.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
         aria-busy={isSubmitting}
       >
-        <span className="relative z-10">
-          {isSubmitting ? 'Sending...' : 'Send Message'}
-        </span>
+        {isSubmitting ? 'Sending...' : 'Send Message'}
+        {!isSubmitting && (
+          <svg width="14" height="14" viewBox="0 0 12 12" fill="none">
+            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+        )}
       </button>
     </form>
   )

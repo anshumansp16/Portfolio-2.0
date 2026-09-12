@@ -56,12 +56,12 @@ export function SeoDashboardClient({
             onChange={(e) => setPassword(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && password === ADMIN_PASSWORD && setAuthed(true)}
             placeholder="Password"
-            className="w-full px-4 py-3 mb-3 bg-noir-subtle border border-white/[0.06] rounded-lg text-platinum focus:border-accent-gold/50 focus:outline-none"
+            className="w-full px-4 py-3 mb-3 bg-noir-subtle border border-white/[0.06] rounded-lg text-platinum focus:border-accent-electric/50 focus:outline-none"
             autoFocus
           />
           <button
             onClick={() => (password === ADMIN_PASSWORD ? setAuthed(true) : alert('Wrong password'))}
-            className="w-full px-4 py-3 bg-accent-gold text-noir-primary font-medium rounded-lg"
+            className="w-full px-4 py-3 bg-accent-electric text-noir-primary font-medium rounded-lg"
           >
             Enter
           </button>
@@ -91,7 +91,7 @@ export function SeoDashboardClient({
                 href={tool.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block p-4 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-accent-gold/40 transition-colors"
+                className="block p-4 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-accent-electric/40 transition-colors"
               >
                 <p className="text-platinum font-medium mb-1">{tool.name} ↗</p>
                 <p className="text-body-sm text-silver/50">{tool.note}</p>
@@ -108,7 +108,7 @@ export function SeoDashboardClient({
               <Link
                 key={hub.slug}
                 href={`/insights/topics/${hub.slug}`}
-                className="block p-4 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-accent-gold/40 transition-colors"
+                className="block p-4 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-accent-electric/40 transition-colors"
               >
                 <div className="flex items-center justify-between mb-1">
                   <p className="text-platinum font-medium">{hub.label}</p>
@@ -135,7 +135,7 @@ export function SeoDashboardClient({
             {posts.map((post) => (
               <div key={post.slug} className="p-4 rounded-xl border border-white/[0.06] bg-white/[0.02]">
                 <div className="flex items-start justify-between gap-4 mb-2">
-                  <Link href={`/insights/${post.slug}`} className="text-platinum font-medium hover:text-accent-gold">
+                  <Link href={`/insights/${post.slug}`} className="text-platinum font-medium hover:text-accent-electric">
                     {post.title}
                   </Link>
                   <span

@@ -444,7 +444,7 @@ Time: ${new Date().toLocaleString()}
                         value={leadFormData.name}
                         onChange={(e) => handleLeadFormChange('name', e.target.value)}
                         required
-                        className="w-full px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-lg text-platinum placeholder:text-silver/40 focus:outline-none focus:border-accent-gold/40 text-sm"
+                        className="w-full px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-lg text-platinum placeholder:text-silver/40 focus:outline-none focus:border-accent-electric/40 text-sm"
                         placeholder="Your name"
                       />
 
@@ -453,7 +453,7 @@ Time: ${new Date().toLocaleString()}
                         value={leadFormData.email}
                         onChange={(e) => handleLeadFormChange('email', e.target.value)}
                         required
-                        className="w-full px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-lg text-platinum placeholder:text-silver/40 focus:outline-none focus:border-accent-gold/40 text-sm"
+                        className="w-full px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-lg text-platinum placeholder:text-silver/40 focus:outline-none focus:border-accent-electric/40 text-sm"
                         placeholder="Email address"
                       />
 
@@ -462,14 +462,14 @@ Time: ${new Date().toLocaleString()}
                         value={leadFormData.company}
                         onChange={(e) => handleLeadFormChange('company', e.target.value)}
                         required
-                        className="w-full px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-lg text-platinum placeholder:text-silver/40 focus:outline-none focus:border-accent-gold/40 text-sm"
+                        className="w-full px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-lg text-platinum placeholder:text-silver/40 focus:outline-none focus:border-accent-electric/40 text-sm"
                         placeholder="Company name"
                       />
 
                       <select
                         value={leadFormData.budget}
                         onChange={(e) => handleLeadFormChange('budget', e.target.value)}
-                        className="w-full px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-lg text-platinum focus:outline-none focus:border-accent-gold/40 text-sm"
+                        className="w-full px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-lg text-platinum focus:outline-none focus:border-accent-electric/40 text-sm"
                       >
                         <option value="">Budget range</option>
                         <option value="Under $5K">Under $5K</option>
@@ -481,7 +481,7 @@ Time: ${new Date().toLocaleString()}
                       <select
                         value={leadFormData.timeline}
                         onChange={(e) => handleLeadFormChange('timeline', e.target.value)}
-                        className="w-full px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-lg text-platinum focus:outline-none focus:border-accent-gold/40 text-sm"
+                        className="w-full px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-lg text-platinum focus:outline-none focus:border-accent-electric/40 text-sm"
                       >
                         <option value="">Timeline</option>
                         <option value="Urgent (1-2 weeks)">Urgent (1-2 weeks)</option>
@@ -556,7 +556,7 @@ Time: ${new Date().toLocaleString()}
                           >
                             <button
                               onClick={handleGetStarted}
-                              className="px-4 py-1.5 rounded-lg text-xs font-medium text-platinum hover:text-accent-gold transition-colors"
+                              className="px-4 py-1.5 rounded-lg text-xs font-medium text-platinum hover:text-accent-electric transition-colors"
                               style={{
                                 background: 'rgba(255, 255, 255, 0.04)',
                                 border: '1px solid rgba(255, 255, 255, 0.08)',
@@ -567,7 +567,7 @@ Time: ${new Date().toLocaleString()}
 
                             <button
                               onClick={handleScheduleCall}
-                              className="px-4 py-1.5 rounded-lg text-xs font-medium text-platinum hover:text-accent-gold transition-colors"
+                              className="px-4 py-1.5 rounded-lg text-xs font-medium text-platinum hover:text-accent-electric transition-colors"
                               style={{
                                 background: 'rgba(255, 255, 255, 0.04)',
                                 border: '1px solid rgba(255, 255, 255, 0.08)',
@@ -631,7 +631,7 @@ Time: ${new Date().toLocaleString()}
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Ask about my work..."
                       disabled={isLoading}
-                      className="flex-1 px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-lg text-platinum placeholder:text-silver/40 focus:outline-none focus:border-accent-gold/40 text-xs disabled:opacity-50"
+                      className="flex-1 px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-lg text-platinum placeholder:text-silver/40 focus:outline-none focus:border-accent-electric/40 text-xs disabled:opacity-50"
                     />
                     <button
                       type="submit"

@@ -41,10 +41,10 @@ export function ProjectCard({
       <Link href={link} className="block group">
         <Card className="h-full">
           {/* Category Label */}
-          <p className="text-label text-accent-gold mb-3">{category}</p>
+          <p className="text-label text-accent-electric mb-3">{category}</p>
 
           {/* Title */}
-          <h3 className="text-headline-sm font-display text-platinum mb-4 group-hover:text-accent-gold transition-colors duration-300">
+          <h3 className="text-headline-sm font-display text-platinum mb-4 group-hover:text-accent-electric transition-colors duration-300">
             {title}
           </h3>
 
@@ -80,7 +80,7 @@ export function ProjectCard({
           </div>
 
           {/* Hover Arrow */}
-          <div className="flex items-center gap-2 text-accent-gold opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-2 transition-all duration-300">
+          <div className="flex items-center gap-2 text-accent-electric opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-2 transition-all duration-300">
             <span className="text-body-sm font-medium">View Details</span>
             <svg
               className="w-4 h-4"
